@@ -1,12 +1,18 @@
 import React from 'react';
 
+import RecipesListComponent from './partials/RecipesListComponent';
+import RecipeViewComponent from './partials/RecipeViewComponent';
+
 export default class HomeComponent extends React.Component{
   constructor(props){
     super(props);
   }
   render(){
     return(
-      <h1>I am Home Component</h1>
+      <div className="home-component">
+        <RecipesListComponent />
+        <RecipeViewComponent />
+      </div>
     );
   }
 }

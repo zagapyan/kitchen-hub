@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import routerReducer from './routerReducer';
+import recipeReducer from './recipeReducer';
 
 const rootReducer = combineReducers({
-  routerReducer,
+  recipeReducer,
 });
 
 export default rootReducer;

@@ -1,9 +1,9 @@
 // @flow
-import { RECIPES } from '../actions/recipeActions';
+import { GET_RECIPES } from '../actions/recipeActions';
 
 export default function recipeReducer(state={}, action) {
   switch (action.type) {
-    case RECIPES:
+    case GET_RECIPES:
       return {};
     default:
       return state;

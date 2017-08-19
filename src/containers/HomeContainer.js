@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HomeComponent from '../components/HomeComponent';
-import recipeActions from '../actions/recipeActions';
+import { fetchRecipes, receiveRecipes } from '../actions/recipeActions';
 
 function mapStateToProps(state) {
   return {
@@ -10,7 +10,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(recipeActions, dispatch);
+  return bindActionCreators({
+    ...fetchRecipes,
+    ...receiveRecipes
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);

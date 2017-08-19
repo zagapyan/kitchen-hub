@@ -3,8 +3,8 @@ import React from 'react';
 import RecipesListComponent from './partials/RecipesListComponent';
 import RecipeViewComponent from './partials/RecipeViewComponent';
 
-// const endpoint = '//open.zigmundsunoo.com/api/recipes'
-const endpoint = '//localhost:3000/api/recipes'
+const endpoint = 'https://open.zigmundsunoo.com/api/recipes'
+// const endpoint = '//localhost:3000/api/recipes'
 
 export default class HomeComponent extends React.Component{
   constructor(props){

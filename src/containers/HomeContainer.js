@@ -5,7 +5,9 @@ import { fetchRecipes, receiveRecipes } from '../actions/recipeActions';
 
 function mapStateToProps(state) {
   return {
-    counter: state.counter
+    counter: state.counter,
+    fetchRecipes,
+    receiveRecipes
   };
 }
 

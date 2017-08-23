@@ -9,7 +9,8 @@ export default class RecipesListComponent extends React.Component{
   }
   handleRefreshRecipesList(e){
     e.preventDefault();
-    console.log(isEmpty(this.props));
+    console.log(this.props.recipes);
+    console.log(isEmpty(this.props.recipes));
   }
   render(){
     return(

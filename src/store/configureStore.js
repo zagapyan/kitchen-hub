@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
 const enhancer = applyMiddleware();
-
+const initialState = {};
 export const configureStore = (initialState)=>{
     return createStore(rootReducer, initialState, enhancer)
 }

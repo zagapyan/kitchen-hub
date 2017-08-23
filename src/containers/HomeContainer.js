@@ -5,7 +5,6 @@ import { fetchRecipes, receiveRecipes } from '../actions/recipeActions';
 
 function mapStateToProps(state) {
   return {
-    counter: state.counter,
     fetchRecipes,
     receiveRecipes
   };
@@ -18,4 +17,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)
+(HomeComponent);

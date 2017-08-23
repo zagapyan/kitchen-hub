@@ -9,12 +9,21 @@ export const REJECTED_FETCH = 'REJECTED_FETCH';
 
 export function fetchRecipes(url) {
   console.log('fetching...');
+  console.log(url);
   axios.get(url, config.headers).then(response=>{
     if(response.status === 200){
       receiveRecipes(response.data)
+      return{
+        type: GET_RECIPES
+      }
     }
   })
-  .catch(err=>console.log(err));
+  .catch(err=>{
+    console.log(err)
+    return{
+      type: GET_RECIPES
+    }
+  });
 }
 
 // pure functions

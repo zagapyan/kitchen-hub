@@ -2,11 +2,12 @@
 import { GET_RECIPES, RECIEVE_RECIPES, REJECTED_FETCH } from '../actions/recipeActions';
 
 const initalState={
-  recipes: [],
+  recipes: [{hello:'meow'}],
   timeStamp: ''
 }
 
-export default function recipeReducer(state={...initalState}, action) {
+export default function recipeReducer(state={}, action) {
+  console.log('recipeReducer');
   switch (action.type) {
     case GET_RECIPES:
       return {
@@ -27,6 +28,7 @@ export default function recipeReducer(state={...initalState}, action) {
         timeStamp: action.timeStamp
       }
     default:
+      console.log('fall through');
       return state;
   }
 }

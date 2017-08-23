@@ -3,7 +3,7 @@ import { GET_RECIPES, RECIEVE_RECIPES, REJECTED_FETCH } from '../actions/recipeA
 
 const initalState={
   recipes: [],
-  timeStamp: ''
+  timeStamp: 'no timestamp available'
 }
 
 export default function recipeReducer(state={...initalState}, action) {
@@ -23,7 +23,8 @@ export default function recipeReducer(state={...initalState}, action) {
     case REJECTED_FETCH:
       return{
         ...state,
-        err: action.err
+        err: action.err,
+        timeStamp: action.timeStamp
       }
     default:
       return state;

@@ -1,4 +1,3 @@
-import type { recipes } from '../reducers/';
 import axios from 'axios';
 import config from '../utils/headers';
 
@@ -9,6 +8,7 @@ export const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
 export const REJECTED_FETCH = 'REJECTED_FETCH';
 
 export function fetchRecipes(url) {
+  console.log('fetching...');
   axios.get(url, config.headers).then(response=>{
     if(response.status === 200){
       receiveRecipes(response.data)
@@ -18,6 +18,7 @@ export function fetchRecipes(url) {
 }
 
 export function receiveRecipes(recipes){
+  console.log('recieving recipes');
   return{
     type: RECIEVE_RECIPES,
     recipes,

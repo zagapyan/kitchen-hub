@@ -17,8 +17,10 @@ export function fetchRecipes(url) {
   .catch(err=>console.log(err));
 }
 
+// pure functions
 export function receiveRecipes(recipes){
   console.log('recieving recipes');
+  console.log(recipes);
   return{
     type: RECIEVE_RECIPES,
     recipes,

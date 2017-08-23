@@ -6,9 +6,9 @@ export default class RecipeViewComponent extends React.Component{
   }
   render(){
     return(
-      <main className="recipe-view-component">
-        <h1>I am Recipe View Component</h1>
-      </main>
+      <section className="recipe-view-component">
+        <h2>I am Recipe View Component</h2>
+      </section>
     )
   }
 }

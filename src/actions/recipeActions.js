@@ -9,31 +9,26 @@ export const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
 export const REJECTED_FETCH = 'REJECTED_FETCH';
 
 export function fetchRecipes(url) {
-  axios.get(url, config.headers).then(data=>console.log(data))
-  return {
-    type: GET_RECIPES,
-    isFetching: true,
-    recievedData: false
-  };
+  axios.get(url, config.headers).then(response=>{
+    if(response.status === 200){
+      receiveRecipes(response.data)
+    }
+  })
+  .catch(err=>console.log(err));
 }
 
-export function receiveRecipes(recipes, json){
+export function receiveRecipes(recipes){
   return{
     type: RECIEVE_RECIPES,
-    isFetching: false,
-    recievedData: true,
     recipes,
-    data: json.data,
-    receivedDate: Date.now()
+    timeStamp: Date.now()
   }
 }
 
 export function rejectedFetchRecipes(error){
   return{
     type: REJECTED_FETCH,
-    isFetching: false,
-    receivedData: false,
     error,
-    receivedDate: Date.now()
+    timeStamp: Date.now()
   }
 }

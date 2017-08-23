@@ -1,23 +1,29 @@
 // @flow
 import { GET_RECIPES, RECIEVE_RECIPES, REJECTED_FETCH } from '../actions/recipeActions';
 
-export default function recipeReducer(state={}, action) {
+const initalState={
+  recipes: [],
+  timeStamp: ''
+}
+
+export default function recipeReducer(state={...initalState}, action) {
   switch (action.type) {
     case GET_RECIPES:
       return {
-        isFetching: action.isFetching,
-        recievedData: action.recievedData,
-        data: action.data
+        ...state
       };
     case RECIEVE_RECIPES:
+      console.log(state);
+      console.log(action);
       return{
-        isFetching: action.isFetching,
-        recievedData: action.recievedData
+        ...state,
+        recipes: action.recipes,
+        timeStamp: action.timeStamp
       }
     case REJECTED_FETCH:
       return{
-        isFetching: action.isFetching,
-        recievedData: action.recievedData
+        ...state,
+        err: action.err
       }
     default:
       return state;

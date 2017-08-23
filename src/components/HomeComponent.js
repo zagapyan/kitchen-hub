@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RecipesListComponent from './partials/RecipesListComponent';
+import RecipesListContainer from '../containers/RecipesListContainer';
 import RecipeViewComponent from './partials/RecipeViewComponent';
 
 const endpoint = 'https://open.zigmundsunoo.com/api/recipes'
@@ -16,7 +16,7 @@ export default class HomeComponent extends React.Component{
   render(){
     return(
       <div className="home-component">
-        <RecipesListComponent />
+        <RecipesListContainer />
         <RecipeViewComponent />
       </div>
     );

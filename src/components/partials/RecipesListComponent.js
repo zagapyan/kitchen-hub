@@ -11,28 +11,37 @@ export default class RecipesListComponent extends React.Component{
     e.preventDefault();
     console.log('handleRefreshRecipesList')
     this.props.fetchRecipes(endpoint)
+    setTimeout(()=>console.log(this.props),3000);
   }
   render(){
     return(
       <nav className="recipes-list-component">
-        <h1>Kitchen Hub</h1>
+        <h1 className="site-title">Kitchen Hub</h1>
+        
         <button
-          onClick={this.handleRefreshRecipesList.bind(this)}>
-          Refresh</button>
+          onClick={this.handleRefreshRecipesList.bind(this)}
+          className="refresh-recipe-btn btn">
+            Refresh</button>
         <br />
-        <small>{this.props.timeStamp ? `Last Update: ${this.props.timeStamp}` : 'No time stamp available'}</small>
-        <pre>{/*JSON.stringify(this.props)*/}</pre>
-        <ul>
-          {/*
-            this.props.recipes ?
-              this.props.recipes.map(
-                (data, key)=>
-                  <li key={key}>{data}</li>)
-              : <li>No Recipes Currently Present</li>*/}
+        
+        <small className="last-update-label">
+          {this.props.timeStamp ?
+            `Last Update: ${this.props.timeStamp}`
+            : 'No time stamp available'}</small>
+
+        <ul className="recipe-list">{
+          !isEmpty(this.props.recipes) ? 
+            this.props.recipes.map(
+              data=>
+                <li key={data.id} className="recipe-list-item">
+                  <a href={data.url}>{data.title}</a></li>)
+            : <li>No recipes Available</li>}
         </ul>
+        
         <button
           onClick={()=>this.props.updateRecipes()}>
           Update</button>
+
       </nav>
     )
   }

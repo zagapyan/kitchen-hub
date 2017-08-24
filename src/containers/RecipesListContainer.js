@@ -4,6 +4,7 @@ import RecipesListComponent from '../components/partials/RecipesListComponent';
 import * as recipeActions from '../actions/recipeActions';
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     recipes: state.recipeReducer.recipes,
     timeStamp: state.recipeReducer.timeStamp,

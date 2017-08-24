@@ -14,11 +14,12 @@ export function requestRecipes(recipes){
 }
 
 export const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
-export function receiveRecipes(recipes){
+export function receiveRecipes(response){
   console.log('recieving recipes');
-  console.log(recipes);
+  console.log(response);
   return {
     type: RECIEVE_RECIPES,
+    recipes: response,
     timeStamp: Date.now()
   }
 }
@@ -26,8 +27,12 @@ export function receiveRecipes(recipes){
 export const FETCH_RECIPES = 'FETCH_RECIPES';
 export function fetchRecipes(recipes){
   return dispatch =>{
-    dispatch(receiveRecipes(recipes))
-    return fetch(endpoint, config.headers).then(data=>console.log(data))
+    dispatch(requestRecipes(recipes))
+    
+    return fetch(endpoint, config.headers).then(
+        response => response.json(),
+        err => console.log(err)
+      ).then(json=>dispatch(receiveRecipes(json)))
   }
 }
 

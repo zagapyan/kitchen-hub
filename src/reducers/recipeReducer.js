@@ -11,6 +11,12 @@ export default function recipeReducer(state=initalState, action) {
     case FETCH_RECIPES:
       return {
         ...state,
+      };
+    case REQUEST_RECIPES:
+      console.log('REQUEST_RECIPES')
+      console.log(action);
+      return {
+        ...state,
         recipes: action.recipes
       };
     case RECIEVE_RECIPES:
@@ -18,7 +24,8 @@ export default function recipeReducer(state=initalState, action) {
       console.log(action);
       return{
         ...state,
-        timeStamp: action.timeStamp
+        timeStamp: action.timeStamp,
+        recipes: action.recipes
       }
     case REJECTED_FETCH:
       return{

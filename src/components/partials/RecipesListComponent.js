@@ -6,14 +6,11 @@ import { isEmpty } from 'lodash';
 export default class RecipesListComponent extends React.Component{
   constructor(props){
     super(props);
-    console.log(this.props);
   }
   handleRefreshRecipesList(e){
     e.preventDefault();
-    // console.log(endpoint);
-    // console.log(this.props.fetchRecipes)
-    this.props.fetchRecipes(endpoint);
-    // setTimeout(_=>console.log(this.props),3000)
+    console.log('handleRefreshRecipesList')
+    this.props.fetchRecipes(endpoint)
   }
   render(){
     return(
@@ -22,9 +19,9 @@ export default class RecipesListComponent extends React.Component{
         <button
           onClick={this.handleRefreshRecipesList.bind(this)}>
           Refresh</button>
-        <button onClick={ ()=>this.props.fetchRecipes(endpoint)}>Refresh</button>
+        <br />
         <small>{this.props.timeStamp ? `Last Update: ${this.props.timeStamp}` : 'No time stamp available'}</small>
-        <pre>{JSON.stringify(this.props)}</pre>
+        <pre>{/*JSON.stringify(this.props)*/}</pre>
         <ul>
           {/*
             this.props.recipes ?
@@ -33,6 +30,9 @@ export default class RecipesListComponent extends React.Component{
                   <li key={key}>{data}</li>)
               : <li>No Recipes Currently Present</li>*/}
         </ul>
+        <button
+          onClick={()=>this.props.updateRecipes()}>
+          Update</button>
       </nav>
     )
   }

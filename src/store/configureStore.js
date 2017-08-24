@@ -1,10 +1,28 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-// import { createBrowserHistory } from 'history';
+import * as recipeActions from '../actions/recipeActions';
 import rootReducer from '../reducers';
 
-const enhancer = applyMiddleware();
+
 const initialState = {};
+
 export const configureStore = (initialState)=>{
-    return createStore(rootReducer, initialState, enhancer)
+  const middleware = [];
+  const enhancers = [];
+
+  middleware.push(thunk);
+  
+  const actionCreators = {
+    ...recipeActions
+  }
+  
+  const composeEnhancers = window.__REDUX__DEVTOOLS_EXTENTION_COMPOSE__
+    ? window.__REDUX__DEVTOOLS_EXTENTION_COMPOSE__({
+      actionCreators
+    }) : compose;
+  
+  enhancers.push(applyMiddleware(...middleware))  
+  const enhancer = composeEnhancers(...enhancers);
+
+  return createStore(rootReducer, initialState, enhancer)
 }

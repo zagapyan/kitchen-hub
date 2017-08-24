@@ -7,6 +7,7 @@ import endpoint from '../utils/endpoint';
 export default class HomeComponent extends React.Component{
   constructor(props){
     super(props);
+    console.log(this.props);
   }
   componentWillMount(){
     this.props.fetchRecipes(endpoint);

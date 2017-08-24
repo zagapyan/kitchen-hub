@@ -3,29 +3,18 @@ import { connect } from 'react-redux';
 import RecipesListComponent from '../components/partials/RecipesListComponent';
 import * as recipeActions from '../actions/recipeActions';
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     recipes: state.recipeReducer.recipes,
     timeStamp: state.recipeReducer.timeStamp,
-    fetchRecipes: state.fetchRecipes
+    fetchRecipes: recipeActions.fetchRecipes,
+    updateRecipes: recipeActions.updateRecipes
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(recipeActions, dispatch);
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({
-//     ...fetchRecipes,
-//     ...receiveRecipes
-//   }, dispatch);
-// }
-
-// const mapDispatchToProps = {
-//   ...fetchRecipes,
-//   ...receiveRecipes
-// }
 
 export default connect(
   mapStateToProps,

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import RecipesListContainer from '../containers/RecipesListContainer';
-import RecipeViewComponent from './partials/RecipeViewComponent';
+import MainViewContainer from '../containers/MainViewContainer';
 import endpoint from '../utils/endpoint';
 
 export default class HomeComponent extends React.Component{
@@ -16,7 +16,7 @@ export default class HomeComponent extends React.Component{
     return(
       <div className="home-component">
         <RecipesListContainer />
-        <RecipeViewComponent />
+        <MainViewContainer />
       </div>
     );
   }

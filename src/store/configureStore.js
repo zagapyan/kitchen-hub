@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import * as recipeActions from '../actions/recipeActions';
+import * as mainViewActions from '../actions/mainViewActions';
 import rootReducer from '../reducers';
 
 

@@ -37,11 +37,6 @@ export default class RecipesListComponent extends React.Component{
                   <a href={data.url}>{data.title}</a></li>)
             : <li>No recipes Available</li>}
         </ul>
-        
-        <button
-          onClick={()=>this.props.updateRecipes()}>
-          Update</button>
-
       </nav>
     )
   }

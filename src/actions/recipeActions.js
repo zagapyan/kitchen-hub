@@ -44,11 +44,3 @@ export function rejectedFetchRecipes(error){
     timeStamp: Date.now()
   }
 }
-
-export const UPDATE_RECIPES = 'UPDATE_RECIPES';
-export function updateRecipes(recipes){
-  return{
-    type: UPDATE_RECIPES,
-    recipes: [{ hello : 'DOGS'}]
-  }
-}

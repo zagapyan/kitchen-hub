@@ -9,7 +9,6 @@ function mapStateToProps(state) {
     recipes: state.recipeReducer.recipes,
     timeStamp: state.recipeReducer.timeStamp,
     fetchRecipes: recipeActions.fetchRecipes,
-    updateRecipes: recipeActions.updateRecipes
   };
 }
 

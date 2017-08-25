@@ -1,4 +1,4 @@
-import { FETCH_RECIPES, REQUEST_RECIPES, RECIEVE_RECIPES, REJECTED_FETCH, UPDATE_RECIPES } from '../actions/recipeActions';
+import { FETCH_RECIPES, REQUEST_RECIPES, RECIEVE_RECIPES, REJECTED_FETCH } from '../actions/recipeActions';
 
 const initalState={
   recipes: [],
@@ -32,13 +32,6 @@ export default function recipeReducer(state=initalState, action) {
         ...state,
         err: action.err,
         timeStamp: action.timeStamp
-      }
-    case UPDATE_RECIPES:
-    console.log(action)
-      console.log('UPDATE_RECIPES')
-      return{
-        ...state,
-        recipes: action.recipes
       }
     default:
       console.log('fall through');

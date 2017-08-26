@@ -1,22 +1,18 @@
 import React from 'react';
 
 import RecipesListContainer from '../containers/RecipesListContainer';
-import RecipeViewComponent from './partials/RecipeViewComponent';
+import RecipeViewContainer from '../containers/RecipeViewContainer';
 import endpoint from '../utils/endpoint';
 
 export default class HomeComponent extends React.Component{
   constructor(props){
     super(props);
-    console.log(this.props);
-  }
-  componentWillMount(){
-    this.props.fetchRecipes(endpoint);
   }
   render(){
     return(
       <div className="home-component">
         <RecipesListContainer />
-        <RecipeViewComponent />
+        <RecipeViewContainer />
       </div>
     );
   }

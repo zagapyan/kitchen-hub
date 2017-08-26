@@ -44,3 +44,11 @@ export function rejectedFetchRecipes(error){
     timeStamp: Date.now()
   }
 }
+
+export const CURRENT_RECIPE = 'CURRENT_RECIPE';
+export function filterCurrentRecipe(id, recipes){
+  return{
+    type: CURRENT_RECIPE,
+    currentRecipe: recipes.filter(data=>data._id===id)[0]
+  }
+}

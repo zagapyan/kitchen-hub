@@ -30,6 +30,10 @@ body, html,main.main{
 .recipes-list-component{
   flex: 1;
 }
+.recipes-list-component .recipe-list{
+  list-style: none;
+  padding: 0;
+}
 .recipe-view-component{
   flex: 3;
 }

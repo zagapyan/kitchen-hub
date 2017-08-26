@@ -23,14 +23,13 @@ export default class RecipesListComponent extends React.Component{
   render(){
     return(
       <nav className="recipes-list-component">
-        <h1 className="site-title">Kitchen Hub</h1>
-        
-        <button
-          onClick={this.handleRefreshRecipesList.bind(this)}
-          className="refresh-recipe-btn btn">
-            <RefreshCcw /></button>
-        <br />
-        
+        <div className="title-container">
+          <h1 className="site-title">Kitchen Hub</h1>
+          <button
+            onClick={this.handleRefreshRecipesList.bind(this)}
+            className="refresh-recipe-btn btn">
+              <RefreshCcw /></button>
+        </div>
         <small className="last-update-label">
           {this.props.timeStamp ?
             `Last Update: ${moment(this.props.timeStamp).calendar()}`

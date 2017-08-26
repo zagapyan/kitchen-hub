@@ -10,29 +10,25 @@ export default class RecipeViewComponent extends React.Component{
     let description = this.props.currentRecipe.description;
     let url = this.props.currentRecipe.url;
     let imgSrc = this.props.currentRecipe.imgSrc;
-    let fullImgSrc = ((imgSrc, url)=>{
-        // if image url is absolute 
+    let renderBanner = ((imgSrc, url)=>{
         if(!/^https?:\/\//i.test(imgSrc)){
-          console.log('this should fail: ',imgSrc);
-          return 'not '+imgSrc;
+          return <div className="no-image-banner">
+            <CloudOff width="36" height="36"/></div>;
         }
         else{
-          console.log('success: ',imgSrc);
-          return imgSrc;
+          return <div className="banner" style={{
+            backgroundImage: `url(${imgSrc})`}}></div>;
         }
       })(imgSrc, url)
 
     let renderCurrentRecipe =()=>
       <div className="current-recipe-component">
-        {
-          // if image source is not absolute
-          !/^https?:\/\//i.test(imgSrc)
-            ? <CloudOff />
-            : <img src={imgSrc} />
-        }
-        <h2>{title}</h2>
-        <p>{description}</p>
-        <a href={url}>Go <ChevronsRight/></a>
+        {renderBanner}
+        <div className="text-container">
+          <h2>{title}</h2>
+          {description ? <p>{description}</p> : ''}
+          <a href={url} className="drive-button">Go</a>
+        </div>
       </div>
 
     let noCurrentRecipe = ()=>
@@ -43,7 +39,6 @@ export default class RecipeViewComponent extends React.Component{
 
       return(
       <section className="recipe-view-component">
-        <h2></h2>
         { !isEmpty(this.props.currentRecipe)
             ? renderCurrentRecipe()
             : noCurrentRecipe() }

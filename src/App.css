@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 body, html,main.main{
   min-height: 100%;
+  font-family: Raleway;
+}
+button:focus{
+  outline: none;
 }
 .App {
   text-align: center;
@@ -28,6 +33,32 @@ body, html,main.main{
   justify-content: flex-start; 
 }
 .recipes-list-component{
+  flex: 2;
+  text-align: left;
+  padding: 0 20px;
+}
+.recipes-list-component .title-container{
+  display: flex;
+  flex: 2;
+  align-items: baseline;
+}
+.recipes-list-component h1{
+  display: flex;
+  margin-bottom: 0;
+}
+.recipes-list-component .last-update-label{
+  font-size: 11px;
+}
+.recipes-list-component button{
+  background: transparent;
+  border: none;
+  text-align:left;
+  padding: 10px 0;
+  width: 100%;
+  font-size: 12px;
+}
+.recipes-list-component button.refresh-recipe-btn{
+  margin-left: 20px;
   flex: 1;
 }
 .recipes-list-component .recipe-list{
@@ -36,6 +67,42 @@ body, html,main.main{
 }
 .recipe-view-component{
   flex: 3;
+  text-align: left;
+}
+.recipe-view-component .banner{
+  height: 200px;
+  background-size:cover;
+  background-position: center;
+}
+.recipe-view-component .no-image-banner{
+  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.recipe-view-component .text-container{
+  display: block;
+  float: left;
+  padding-right: 20px;
+}
+.recipe-view-component h2,
+.recipe-view-component p{
+  text-align: left;
+  float: left;
+  width: 100%;
+}
+
+.recipe-view-component .drive-button {
+  float: left;
+  text-align: left;
+  text-decoration: none;
+  border: 1px solid #444142;
+  border-radius: 2px;
+  padding: 4px 16px;
+  vertical-align: middle;
+}
+.recipe-view-component .drive-button svg{
+
 }
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

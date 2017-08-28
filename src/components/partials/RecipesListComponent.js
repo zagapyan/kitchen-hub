@@ -2,7 +2,7 @@ import React from 'react';
 import endpoint from '../../utils/endpoint'
 import '../../App.css';
 import { isEmpty } from 'lodash';
-import { RefreshCcw } from 'react-feather';
+import { RefreshCcw, Trash } from 'react-feather';
 import moment from 'moment';
 
 export default class RecipesListComponent extends React.Component{
@@ -12,8 +12,12 @@ export default class RecipesListComponent extends React.Component{
   componentWillMount(){
     this.props.fetchRecipes(endpoint)
   }
-  handleRefreshRecipesList(e){
-    e.preventDefault();
+  handleDeleteRecipe(id,event){
+    event.preventDefault();
+    console.log(id);
+  }
+  handleRefreshRecipesList(event){
+    event.preventDefault();
     console.log('handleRefreshRecipesList')
     this.props.fetchRecipes(endpoint)
   }
@@ -23,18 +27,19 @@ export default class RecipesListComponent extends React.Component{
   render(){
     return(
       <nav className="recipes-list-component">
-        <div className="title-container">
-          <h1 className="site-title">Kitchen Hub</h1>
-          <button
-            onClick={this.handleRefreshRecipesList.bind(this)}
-            className="refresh-recipe-btn btn">
-              <RefreshCcw /></button>
-        </div>
-        <small className="last-update-label">
-          {this.props.timeStamp ?
-            `Last Update: ${moment(this.props.timeStamp).calendar()}`
-            : 'No time stamp available'}</small>
-
+        <header>
+          <div className="title-container">
+            <h1 className="site-title">Kitchen Hub</h1>
+            <button
+              onClick={this.handleRefreshRecipesList.bind(this)}
+              className="refresh-recipe-btn btn">
+                <RefreshCcw /></button>
+          </div>
+          <small className="last-update-label">
+            {this.props.timeStamp ?
+              `Last Update: ${moment(this.props.timeStamp).calendar()}`
+              : 'No time stamp available'}</small>
+        </header>
         <ul className="recipe-list">{
           !isEmpty(this.props.recipes) ? 
             this.props.recipes.map(
@@ -43,7 +48,12 @@ export default class RecipesListComponent extends React.Component{
                   <button
                     onClick={this.handleCurrentRecipeView.bind(this, data._id, this.props.recipes)}>
                       {data.title}
-                  </button></li>)
+                  </button>
+                  <button
+                    className="trash-icon"
+                    onClick={this.handleDeleteRecipe.bind(this, data._id)}>
+                    <Trash height="16"/></button>
+                  </li>)
             : <li>No recipes Available</li>}
         </ul>
       </nav>

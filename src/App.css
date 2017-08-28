@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
-body, html,main.main{
+body, html,main.main, button{
   min-height: 100%;
   font-family: Raleway;
+  color: #555;
 }
 button:focus{
   outline: none;
@@ -36,34 +37,53 @@ button:focus{
   flex: 2;
   text-align: left;
   padding: 0 20px;
+  height: 100vh;
+  overflow-x: scroll;
+}
+.recipes-list-component header{
+  border-bottom: 1px solid #555;
+  padding-bottom: 16px;
 }
 .recipes-list-component .title-container{
   display: flex;
   flex: 2;
   align-items: baseline;
+  align-content: space-between;
 }
 .recipes-list-component h1{
   display: flex;
-  margin-bottom: 0;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-size: 36px;
 }
 .recipes-list-component .last-update-label{
   font-size: 11px;
+  width: 100%;
+  display: block;
+}
+.recipes-list-component button.refresh-recipe-btn{
+  margin-left: 20px;
+}
+.recipes-list-component .recipe-list{
+  list-style: none;
+  padding: 0;
+}
+.recipes-list-component .recipe-list .recipe-list-item{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #555;
 }
 .recipes-list-component button{
   background: transparent;
   border: none;
   text-align:left;
-  padding: 10px 0;
-  width: 100%;
+  padding: 0 0 8px 0;
   font-size: 12px;
 }
-.recipes-list-component button.refresh-recipe-btn{
-  margin-left: 20px;
-  flex: 1;
-}
-.recipes-list-component .recipe-list{
-  list-style: none;
-  padding: 0;
+.recipes-list-component .trash-icon{
+  padding-top: 0;
 }
 .recipe-view-component{
   flex: 3;
@@ -85,13 +105,30 @@ button:focus{
   float: left;
   padding-right: 20px;
 }
-.recipe-view-component h2,
+.recipe-view-component h2{
+  margin-top: 8px;
+  margin-bottom: 0;
+}
 .recipe-view-component p{
   text-align: left;
   float: left;
   width: 100%;
+  margin-top: 8px;
 }
-
+.recipe-view-component .no-current-recipe-component{
+  height: 100%;
+  -ms-flex-pack: ;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.recipe-view-component .no-current-recipe-component h2,
+.recipe-view-component .no-current-recipe-component p{
+  text-align: center;
+  margin-bottom: 0;
+}
 .recipe-view-component .drive-button {
   float: left;
   text-align: left;
@@ -100,6 +137,8 @@ button:focus{
   border-radius: 2px;
   padding: 4px 16px;
   vertical-align: middle;
+  margin-top: 4px;
+  color: #555;
 }
 .recipe-view-component .drive-button svg{
 

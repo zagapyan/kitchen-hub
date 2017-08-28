@@ -14,7 +14,7 @@ export default class RecipesListComponent extends React.Component{
   }
   handleDeleteRecipe(id,event){
     event.preventDefault();
-    console.log(id);
+    this.props.fetchDeleteRecipe(id);
   }
   handleRefreshRecipesList(event){
     event.preventDefault();

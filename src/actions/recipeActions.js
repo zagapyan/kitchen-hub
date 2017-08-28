@@ -1,4 +1,3 @@
-import axios from 'axios';
 import config from '../utils/headers';
 import fetch from 'isomorphic-fetch';
 import endpoint from '../utils/endpoint'
@@ -27,7 +26,7 @@ export function receiveRecipes(response){
 export const FETCH_RECIPES = 'FETCH_RECIPES';
 export function fetchRecipes(recipes){
   return dispatch =>{
-    dispatch(requestRecipes(recipes))
+    dispatch(requestRecipes(recipes));
     
     return fetch(endpoint, config.headers).then(
         response => response.json(),
@@ -50,5 +49,45 @@ export function filterCurrentRecipe(id, recipes){
   return{
     type: CURRENT_RECIPE,
     currentRecipe: recipes.filter(data=>data._id===id)[0]
+  }
+}
+
+export const REQUEST_DELETE_RECIPE = 'REQUEST_DELETE_RECIPE';
+export function requestDeleteRecipe(){
+  return{
+    type: REQUEST_DELETE_RECIPE,
+  }
+}
+
+export const RECEIVE_DELETE_RECIPE = 'RECEIVE_DELETE_RECIPE';
+export function receiveDeleteRecipe(){
+  return{
+    type: RECEIVE_DELETE_RECIPE,
+  }
+}
+
+export const FETCH_DELETE_RECIPE = 'DELETE_RECIPE';
+export function fetchDeleteRecipe(id){
+  let body = {
+    id
+  }
+  console.log(body)
+  return dispatch =>{
+    dispatch(requestDeleteRecipe());
+    let deleteEndPoint = `${endpoint}/${id}`;
+    console.log(deleteEndPoint);
+    return fetch(deleteEndPoint,{...config.headers, method: 'DELETE' }).then(
+      response => {
+        console.log(response);
+        return response.json()
+      },
+      err => {
+        return console.log(err)
+      }
+    ).then(json=>{
+      console.log(json);
+      dispatch(receiveDeleteRecipe(json))
+      dispatch(fetchRecipes(endpoint))
+    })
   }
 }

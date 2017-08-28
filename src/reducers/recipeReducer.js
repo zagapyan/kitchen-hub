@@ -1,4 +1,13 @@
-import { FETCH_RECIPES, REQUEST_RECIPES, RECIEVE_RECIPES, REJECTED_FETCH, CURRENT_RECIPE } from '../actions/recipeActions';
+import {
+  FETCH_RECIPES,
+  REQUEST_RECIPES,
+  RECIEVE_RECIPES,
+  REJECTED_FETCH,
+  CURRENT_RECIPE,
+  REQUEST_DELETE_RECIPE,
+  RECEIVE_DELETE_RECIPE,
+  FETCH_DELETE_RECIPE
+} from '../actions/recipeActions';
 
 const initalState={
   currentRecipe: {},
@@ -39,6 +48,18 @@ export default function recipeReducer(state=initalState, action) {
       return{
         ...state,
         currentRecipe: action.currentRecipe
+      }
+    case REQUEST_DELETE_RECIPE:
+      return{
+        ...state,
+      }
+    case RECEIVE_DELETE_RECIPE:
+      return{
+        ...state
+      }
+    case FETCH_DELETE_RECIPE:
+      return{
+        ...state
       }
     default:
       console.log('fall through');

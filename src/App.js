@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history'
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
@@ -13,6 +14,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>KitchenHub | Zigmund Sun Oo</title>
+          </Helmet>
           <main className="main">
             <Router history={history}>
               <Switch>

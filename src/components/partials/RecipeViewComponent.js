@@ -11,7 +11,7 @@ export default class RecipeViewComponent extends React.Component{
     let description = this.props.currentRecipe.description;
     let url = this.props.currentRecipe.url;
     let imgSrc = this.props.currentRecipe.imgSrc;
-    
+
     let renderBanner = ((imgSrc, url)=>{
         if(!/^https?:\/\//i.test(imgSrc)){
           return <div className="no-image-banner">
@@ -29,7 +29,7 @@ export default class RecipeViewComponent extends React.Component{
         <div className="text-container">
           <h2>{title}</h2>
           {description ? <p>{description}</p> : ''}
-          <a href={url} className="drive-button">Go</a>
+          <a href={url} className="drive-button" target="_blank">Go</a>
         </div>
       </div>
 

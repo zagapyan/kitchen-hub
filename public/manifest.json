@@ -1,15 +1,30 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Kitchen Hub",
+  "name": "Kitchen Hub | Zigmund Sun OO",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "192x192",
+      "src": "home_16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "home_48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "home_128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "home_512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#333333",
   "background_color": "#ffffff"
 }

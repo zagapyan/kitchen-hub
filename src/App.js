@@ -5,6 +5,8 @@ import { createBrowserHistory } from 'history'
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { configureStore } from './store/configureStore';
 import HomeContainer from './containers/HomeContainer';
+import NoMatchComponent from './components/NoMatchComponent';
+
 import './App.css';
 
 const store = configureStore();
@@ -22,6 +24,7 @@ class App extends Component {
             <Router history={history}>
               <Switch>
                 <Route exact path="/" component={HomeContainer} />
+                <Route component={NoMatchComponent} />
               </Switch>
             </Router>
           </main>

@@ -6,10 +6,12 @@ export default class RecipeViewComponent extends React.Component{
     super(props)
   }
   render(){
+    let id = this.props.currentRecipe.id;
     let title = this.props.currentRecipe.title;
     let description = this.props.currentRecipe.description;
     let url = this.props.currentRecipe.url;
     let imgSrc = this.props.currentRecipe.imgSrc;
+    
     let renderBanner = ((imgSrc, url)=>{
         if(!/^https?:\/\//i.test(imgSrc)){
           return <div className="no-image-banner">

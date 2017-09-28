@@ -10,7 +10,10 @@ export default class RecipesListComponent extends React.Component{
     super(props);
   }
   componentWillMount(){
-    this.props.fetchRecipes(endpoint)
+    // this.props.fetchRecipes(endpoint)
+  }
+  componentDidMount(){
+    this.props.fetchRecipes(endpoint) 
   }
   handleDeleteRecipe(id,event){
     event.preventDefault();

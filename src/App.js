@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history'
-import { Router, Route, Link, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { configureStore } from './store/configureStore';
 import HomeContainer from './containers/HomeContainer';
 import NoMatchComponent from './components/NoMatchComponent';

@@ -3,22 +3,22 @@
   "name": "Kitchen Hub | Zigmund Sun Oo",
   "icons": [
     {
-      "src": "home_16.png",
+      "src": "pizza_16.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "home_48.png",
+      "src": "pizza_48.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "home_128.png",
+      "src": "pizza_128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "home_512.png",
+      "src": "pizza_512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

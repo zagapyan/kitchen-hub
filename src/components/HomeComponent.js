@@ -12,7 +12,7 @@ export default class HomeComponent extends React.Component{
     return(
       <div className="home-component">
         <RecipesListContainer />
-        <RecipeViewContainer />
+        {/* <RecipeViewContainer /> */}
       </div>
     );
   }

@@ -5,7 +5,11 @@ export default class RecipeViewComponent extends React.Component{
   constructor(props){
     super(props)
   }
+  componentWillReceiveProps(){
+    // console.log(this);
+  }
   render(){
+    console.log(this);
     let id = this.props.currentRecipe.id;
     let title = this.props.currentRecipe.title;
     let description = this.props.currentRecipe.description;

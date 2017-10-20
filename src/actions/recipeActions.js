@@ -12,12 +12,12 @@ export function requestRecipes(recipes){
   }
 }
 
-export const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
+export const RECEIVE_RECIPES = 'RECEIVE_RECIPES';
 export function receiveRecipes(response){
   console.log('recieving recipes');
   console.log(response);
   return {
-    type: RECIEVE_RECIPES,
+    type: RECEIVE_RECIPES,
     recipes: response,
     timeStamp: Date.now()
   }
@@ -35,20 +35,36 @@ export function fetchRecipes(recipes){
   }
 }
 
-export const REJECTED_FETCH = 'REJECTED_FETCH';
-export function rejectedFetchRecipes(error){
+export const REQUEST_SINGLE_RECIPE = 'REQUEST_SINGLE_RECIPE';
+export function requestSingleRecipe(recipe){
+  console.log('requestSingleRecipe');
+  console.log(recipe);
   return{
-    type: REJECTED_FETCH,
-    error,
+    type: REQUEST_SINGLE_RECIPE,
+    
+  }
+}
+
+export const RECEIVE_SINGLE_RECIPE = 'RECEIVE_SINGLE_RECIPE';
+export function RECEIVESingleRecipe(response){
+  return {
+    type: RECEIVE_SINGLE_RECIPE,
+    id: response._id,
+    title: response.title,
+    description: response.description,
+    imgSrc: response.imgSrc,
     timeStamp: Date.now()
   }
 }
 
-export const CURRENT_RECIPE = 'CURRENT_RECIPE';
-export function filterCurrentRecipe(id, recipes){
-  return{
-    type: CURRENT_RECIPE,
-    currentRecipe: recipes.filter(data=>data._id===id)[0]
+export const FETCH_SINGLE_RECIPE = 'FETCH_SINGLE_RECIPE';
+export function fetchSingleRecipe(id){
+  return dispatch =>{
+    dispatch(requestSingleRecipe())
+    return fetch(`${endpoint}/${id}`, config.headers).then(
+        response=>response.json(),
+        err => err
+      ).then(json=>dispatch(RECEIVESingleRecipe(json[0])))
   }
 }
 

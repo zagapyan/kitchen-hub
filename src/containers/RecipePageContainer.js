@@ -1,15 +1,11 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import RecipeViewComponent from '../components/partials/RecipeViewComponent';
+import RecipePageComponent from '../components/RecipePageComponent';
 import * as recipeActions from '../actions/recipeActions';
 
 function mapStateToProps(state) {
   return {
-    id: state.recipeReducer.id,
-    title: state.recipeReducer.title,
-    description: state.recipeReducer.description,
-    imgSrc: state.recipeReducer.imgSrc,
-    timeStamp: state.recipeReducer.timeStamp
+    currentRecipe: state.recipeReducer.currentRecipe,
   };
 }
 
@@ -20,4 +16,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RecipeViewComponent);
+)(RecipePageComponent);

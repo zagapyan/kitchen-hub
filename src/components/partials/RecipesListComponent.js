@@ -26,7 +26,7 @@ export default class RecipesListComponent extends React.Component{
     this.props.fetchRecipes(endpoint)
   }
   handleCurrentRecipeView(id,recipes,proxy){
-    this.props.filterCurrentRecipe(id, recipes);
+    // this.props.filterCurrentRecipe(id, recipes);
   }
   render(){
     return(

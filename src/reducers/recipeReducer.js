@@ -1,12 +1,16 @@
 import {
   FETCH_RECIPES,
   REQUEST_RECIPES,
-  RECIEVE_RECIPES,
+  RECEIVE_RECIPES,
   REJECTED_FETCH,
   CURRENT_RECIPE,
   REQUEST_DELETE_RECIPE,
   RECEIVE_DELETE_RECIPE,
-  FETCH_DELETE_RECIPE
+  FETCH_DELETE_RECIPE,
+  FETCH_SINGLE_RECIPE,
+  REQUEST_SINGLE_RECIPE,
+  RECEIVE_SINGLE_RECIPE,
+
 } from '../actions/recipeActions';
 
 const initalState={
@@ -29,25 +33,13 @@ export default function recipeReducer(state=initalState, action) {
         ...state,
         recipes: action.recipes
       };
-    case RECIEVE_RECIPES:
-      console.log('RECIEVE_RECIPES');
+    case RECEIVE_RECIPES:
+      console.log('RECEIVE_RECIPES');
       console.log(action);
       return{
         ...state,
         timeStamp: action.timeStamp,
         recipes: action.recipes
-      }
-    case REJECTED_FETCH:
-      return{
-        ...state,
-        err: action.err,
-        timeStamp: action.timeStamp
-      }
-    case CURRENT_RECIPE:
-      console.log(action)
-      return{
-        ...state,
-        currentRecipe: action.currentRecipe
       }
     case REQUEST_DELETE_RECIPE:
       return{
@@ -58,6 +50,23 @@ export default function recipeReducer(state=initalState, action) {
         ...state
       }
     case FETCH_DELETE_RECIPE:
+      return{
+        ...state
+      }
+    case REQUEST_SINGLE_RECIPE:
+      return{
+        ...state,
+      }
+    case RECEIVE_SINGLE_RECIPE:
+      return{
+        ...state,
+        id: action.id,
+        title: action.title,
+        description: action.description,
+        imgSrc: action.imgSrc,
+        timeStamp: action.timeStamp
+      }
+    case FETCH_SINGLE_RECIPE:
       return{
         ...state
       }

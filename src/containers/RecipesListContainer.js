@@ -8,7 +8,7 @@ function mapStateToProps(state) {
     recipes: state.recipeReducer.recipes,
     timeStamp: state.recipeReducer.timeStamp,
     fetchRecipes: recipeActions.fetchRecipes,
-    filterCurrentRecipe: recipeActions.filterCurrentRecipe,
+    // filterCurrentRecipe: recipeActions.filterCurrentRecipe,
     fetchDeleteRecipe: recipeActions.fetchDeleteRecipe
   };
 }

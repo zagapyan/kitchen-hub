@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import endpoint from '../../utils/endpoint'
 import '../../App.css';
 import { isEmpty } from 'lodash';
@@ -25,7 +26,7 @@ export default class RecipesListComponent extends React.Component{
     this.props.fetchRecipes(endpoint)
   }
   handleCurrentRecipeView(id,recipes,proxy){
-    this.props.filterCurrentRecipe(id, recipes);
+    // this.props.filterCurrentRecipe(id, recipes);
   }
   render(){
     return(
@@ -48,10 +49,11 @@ export default class RecipesListComponent extends React.Component{
             this.props.recipes.map(
               (data, index)=>
                 <li key={index} className="recipe-list-item" data-id={data._id}>
-                  <button
+                  {/* <button
                     onClick={this.handleCurrentRecipeView.bind(this, data._id, this.props.recipes)}>
                       {data.title}
-                  </button>
+                  </button> */}
+                  <Link to={'recipe/'+data._id}>{data.title}</Link>
                   <button
                     className="trash-icon"
                     onClick={this.handleDeleteRecipe.bind(this, data._id)}>

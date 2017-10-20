@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux';
-import { createBrowserHistory } from 'history'
-import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { createHashHistory } from 'history';
+import {Router, Route, Link, Switch } from 'react-router-dom';
 import { configureStore } from './store/configureStore';
-import HomeContainer from './containers/HomeContainer';
-import NoMatchComponent from './components/NoMatchComponent';
+import Routes from './Routes';
 
 import './App.css';
-
+const history = createHashHistory();
 const store = configureStore();
-const history = createBrowserHistory();
+
 class App extends Component {
+  props: {
+    children: Children
+  }
   render() {
     return (
       <Provider store={store}>
@@ -20,14 +22,9 @@ class App extends Component {
             <meta charSet="utf-8" />
             <title>KitchenHub | Zigmund Sun Oo</title>
           </Helmet>
-          <main className="main">
-            <Router history={history}>
-              <Switch>
-                <Route exact path="/" component={HomeContainer} />
-                <Route component={NoMatchComponent} />
-              </Switch>
-            </Router>
-          </main>
+          <Router history={history}>
+            <Routes />
+          </Router>
         </div>
       </Provider>
     );

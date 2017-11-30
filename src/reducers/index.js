@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import recipeReducer from './recipeReducer';
-import mainViewReducer from './mainViewReducer';
+import domainReducer from './domainReducer';
 
 const rootReducer = combineReducers({
-  recipeReducer,
+  domainReducer,
 });
 
 export default rootReducer;

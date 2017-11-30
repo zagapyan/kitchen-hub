@@ -1,26 +1,21 @@
-import React, { Component, Children } from 'react';
+import React, { Component } from 'react';
+import { Router, Route, Switch, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Provider } from 'react-redux';
-import { createHashHistory } from 'history';
-import {Router, Route, Link, Switch } from 'react-router-dom';
-import { configureStore } from './store/configureStore';
-import Routes from './Routes';
-
-import './App.css';
-const history = createHashHistory();
-const store = configureStore();
+import { Provider } from 'react-redux'
+import { createBrowserHistory } from 'history'
+import { store, history } from './store';
+import Routes from './components/Routes'
+import 'bulma/css/bulma.css'
+import './App.css'
 
 class App extends Component {
-  props: {
-    children: Children
-  }
   render() {
     return (
       <Provider store={store}>
         <div className="App">
           <Helmet>
-            <meta charSet="utf-8" />
-            <title>KitchenHub | Zigmund Sun Oo</title>
+              <meta charSet="utf-8" />
+              <title>KitchenHub</title>
           </Helmet>
           <Router history={history}>
             <Routes />

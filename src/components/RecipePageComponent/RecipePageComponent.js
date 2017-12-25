@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './RecipePageComponent.css'
-
+import RecipeListComponent from '../RecipeListComponent';
+import SingleRecipeViewComponent from '../SingleRecipeViewComponent';
 class RecipePageComponent extends Component {
     constructor(props) {
         super(props)
@@ -9,7 +10,11 @@ class RecipePageComponent extends Component {
     null
     render() {
         return (
-            <div className="RecipePageComponent"></div>
+            <div className="RecipePageComponent">
+              I Am A Single Recipe
+              <RecipeListComponent />
+              <SingleRecipeViewComponent />
+            </div>
         );
     }
 }

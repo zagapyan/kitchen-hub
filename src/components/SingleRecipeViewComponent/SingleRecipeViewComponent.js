@@ -7,10 +7,14 @@ class SingleRecipeViewComponent extends Component {
         super(props)
     }
     null
+    componentDidMount(){}
+    componentDidUpdate(nextProps){}
     render() {
+        console.log(this.props)
         return (
             <div className="SingleRecipeViewComponent">
-              I am a Single recipe
+                <pre>{this.props.recipeID ? JSON.stringify(this.props.recipeID) : 'none'}</pre>
+                I am a Single recipe
             </div>
         );
     }

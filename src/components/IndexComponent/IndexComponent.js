@@ -6,7 +6,7 @@ import styles from './IndexComponent.css'
 import SearchComponent from '../SearchComponent'
 import RecipeListComponent from '../RecipeListComponent'
 import PushURLComponent from '../PushURLComponent'
-import * as domainActions from '../../actions/domainActions';
+import * as domainActions from '../../actions/domainActions'
 import endpoint from '../../utils/endpoint';
 
 class IndexComponent extends Component {

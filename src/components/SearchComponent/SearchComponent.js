@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 import styles from './SearchComponent.css'
+import * as domainActions from '../../actions/domainActions';
 
 class SearchComponent extends Component {
   constructor(props) {
       super(props)
   }
   filterListByTitle(event){
-    console.log(event.target.value);
-    
+    this.props.filterRecipe(event.target.value)
   }
   render() {
       return (
@@ -18,6 +20,10 @@ class SearchComponent extends Component {
           placeholder="Filter"
           onChange={this.filterListByTitle.bind(this)}
           ref="searchComponentInput"/>
+        <select>
+          <option>title</option>
+          <option>tag</option>
+        </select>
       </div>
       );
   }
@@ -27,4 +33,19 @@ SearchComponent.propTypes = {}
 
 SearchComponent.defaultProps = {}
 
-export default SearchComponent
+function mapStateToProps(state) {
+  return {
+    filterRecipe: domainActions.filterRecipe
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    ...domainActions
+  }, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)
+(SearchComponent);

@@ -16,28 +16,24 @@ import {
 const initalState={
   currentRecipe: {},
   recipes: [],
+  filteredRecipes: [],
   timeStamp: '',
   filtering: false,
   filterPayload: ''
 }
 
 export default function recipeReducer(state=initalState, action) {
-  console.log('recipeReducer');
   switch (action.type) {
     case FETCH_RECIPES:
       return {
         ...state,
-      };
+      }
     case REQUEST_RECIPES:
-      // console.log('REQUEST_RECIPES')
-      // console.log(action);
       return {
         ...state,
         recipes: action.recipes
-      };
+      }
     case RECEIVE_RECIPES:
-      // console.log('RECEIVE_RECIPES');
-      // console.log(action);
       return{
         ...state,
         timeStamp: action.timeStamp,
@@ -76,7 +72,10 @@ export default function recipeReducer(state=initalState, action) {
       return{
         ...state,
         filtering: action.filtering,
-        filterPayload: action.filterPayload,
+        filteredRecipes: state.recipes.filter(o=>
+          o.title
+            .toLowerCase()
+            .includes(action.filterPayload.toLowerCase()))
       }
     default:
       console.log('fall through');

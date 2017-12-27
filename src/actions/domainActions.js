@@ -1,5 +1,5 @@
 import config from '../utils/headers';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios'
 import endpoint from '../utils/endpoint';
 
 /*
@@ -10,21 +10,17 @@ import endpoint from '../utils/endpoint';
 
 // pure functions
 export const REQUEST_RECIPES = 'REQUEST_RECIPES';
-export function requestRecipes(recipes){
-  console.log('requestRecipes');
+export function requestRecipes(response){
   return{
     type: REQUEST_RECIPES,
-    recipes: recipes.recipes
   }
 }
 
 export const RECEIVE_RECIPES = 'RECEIVE_RECIPES';
-export function receiveRecipes(response){
-  console.log('recieving recipes');
-  console.log(response);
+export function receiveRecipes(recipes){
   return {
     type: RECEIVE_RECIPES,
-    recipes: response,
+    recipes: recipes,
     timeStamp: Date.now()
   }
 }
@@ -33,18 +29,16 @@ export const FETCH_RECIPES = 'FETCH_RECIPES';
 export function fetchRecipes(recipes){
   return dispatch =>{
     dispatch(requestRecipes(recipes));
-    
-    return fetch(endpoint, config.headers).then(
-        response => response.json(),
-        err => console.log(err)
+    return axios.get(endpoint, config.headers).then(
+        // response => response.json(),
+        response => response.data,
+        err => err
       ).then(json=>dispatch(receiveRecipes(json)))
   }
 }
 
 export const REQUEST_SINGLE_RECIPE = 'REQUEST_SINGLE_RECIPE';
 export function requestSingleRecipe(recipe){
-  console.log('requestSingleRecipe');
-  console.log(recipe);
   return{
     type: REQUEST_SINGLE_RECIPE,
     
@@ -67,8 +61,9 @@ export const FETCH_SINGLE_RECIPE = 'FETCH_SINGLE_RECIPE';
 export function fetchSingleRecipe(id){
   return dispatch =>{
     dispatch(requestSingleRecipe())
-    return fetch(`${endpoint}/${id}`, config.headers).then(
-        response=>response.json(),
+    return axios.get(`${endpoint}/${id}`, config.headers).then(
+        // response=>response.json(),
+        response => response.data,
         err => err
       ).then(json=>dispatch(RECEIVESingleRecipe(json[0])))
   }
@@ -93,21 +88,13 @@ export function fetchDeleteRecipe(id){
   let body = {
     id
   }
-  console.log(body)
   return dispatch =>{
     dispatch(requestDeleteRecipe());
     let deleteEndPoint = `${endpoint}/${id}`;
-    console.log(deleteEndPoint);
-    return fetch(deleteEndPoint,{...config.headers, method: 'DELETE' }).then(
-      response => {
-        console.log(response);
-        return response.json()
-      },
-      err => {
-        return console.log(err)
-      }
+    return axios.get(deleteEndPoint,{...config.headers, method: 'DELETE' }).then(
+      response => response.data,
+      err => err
     ).then(json=>{
-      console.log(json);
       dispatch(receiveDeleteRecipe(json))
       dispatch(fetchRecipes(endpoint))
     })
@@ -116,7 +103,7 @@ export function fetchDeleteRecipe(id){
 
 export const FILTER_RECIPE = 'FILTER_RECIPE'
 export function filterRecipe(title){
-  if(title.length<=0){
+  if(title.length>0){
     return{
       type: FILTER_RECIPE,
       filtering: true,
@@ -127,7 +114,19 @@ export function filterRecipe(title){
     return{
       type: FILTER_RECIPE,
       filtering: false,
-      filterPayload: ''
+      filterPayload: '',
+      filteredList : [],
     }
   }
 }
+
+// export const REQUEST_SEND_URL;
+// export function sendURL(recipes){
+//   return dispatch =>{
+//     dispatch(requestRecipes(recipes));
+//     return axios.get(endpoint, config.headers).then(
+//         response => response.json(),
+//         err => err
+//       ).then(json=>dispatch(receiveRecipes(json)))
+//   }
+// }

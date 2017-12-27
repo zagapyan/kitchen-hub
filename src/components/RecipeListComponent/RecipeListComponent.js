@@ -9,7 +9,7 @@ const RecipeListComponent = (props) => (
     <ul>
       {
         props.recipes ? props.recipes.map(o=>
-          <li><Link key={o._id.toString()} to={`/recipes/${o._id}`}>
+          <li key={o._id.toString()}><Link to={`/recipes/${o._id}`}>
             {o.title}</Link></li>
           ) : <BeatLoader />
       }

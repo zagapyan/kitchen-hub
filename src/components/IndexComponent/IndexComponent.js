@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import styles from './IndexComponent.css'
 import SearchComponent from '../SearchComponent'
 import RecipeListComponent from '../RecipeListComponent'
+import PushURLComponent from '../PushURLComponent'
 import * as domainActions from '../../actions/domainActions';
 import endpoint from '../../utils/endpoint';
 
@@ -22,19 +23,17 @@ class IndexComponent extends Component {
       this.props.fetchDeleteRecipe(id);
     }
     handleRefreshRecipesList(event){
-      // event.preventDefault();
-      // console.log('handleRefreshRecipesList')
-      // this.props.fetchRecipes(endpoint)
     }
-    handleCurrentRecipeView(id,recipes,proxy){
-    
-    }
+    handleCurrentRecipeView(id,recipes,proxy){}
     null
     render() {
+        // return full list unless filtering is turned on
+        let recipes = !!this.props.filtering ? this.props.filteredRecipes : this.props.recipes;
         return (
             <div className="IndexComponent">
+              <PushURLComponent />
               <SearchComponent />
-              <RecipeListComponent recipes={this.props.recipes}/>
+              <RecipeListComponent recipes={recipes}/>
             </div>
         );
     }
@@ -48,7 +47,9 @@ IndexComponent.defaultProps = {}
 
 function mapStateToProps(state) {
   return {
-    recipes: state.domainReducer.recipes,
+    recipes: state.domainReducer.recipes, 
+    filtering: state.domainReducer.filtering,
+    filteredRecipes: state.domainReducer.filteredRecipes,
     timeStamp: state.domainReducer.timeStamp,
     fetchRecipes: domainActions.fetchRecipes,
     fetchDeleteRecipe: domainActions.fetchDeleteRecipe

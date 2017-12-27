@@ -8,6 +8,7 @@
     "history": "^4.7.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-feather": "^1.0.8",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

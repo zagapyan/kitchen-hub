@@ -1,1 +1,10 @@
-.RecipePageComponent{}
+.RecipePageComponent{
+    display: flex;
+}
+.RecipePageComponent .left-nav > ul{
+    display: flex;
+    flex-direction: row;
+}
+.RecipePageComponent .SingleRecipeViewComponent{
+    flex-grow: 1;
+}

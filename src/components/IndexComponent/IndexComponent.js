@@ -11,7 +11,7 @@ import endpoint from '../../utils/endpoint';
 
 class IndexComponent extends Component {
     constructor(props) {
-        super(props)
+      super(props)
     }
     componentWillMount(){
     }
@@ -22,15 +22,13 @@ class IndexComponent extends Component {
       event.preventDefault();
       this.props.fetchDeleteRecipe(id);
     }
-    handleRefreshRecipesList(event){
-    }
-    handleCurrentRecipeView(id,recipes,proxy){}
+    handleRefreshRecipesList(event){}
     null
     render() {
         // return full list unless filtering is turned on
         let recipes = !!this.props.filtering ? this.props.filteredRecipes : this.props.recipes;
         return (
-            <div className="IndexComponent">
+            <div className="`IndexComponent">
               <PushURLComponent />
               <SearchComponent />
               <RecipeListComponent recipes={recipes}/>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import { Menu } from 'react-feather'
 import styles from './RecipePageComponent.css'
 
 import RecipeListComponent from '../RecipeListComponent';
@@ -29,11 +29,20 @@ class RecipePageComponent extends Component {
       this.props.fetchRecipes(endpoint);
     }
   }
+  handleNavToggle(recipe){
+    console.log(recipe)
+  }
   render() {
     return (
       <div className = "RecipePageComponent">
-        <nav>
-          <Link to="/">Home</Link>
+        <nav className="left-nav">
+          <ul className="home-navigation">
+            <li><Link to="/">Home</Link></li>
+            <li><button
+              onClick={this.handleNavToggle.bind(this, this.props.match.params.recipe)}>
+                <Menu />
+              </button></li>
+          </ul>
           <RecipeListComponent recipes={this.props.recipes}/>
         </nav>
         <SingleRecipeViewComponent

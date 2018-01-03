@@ -22,11 +22,11 @@ class RecipePageComponent extends Component {
   }
   null
   componentDidMount(){
-    this.handleSingleRecipeFetch();
+    this.handleSingleRecipeFetch()
   }
   handleSingleRecipeFetch(){
     if(this.props.recipes.length <= 0){
-      this.props.fetchRecipes(endpoint);
+      this.props.fetchRecipes(endpoint)
     }
   }
   handleNavToggle(recipe){
@@ -34,12 +34,15 @@ class RecipePageComponent extends Component {
   }
   render() {
     return (
-      <div className = "RecipePageComponent">
-        <nav className="left-nav">
-          <ul className="home-navigation">
+      <div className = "RecipePageComponent columns is-mobile">
+        <nav className="is-one-quarter-desktop">
+          <ul>
             <li><Link to="/">Home</Link></li>
             <li><button
-              onClick={this.handleNavToggle.bind(this, this.props.match.params.recipe)}>
+              onClick={
+                this.handleNavToggle.bind(this,
+                  this.props.match.params.recipe)
+                }>
                 <Menu />
               </button></li>
           </ul>
@@ -48,6 +51,7 @@ class RecipePageComponent extends Component {
         <SingleRecipeViewComponent
           recipeID={this.props.match.params.recipe}
           recipes={this.props.recipes}
+          styleProps="is-three-quarters-desktop"
           />
       </div>
     );

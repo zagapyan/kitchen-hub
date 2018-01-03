@@ -8,11 +8,20 @@ class SingleRecipeViewComponent extends Component {
     }
     null
     componentDidMount(){}
-    componentDidUpdate(nextProps){}
+    componentDidUpdate(nextProps){
+        if(nextProps.id !== this.props.recipeID){
+            console.log('recipeId Changed')
+            // this.isValidId(nextProps.id)
+        }
+    }
+    isValidId(id){
+        return this.props.recipes.filter(o=>o.id===id)
+    }
     render() {
-        console.log(this.props)
+        // console.log(this.props)
+        // const componentClasses=["SingleRecipeViewComponent", this.props.styleProps]
         return (
-            <div className="SingleRecipeViewComponent">
+            <div className={componentClasses.toString().replace(',',' ')}>
                 <pre>{this.props.recipeID ? JSON.stringify(this.props.recipeID) : 'none'}</pre>
                 I am a Single recipe
             </div>

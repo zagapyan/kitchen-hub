@@ -19,7 +19,7 @@ class SingleRecipeViewComponent extends Component {
     }
     render() {
         // console.log(this.props)
-        // const componentClasses=["SingleRecipeViewComponent", this.props.styleProps]
+        const componentClasses=["SingleRecipeViewComponent", this.props.styleProps]
         return (
             <div className={componentClasses.toString().replace(',',' ')}>
                 <pre>{this.props.recipeID ? JSON.stringify(this.props.recipeID) : 'none'}</pre>

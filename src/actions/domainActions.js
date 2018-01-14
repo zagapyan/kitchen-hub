@@ -120,13 +120,38 @@ export function filterRecipe(title){
   }
 }
 
-// export const REQUEST_SEND_URL;
-// export function sendURL(recipes){
-//   return dispatch =>{
-//     dispatch(requestRecipes(recipes));
-//     return axios.get(endpoint, config.headers).then(
-//         response => response.json(),
-//         err => err
-//       ).then(json=>dispatch(receiveRecipes(json)))
-//   }
-// }
+export const SEND_URL = 'SEND_URL';
+export function sendURL(url){
+  console.log(endpoint, url, config);
+  axios.post(endpoint, {url: url}, config)
+    .then(response=>{
+        return dispatch => dispatch(sendURLSuccess({
+            message: response.data.message,
+          })
+        )
+    })
+    .catch(err=>{
+      return dispatch => dispatch(sendURLRejected({
+          message: err.toString(),
+        })
+      )
+    })
+}
+
+export const SEND_URL_SUCCESS = 'SEND_URL_SUCCESS';
+export function sendURLSuccess(payload){
+  return{
+    type: SEND_URL_SUCCESS,
+    messageClass: 'success',
+    message: payload.message
+  }
+}
+
+export const SEND_URL_REJECTED = 'SEND_URL_REJECTED';
+export function sendURLRejected(payload){
+  return{
+    type: SEND_URL_REJECTED,
+    messageClass: 'error',
+    message: payload.message
+  } 
+}

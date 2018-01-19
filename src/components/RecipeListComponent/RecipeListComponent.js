@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { BeatLoader } from 'react-spinners'
 import { NavLink } from 'react-router-dom'
-import { Edit, Trash2 } from 'react-feather'
+import { Edit, Trash2, Star } from 'react-feather'
 import styles from './RecipeListComponent.css'
 
 const RecipeListComponent = (props) => (
@@ -14,6 +14,7 @@ const RecipeListComponent = (props) => (
               <NavLink to={`/recipe/${o._id}`}>{o.title}</NavLink>
               <button className=""><Edit /></button>
               <button className=""><Trash2 /></button>
+              <button className=""><Star /></button>
               <span>
                 { o.tags ? o.tags.map((i,k)=>
                   <pre key={`${o._id}${k}`}>i.name</pre>)

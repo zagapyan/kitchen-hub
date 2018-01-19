@@ -14,16 +14,28 @@ class SingleRecipeViewComponent extends Component {
             // this.isValidId(nextProps.id)
         }
     }
+    ifExistsInState(){
+        if(0) return true
+        else return false
+    }
+    handleSingleRecipesRequest(){
+        return 0;
+    }
     isValidId(id){
         return this.props.recipes.filter(o=>o.id===id)
     }
     render() {
-        // console.log(this.props)
+        console.table(this.props)
+        console.log(this.props.recipeID)
         const componentClasses=["SingleRecipeViewComponent", this.props.styleProps]
         return (
             <div className={componentClasses.toString().replace(',',' ')}>
                 <pre>{this.props.recipeID ? JSON.stringify(this.props.recipeID) : 'none'}</pre>
-                I am a Single recipe
+                {
+                    this.props.recipes 
+                        ?   JSON.stringify(this.props.recipes.filter(o=>o._id === this.props.recipeID)[0])
+                        : 'none'
+                }
             </div>
         );
     }

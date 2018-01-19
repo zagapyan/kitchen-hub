@@ -21,21 +21,32 @@ class SingleRecipeViewComponent extends Component {
     handleSingleRecipesRequest(){
         return 0;
     }
-    isValidId(id){
-        return this.props.recipes.filter(o=>o.id===id)
+    isValidId(ID){
+        const currentRecipe = this.props.recipes.filter(o=>o._id===ID);
+        if(!!currentRecipe.length){
+            return(
+                <div>
+                    {currentRecipe.map(o=>
+                        <div key="currentRecipe">
+                            <img src={o.imgSrc} />
+                            <h1 className="is-title is-1">{o.title}</h1>
+                            <p>{o.description}</p>
+                            <a href={o.url}>Go</a>
+                        </div>
+                    )}
+                </div>
+            )
+        }
+        return <h1>nope</h1>
     }
     render() {
-        console.table(this.props)
-        console.log(this.props.recipeID)
         const componentClasses=["SingleRecipeViewComponent", this.props.styleProps]
+        const renderCurrentRecipe = this.props.recipes 
+            ? this.isValidId(this.props.recipeID)
+            : false
         return (
             <div className={componentClasses.toString().replace(',',' ')}>
-                <pre>{this.props.recipeID ? JSON.stringify(this.props.recipeID) : 'none'}</pre>
-                {
-                    this.props.recipes 
-                        ?   JSON.stringify(this.props.recipes.filter(o=>o._id === this.props.recipeID)[0])
-                        : 'none'
-                }
+                { renderCurrentRecipe }
             </div>
         );
     }

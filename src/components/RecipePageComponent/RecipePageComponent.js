@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Menu } from 'react-feather'
+import { Menu, Home } from 'react-feather'
 import styles from './RecipePageComponent.css'
 
 import RecipeListComponent from '../RecipeListComponent';
@@ -37,7 +37,10 @@ class RecipePageComponent extends Component {
       <div className = "RecipePageComponent columns is-mobile">
         <nav className="is-one-quarter-desktop">
           <ul>
-            <li><Link to="/">Home</Link></li>
+            <li>
+              <Link to="/">Home
+                <Home /></Link>
+            </li>
             <li><button
               onClick={
                 this.handleNavToggle.bind(this,

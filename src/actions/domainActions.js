@@ -26,9 +26,10 @@ export function receiveRecipes(recipes){
 }
 
 export const FETCH_RECIPES = 'FETCH_RECIPES'
-export function fetchRecipes(recipes){
+export function fetchRecipes(){
+  console.log('fetching recipes')
   return dispatch =>{
-    dispatch(requestRecipes(recipes));
+    dispatch(requestRecipes());
     return axios.get(endpoint, config.headers)
       .then(response => response.data)
       .then(json=>dispatch(receiveRecipes(json)))
@@ -36,65 +37,32 @@ export function fetchRecipes(recipes){
   }
 }
 
-export const REQUEST_SINGLE_RECIPE = 'REQUEST_SINGLE_RECIPE'
-export function requestSingleRecipe(recipe){
+export const REJECT_DELETE_RECIPE = 'REJECT_DELETE_RECIPE'
+export function rejectDeleteRecipe(err){
   return{
-    type: REQUEST_SINGLE_RECIPE,
-  }
-}
-
-export const RECEIVE_SINGLE_RECIPE = 'RECEIVE_SINGLE_RECIPE'
-export function RECEIVESingleRecipe(response){
-  return {
-    type: RECEIVE_SINGLE_RECIPE,
-    id: response._id,
-    title: response.title,
-    description: response.description,
-    imgSrc: response.imgSrc,
-    timeStamp: Date.now()
-  }
-}
-
-export const FETCH_SINGLE_RECIPE = 'FETCH_SINGLE_RECIPE'
-export function fetchSingleRecipe(id){
-  return dispatch =>{
-    dispatch(requestSingleRecipe())
-    return axios.get(`${endpoint}/${id}`, config.headers)
-      .then(response => response.data)
-      .then(json=>dispatch(RECEIVESingleRecipe(json[0])))
-      .catch(err=>err)
-  }
-}
-
-export const REQUEST_DELETE_RECIPE = 'REQUEST_DELETE_RECIPE'
-export function requestDeleteRecipe(){
-  return{
-    type: REQUEST_DELETE_RECIPE,
+    type: REJECT_DELETE_RECIPE,
+    message: err
   }
 }
 
 export const RECEIVE_DELETE_RECIPE = 'RECEIVE_DELETE_RECIPE'
-export function receiveDeleteRecipe(){
+export function receiveDeleteRecipe(deletedRecipe){
+  console.log('recipe deleted:', deletedRecipe)
   return{
     type: RECEIVE_DELETE_RECIPE,
   }
 }
 
-export const FETCH_DELETE_RECIPE = 'DELETE_RECIPE'
-export function fetchDeleteRecipe(id){
+export const HANDLE_DELETE_RECIPE = 'HANDLE_DELETE_RECIPE'
+export function handleDeleteRecipe(id){
   let deleteEndPoint = `${endpoint}/${id}`
-  console.log(deleteEndPoint)
-  return dispatch =>{
-    dispatch(requestDeleteRecipe());
-    return axios
-      .get(deleteEndPoint,{...config.headers, method: 'DELETE' })
-      .then(response => response.data)
-      .then(json=>{
-        dispatch(receiveDeleteRecipe(json))
-        dispatch(fetchRecipes(endpoint))
+  axios.delete(deleteEndPoint, config.headers)
+    .then(response=>response.data)
+    .then(data=>{
+        let  deletedRecipe = data
+        dispatch=>dispatch(receiveDeleteRecipe(deletedRecipe))
       })
-      .catch(err=>err)
-  }
+    .catch(err=>rejectDeleteRecipe(err))
 }
 
 export const FILTER_RECIPE = 'FILTER_RECIPE'
@@ -121,10 +89,9 @@ export function sendURL(url){
   console.log(endpoint, url, config);
   axios.post(endpoint, {url: url}, config)
     .then(response=>{
-        return dispatch => dispatch(sendURLSuccess({
-            message: response.data.message,
-          })
-        )
+        return dispatch =>{
+          dispatch(sendURLSuccess({message: response.data.message,}))
+        }
     })
     .catch(err=>{
       return dispatch => dispatch(sendURLRejected({

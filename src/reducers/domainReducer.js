@@ -3,14 +3,11 @@ import {
   REQUEST_RECIPES,
   RECEIVE_RECIPES,
   REJECTED_FETCH,
-  CURRENT_RECIPE,
-  REQUEST_DELETE_RECIPE,
+  HANDLE_DELETE_RECIPE,
   RECEIVE_DELETE_RECIPE,
-  FETCH_DELETE_RECIPE,
-  FETCH_SINGLE_RECIPE,
-  REQUEST_SINGLE_RECIPE,
-  RECEIVE_SINGLE_RECIPE,
-  FILTER_RECIPE
+  REJECT_DELETE_RECIPE,
+  CURRENT_RECIPE,
+  FILTER_RECIPE,
 } from '../actions/domainActions';
 
 const initalState={
@@ -39,32 +36,15 @@ export default function recipeReducer(state=initalState, action) {
         timeStamp: action.timeStamp,
         recipes: action.recipes
       }
-    case REQUEST_DELETE_RECIPE:
+    case HANDLE_DELETE_RECIPE:
       return{
-        ...state,
+        ...state
       }
     case RECEIVE_DELETE_RECIPE:
       return{
         ...state
       }
-    case FETCH_DELETE_RECIPE:
-      return{
-        ...state
-      }
-    case REQUEST_SINGLE_RECIPE:
-      return{
-        ...state,
-      }
-    case RECEIVE_SINGLE_RECIPE:
-      return{
-        ...state,
-        id: action.id,
-        title: action.title,
-        description: action.description,
-        imgSrc: action.imgSrc,
-        timeStamp: action.timeStamp
-      }
-    case FETCH_SINGLE_RECIPE:
+    case REJECT_DELETE_RECIPE:
       return{
         ...state
       }

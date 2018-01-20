@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './SingleRecipeViewComponent.css'
+import { Redirect } from 'react-router-dom'
 
 class SingleRecipeViewComponent extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class SingleRecipeViewComponent extends Component {
                 </div>
             )
         }
-        return <h1>nope</h1>
+        return <Redirect to={{pathname: '/'}}/>
     }
     render() {
         const componentClasses=["SingleRecipeViewComponent", this.props.styleProps]

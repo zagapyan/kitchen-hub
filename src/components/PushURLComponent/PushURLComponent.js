@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as clientActions from '../../actions/clientActions'
-import {sendURL} from '../../actions/domainActions'
+import { sendURL, fetchRecipes } from '../../actions/domainActions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import styles from './PushURLComponent.css'
+import endpoint from '../../utils/endpoint'
 
 class PushURLComponent extends Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class PushURLComponent extends Component {
         console.log('url is valid')
         this.props.sendURL(URLValue)
         this.refs.url.value = ''
+        this.props.fetchRecipes(endpoint) 
       }
       else{
         console.log('url is invalid')
@@ -54,7 +56,8 @@ function mapStateToProps(state) {
   return {
     setStatus: clientActions.setStatus,
     removeStatus: clientActions.removeStatus,
-    sendURL: sendURL,
+    sendURL,
+    fetchRecipes,
     statusActive: state.clientReducer.statusActive,
     statusText: state.clientReducer.statusActive,
     statusType: state.clientReducer.statusType

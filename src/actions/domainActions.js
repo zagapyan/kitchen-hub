@@ -1,6 +1,6 @@
-import config from '../utils/headers';
+import config from '../utils/headers'
 import axios from 'axios'
-import endpoint from '../utils/endpoint';
+import endpoint from '../utils/endpoint'
 
 /*
 * ==========
@@ -9,14 +9,14 @@ import endpoint from '../utils/endpoint';
 */
 
 // pure functions
-export const REQUEST_RECIPES = 'REQUEST_RECIPES';
+export const REQUEST_RECIPES = 'REQUEST_RECIPES'
 export function requestRecipes(response){
   return{
     type: REQUEST_RECIPES,
   }
 }
 
-export const RECEIVE_RECIPES = 'RECEIVE_RECIPES';
+export const RECEIVE_RECIPES = 'RECEIVE_RECIPES'
 export function receiveRecipes(recipes){
   return {
     type: RECEIVE_RECIPES,
@@ -25,27 +25,25 @@ export function receiveRecipes(recipes){
   }
 }
 
-export const FETCH_RECIPES = 'FETCH_RECIPES';
+export const FETCH_RECIPES = 'FETCH_RECIPES'
 export function fetchRecipes(recipes){
   return dispatch =>{
     dispatch(requestRecipes(recipes));
-    return axios.get(endpoint, config.headers).then(
-        // response => response.json(),
-        response => response.data,
-        err => err
-      ).then(json=>dispatch(receiveRecipes(json)))
+    return axios.get(endpoint, config.headers)
+      .then(response => response.data)
+      .then(json=>dispatch(receiveRecipes(json)))
+      .catch(err=>err)
   }
 }
 
-export const REQUEST_SINGLE_RECIPE = 'REQUEST_SINGLE_RECIPE';
+export const REQUEST_SINGLE_RECIPE = 'REQUEST_SINGLE_RECIPE'
 export function requestSingleRecipe(recipe){
   return{
     type: REQUEST_SINGLE_RECIPE,
-    
   }
 }
 
-export const RECEIVE_SINGLE_RECIPE = 'RECEIVE_SINGLE_RECIPE';
+export const RECEIVE_SINGLE_RECIPE = 'RECEIVE_SINGLE_RECIPE'
 export function RECEIVESingleRecipe(response){
   return {
     type: RECEIVE_SINGLE_RECIPE,
@@ -57,47 +55,45 @@ export function RECEIVESingleRecipe(response){
   }
 }
 
-export const FETCH_SINGLE_RECIPE = 'FETCH_SINGLE_RECIPE';
+export const FETCH_SINGLE_RECIPE = 'FETCH_SINGLE_RECIPE'
 export function fetchSingleRecipe(id){
   return dispatch =>{
     dispatch(requestSingleRecipe())
-    return axios.get(`${endpoint}/${id}`, config.headers).then(
-        // response=>response.json(),
-        response => response.data,
-        err => err
-      ).then(json=>dispatch(RECEIVESingleRecipe(json[0])))
+    return axios.get(`${endpoint}/${id}`, config.headers)
+      .then(response => response.data)
+      .then(json=>dispatch(RECEIVESingleRecipe(json[0])))
+      .catch(err=>err)
   }
 }
 
-export const REQUEST_DELETE_RECIPE = 'REQUEST_DELETE_RECIPE';
+export const REQUEST_DELETE_RECIPE = 'REQUEST_DELETE_RECIPE'
 export function requestDeleteRecipe(){
   return{
     type: REQUEST_DELETE_RECIPE,
   }
 }
 
-export const RECEIVE_DELETE_RECIPE = 'RECEIVE_DELETE_RECIPE';
+export const RECEIVE_DELETE_RECIPE = 'RECEIVE_DELETE_RECIPE'
 export function receiveDeleteRecipe(){
   return{
     type: RECEIVE_DELETE_RECIPE,
   }
 }
 
-export const FETCH_DELETE_RECIPE = 'DELETE_RECIPE';
+export const FETCH_DELETE_RECIPE = 'DELETE_RECIPE'
 export function fetchDeleteRecipe(id){
-  let body = {
-    id
-  }
+  let deleteEndPoint = `${endpoint}/${id}`
+  console.log(deleteEndPoint)
   return dispatch =>{
     dispatch(requestDeleteRecipe());
-    let deleteEndPoint = `${endpoint}/${id}`;
-    return axios.get(deleteEndPoint,{...config.headers, method: 'DELETE' }).then(
-      response => response.data,
-      err => err
-    ).then(json=>{
-      dispatch(receiveDeleteRecipe(json))
-      dispatch(fetchRecipes(endpoint))
-    })
+    return axios
+      .get(deleteEndPoint,{...config.headers, method: 'DELETE' })
+      .then(response => response.data)
+      .then(json=>{
+        dispatch(receiveDeleteRecipe(json))
+        dispatch(fetchRecipes(endpoint))
+      })
+      .catch(err=>err)
   }
 }
 

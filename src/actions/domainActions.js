@@ -84,25 +84,17 @@ export function filterRecipe(title){
   }
 }
 
-export const SEND_URL = 'SEND_URL';
-export function sendURL(url){
-  console.log(endpoint, url, config);
-  axios.post(endpoint, {url: url}, config)
-    .then(response=>{
-        return dispatch =>{
-          dispatch(sendURLSuccess({message: response.data.message,}))
-        }
-    })
-    .catch(err=>{
-      return dispatch => dispatch(sendURLRejected({
-          message: err.toString(),
-        })
-      )
-    })
+export const REQUEST_SEND_URL = 'REQUEST_SEND_URL'
+export function requestSendURL(){
+  console.log('requestSendRecipes')
+  return{
+    type: REQUEST_SEND_URL
+  }
 }
 
 export const SEND_URL_SUCCESS = 'SEND_URL_SUCCESS';
 export function sendURLSuccess(payload){
+  console.log('sendURLSuccess',payload)
   return{
     type: SEND_URL_SUCCESS,
     messageClass: 'success',
@@ -117,4 +109,16 @@ export function sendURLRejected(payload){
     messageClass: 'error',
     message: payload.message
   } 
+}
+
+export const SEND_URL = 'SEND_URL';
+export function sendURL(url){
+  console.log('sendURL')
+  return dispatch =>{
+    dispatch(requestSendURL())
+    axios.post(endpoint, {url: url}, config)
+      .then(response => response.data)
+      .then(json => dispatch(sendURLSuccess(json)))
+      .catch(err => dispatch(sendURLRejected({message: err.toString()})))
+    }
 }

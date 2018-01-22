@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as clientActions from '../../actions/clientActions'
 import { sendURL, fetchRecipes } from '../../actions/domainActions'
+// import * as domainActions from '../../actions/domainActions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import styles from './PushURLComponent.css'
@@ -20,7 +21,9 @@ class PushURLComponent extends Component {
         console.log('url is valid')
         this.props.sendURL(URLValue)
         this.refs.url.value = ''
-        this.props.fetchRecipes(endpoint) 
+        
+        // There is a better solution than this: it's using the actions, but this suffices for now
+        setTimeout(()=>this.props.fetchRecipes(endpoint), 1000)
       }
       else{
         console.log('url is invalid')
@@ -56,8 +59,11 @@ function mapStateToProps(state) {
   return {
     setStatus: clientActions.setStatus,
     removeStatus: clientActions.removeStatus,
-    sendURL,
+    // sendURL: domainActions.sendURL,
+    sendURL,    
     fetchRecipes,
+    
+    // fetchRecipes: domainActions.fetchRecipes,
     statusActive: state.clientReducer.statusActive,
     statusText: state.clientReducer.statusActive,
     statusType: state.clientReducer.statusType
@@ -66,6 +72,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
+    // ...domainActions,
+    sendURL,
+    fetchRecipes,
     ...clientActions
   }, dispatch);
 }

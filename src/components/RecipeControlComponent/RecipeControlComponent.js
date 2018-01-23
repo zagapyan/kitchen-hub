@@ -6,17 +6,6 @@ import { connect } from 'react-redux'
 import { Edit, Trash2, Star } from 'react-feather'
 import { handleDeleteRecipe } from '../../actions/domainActions'
 
-// const RecipeControlComponent = ({props}) => (
-//   <div className="RecipeControlComponent"> 
-//     <button className="button is-small"><Edit size="14"/></button>
-//     <button className="button is-small" onClick={()=>handleDeleteRecipe(props._id)}><Trash2 size="14"/></button>
-//     <button className="button is-small"><Star size="14"/></button>
-//   </div>
-// );
-
-// RecipeControlComponent.propTypes = {}
-// RecipeControlComponent.defaultProps = {}
-
 class RecipeControlComponent extends React.Component{
   constructor(props){
     super(props)

@@ -6,6 +6,7 @@ import { Edit, Trash2, Star } from 'react-feather'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { handleDeleteRecipe, fetchRecipes } from '../../actions/domainActions'
+import RecipeControlComponent from '../RecipeControlComponent'
 import styles from './RecipeListComponent.css'
 
 class RecipeListComponent extends Component{
@@ -18,48 +19,43 @@ class RecipeListComponent extends Component{
     setTimeout(()=>this.props.fetchRecipes(), 2000)
   }
   render(){
-    
     return(
-        <div className="RecipeListComponent">
-          <ul>
-            {this.props.recipes ? this.props.recipes.map(o=>
-                <li key={o._id.toString()}>
-                  <NavLink to={`/recipe/${o._id}`}>{o.title}</NavLink>
-                  <button className=""><Edit /></button>
-                  <button className="" onClick={this.handleDeleteRecipe.bind(this, o)}><Trash2 /></button>
-                  <button className=""><Star /></button>
-                  <span>
-                    { o.tags ? o.tags.map((i,k)=>
-                      <pre key={`${o._id}${k}`}>i.name</pre>)
-                      : false }
-                  </span>
-                </li>
-              ) : <BeatLoader />}
-          </ul>
-        </div>
+      <div className="RecipeListComponent">
+        <ul>
+          {this.props.recipes ? this.props.recipes.map(o=>
+              <li key={o._id.toString()}>
+                <NavLink to={`/recipe/${o._id}`}>{o.title}</NavLink>
+                <RecipeControlComponent props={o}/>       
+                <span>
+                  { o.tags ? o.tags.map((i,k)=>
+                    <pre key={`${o._id}${k}`}>i.name</pre>)
+                    : false }
+                </span>
+              </li>
+            ) : <BeatLoader />}
+        </ul>
+      </div>
     )
   }
 }
 
 RecipeListComponent.propTypes = {}
 
-RecipeListComponent.defaultProps = {}
-
 function mapStateToProps(state) {
   return {
     fetchRecipes,
     handleDeleteRecipe,
-  };
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     fetchRecipes,
     handleDeleteRecipe
-  }, dispatch);
+  }, dispatch)
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps)
-(RecipeListComponent);
+(RecipeListComponent)

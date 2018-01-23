@@ -4,31 +4,27 @@ import {
 } from '../actions/clientActions';
 
 const initalState={
-  statusActive: false,
+  statusShow: false,
   statusType: '',
+  statusClass: '',
   statusText: ''
 }
 
 export default function statusReducer(state=initalState, action) {
   switch (action.type) {
     case SET_STATUS:
-      /*
-      warning: bool,
-      statusText: String
-      statusType: ['invalid','success','rejected']
-      */
       console.log(action)
       return{
         ...state,
-        statusActive: true,
+        statusShow: true,
         statusText: action.statusText,
-        statusType: action.statusType
+        statusClass: action.statusClass
       }
     case REMOVE_STATUS:
       return{
         ...state,
-        statusActive: action.warning,
-        statusType: '',
+        statusShow: false,
+        statusClass: '',
         statusText: '',
       }
     default:

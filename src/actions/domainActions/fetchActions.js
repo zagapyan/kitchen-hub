@@ -3,7 +3,8 @@ import endpoint from '../../utils/endpoint'
 import config from '../../utils/headers'
 
 export const REQUEST_RECIPES = 'REQUEST_RECIPES'
-export function requestRecipes(response){
+export function requestRecipes(){
+  console.log('requestRecipes')
   return{
     type: REQUEST_RECIPES,
     fetching: true
@@ -33,10 +34,11 @@ export const FETCH_RECIPES = 'FETCH_RECIPES'
 export function fetchRecipes(){
   console.log('fetching recipes')
   return dispatch =>{
-    dispatch(requestRecipes());
+    dispatch(requestRecipes())
+    
     return axios.get(endpoint, config.headers)
       .then(response => response.data)
       .then(json=>dispatch(receiveRecipes(json)))
-      .catch(err=>dispatch(rejectRecipes({message: err.toString()})))
+      .catch(err=>dispatch(rejectRecipes({ message: err.toString() })))
   }
 }

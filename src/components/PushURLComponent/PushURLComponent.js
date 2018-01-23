@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import * as clientActions from '../../actions/clientActions'
+import { setStatus, removeStatus } from '../../actions/clientActions'
 import { sendURL, fetchRecipes } from '../../actions/domainActions'
-// import * as domainActions from '../../actions/domainActions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import styles from './PushURLComponent.css'
@@ -21,16 +20,16 @@ class PushURLComponent extends Component {
         console.log('url is valid')
         this.props.sendURL(URLValue)
         this.refs.url.value = ''
-        
-        // There is a better solution than this: it's using the actions, but this suffices for now
         setTimeout(()=>this.props.fetchRecipes(endpoint), 1000)
       }
       else{
         console.log('url is invalid')
+
         this.props.setStatus({
-          statusText: 'Invalid Url Input... please provide a proper url',
-          statusType: 'invalid'
+            statusText: 'Invalid Url Input... please provide a proper url',
+            statusClass: 'is-warning'
         })
+
         setTimeout(()=>
           this.props.removeStatus(),3000)
       }
@@ -42,7 +41,9 @@ class PushURLComponent extends Component {
                 <input type="text" ref="url"/>
                 <input type="submit" value="Add Recipe" />
               </form>
-              { <pre>{JSON.stringify(this.props)}</pre> }
+              <div className={`section ${this.props.statusClass} ${this.props.statusShow}`}>
+                { JSON.stringify(this.props) }
+              </div>
             </div>
         );
     }
@@ -57,29 +58,26 @@ PushURLComponent.defaultProps = {}
 
 function mapStateToProps(state) {
   return {
-    setStatus: clientActions.setStatus,
-    removeStatus: clientActions.removeStatus,
-    // sendURL: domainActions.sendURL,
     sendURL,    
     fetchRecipes,
-    
-    // fetchRecipes: domainActions.fetchRecipes,
-    statusActive: state.clientReducer.statusActive,
-    statusText: state.clientReducer.statusActive,
-    statusType: state.clientReducer.statusType
-  };
+    setStatus,
+    removeStatus,
+    statusClass: state.clientReducer.statusClass,
+    statusShow: state.clientReducer.statusShow,
+    statusText: state.clientReducer.statusText,
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    // ...domainActions,
     sendURL,
     fetchRecipes,
-    ...clientActions
-  }, dispatch);
+    setStatus,
+    removeStatus,
+  }, dispatch)
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps)
-(PushURLComponent);
+(PushURLComponent)

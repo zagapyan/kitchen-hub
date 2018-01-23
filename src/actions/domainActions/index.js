@@ -24,8 +24,8 @@ import {
   rejectDeleteRecipe,
   RECEIVE_DELETE_RECIPE,
   receiveDeleteRecipe,
-  HANDLE_DELETE_RECIPE,
-  handleDeleteRecipe
+  DELETE_RECIPE,
+  deleteRecipe
 } from './deleteActions'
 
 import {
@@ -68,8 +68,8 @@ export {
   rejectDeleteRecipe,
   RECEIVE_DELETE_RECIPE,
   receiveDeleteRecipe,
-  HANDLE_DELETE_RECIPE,
-  handleDeleteRecipe,
+  DELETE_RECIPE,
+  deleteRecipe,
   
   // FILTER
   FILTER_RECIPE,

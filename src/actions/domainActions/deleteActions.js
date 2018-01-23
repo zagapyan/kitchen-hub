@@ -29,8 +29,8 @@ export function rejectDeleteRecipe(err){
   }
 }
 
-export const HANDLE_DELETE_RECIPE = 'HANDLE_DELETE_RECIPE'
-export function handleDeleteRecipe(id){
+export const DELETE_RECIPE = 'DELETE_RECIPE'
+export function deleteRecipe(id){
   console.log(id)
   let deleteEndPoint = `${endpoint}/${id}`
   return dispatch => {

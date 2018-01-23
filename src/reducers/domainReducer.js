@@ -3,7 +3,7 @@ import {
   REQUEST_RECIPES,
   RECEIVE_RECIPES,
   REJECTED_FETCH,
-  HANDLE_DELETE_RECIPE,
+  DELETE_RECIPE,
   RECEIVE_DELETE_RECIPE,
   REJECT_DELETE_RECIPE,
   CURRENT_RECIPE,
@@ -36,7 +36,7 @@ export default function recipeReducer(state=initalState, action) {
         timeStamp: action.timeStamp,
         recipes: action.recipes
       }
-    case HANDLE_DELETE_RECIPE:
+    case DELETE_RECIPE:
       return{
         ...state
       }

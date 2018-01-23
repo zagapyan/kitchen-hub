@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { Edit, Trash2, Star } from 'react-feather'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { handleDeleteRecipe, fetchRecipes } from '../../actions/domainActions'
+import { fetchRecipes } from '../../actions/domainActions'
 import RecipeControlComponent from '../RecipeControlComponent'
 import styles from './RecipeListComponent.css'
 
@@ -14,10 +14,10 @@ class RecipeListComponent extends Component{
     super(props)
   }
   null
-  handleDeleteRecipe(recipe){
-    this.props.handleDeleteRecipe(recipe._id)
-    setTimeout(()=>this.props.fetchRecipes(), 2000)
-  }
+  // handleDeleteRecipe(recipe){
+  //   this.props.handleDeleteRecipe(recipe._id)
+  //   setTimeout(()=>this.props.fetchRecipes(), 2000)
+  // }
   render(){
     return(
       <div className="RecipeListComponent">
@@ -44,14 +44,12 @@ RecipeListComponent.propTypes = {}
 function mapStateToProps(state) {
   return {
     fetchRecipes,
-    handleDeleteRecipe,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    fetchRecipes,
-    handleDeleteRecipe
+    fetchRecipes
   }, dispatch)
 }
 

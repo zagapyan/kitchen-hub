@@ -18,10 +18,6 @@ class IndexComponent extends Component {
     componentDidMount(){
       this.props.fetchRecipes(endpoint) 
     }
-    handleDeleteRecipe(id,event){
-      event.preventDefault();
-      this.props.handleDeleteRecipe(id);
-    }
     handleRefreshRecipesList(event){}
     null
     render() {
@@ -50,7 +46,6 @@ function mapStateToProps(state) {
     filteredRecipes: state.domainReducer.filteredRecipes,
     timeStamp: state.domainReducer.timeStamp,
     fetchRecipes: domainActions.fetchRecipes,
-    handleDeleteRecipe: domainActions.handleDeleteRecipe
   };
 }
 

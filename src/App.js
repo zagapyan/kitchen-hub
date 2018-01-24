@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Router, Route, Switch, Link } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux'
-import { createBrowserHistory } from 'history'
 import { store, history } from './store';
 import Routes from './components/Routes'
 import 'bulma/css/bulma.css'

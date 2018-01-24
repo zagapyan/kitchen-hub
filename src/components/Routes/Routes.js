@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import IndexComponent from '../IndexComponent'
 import RecipePageComponent from '../RecipePageComponent'
@@ -23,9 +22,5 @@ class Routes extends Component {
         );
     }
 }
-
-Routes.propTypes = {}
-
-Routes.defaultProps = {}
 
 export default Routes

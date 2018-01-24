@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { BeatLoader } from 'react-spinners'
 import { NavLink } from 'react-router-dom'
-import { Edit, Trash2, Star, Book } from 'react-feather'
+import { Book } from 'react-feather'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchRecipes } from '../../actions/domainActions'
@@ -19,16 +19,12 @@ class RecipeListComponent extends Component{
     return(
       <div className="RecipeListComponent">
         <nav className="panel">
-          {/* <p className="panel-heading">
-            Recipes
-          </p>
-          <SearchComponent /> */}
           <div className="panel-heading">
             <div className="level">
               <div className="level-left">
                   Recipes
               </div>
-              <div classname="level-item">
+              <div className="level-item">
                 <SearchComponent />
               </div>
             </div>
@@ -53,7 +49,10 @@ class RecipeListComponent extends Component{
   }
 }
 
-RecipeListComponent.propTypes = {}
+RecipeListComponent.propTypes = {
+  fetchRecipes: PropTypes.func,
+  recipes: PropTypes.array,
+}
 
 function mapStateToProps(state) {
   return {

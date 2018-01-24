@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import styles from './RecipeControlComponent.css'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Edit, Trash2, Star } from 'react-feather'
+// import { Edit, Trash2, Star } from 'react-feather'
+import { Trash2 } from 'react-feather'
 import { deleteRecipe, fetchRecipes } from '../../actions/domainActions'
 
 class RecipeControlComponent extends React.Component{
@@ -34,6 +35,10 @@ class RecipeControlComponent extends React.Component{
   }
 }
 
+RecipeControlComponent.propTypes = {
+  deleteRecipe: PropTypes.func,
+  fetchRecipes: PropTypes.func,
+}
 
 function mapStateToProps(state) {
   return {

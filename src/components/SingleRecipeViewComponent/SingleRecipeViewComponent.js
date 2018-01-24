@@ -32,7 +32,7 @@ class SingleRecipeViewComponent extends Component {
                         <div class="card">
                           <div class="card-image">
                             <figure class="image">
-                              <img src={o.imgSrc} title={`Media Image: ${o.title}`} style={{objectFit: 'cover', maxHeight: 200}} />
+                              <img src={o.imgSrc} alt={o.title} style={{objectFit: 'cover', maxHeight: 200}} />
                             </figure>
                           </div>
                           <div class="card-content">
@@ -71,7 +71,10 @@ class SingleRecipeViewComponent extends Component {
     }
 }
 
-SingleRecipeViewComponent.propTypes = {}
+SingleRecipeViewComponent.propTypes = {
+  recipeID: PropTypes.string,
+  recipes: PropTypes.array
+}
 
 SingleRecipeViewComponent.defaultProps = {}
 

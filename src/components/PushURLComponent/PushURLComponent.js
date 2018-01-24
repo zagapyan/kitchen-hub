@@ -68,12 +68,17 @@ class PushURLComponent extends Component {
     }
 }
 
-PushURLComponent.propTypes = {}
+PushURLComponent.propTypes = {
+  sendURL: PropTypes.func,
+  fetchRecipes: PropTypes.func,
+  setStatus: PropTypes.func,
+  removeStatus: PropTypes.func,
+  statusClass: PropTypes.string,
+  statusShow: PropTypes.bool,
+  statusText: PropTypes.string,
+}
 
 PushURLComponent.defaultProps = {}
-
-// export default PushURLComponent
-
 
 function mapStateToProps(state) {
   return {

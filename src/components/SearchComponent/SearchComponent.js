@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
-import { Grid, List } from 'react-feather'
+// import { Grid, List } from 'react-feather'
 import styles from './SearchComponent.css'
 import * as domainActions from '../../actions/domainActions';
 
@@ -41,9 +41,9 @@ class SearchComponent extends Component {
   }
 }
 
-SearchComponent.propTypes = {}
-
-SearchComponent.defaultProps = {}
+SearchComponent.propTypes = {
+  filterRecipe: PropTypes.func,
+}
 
 function mapStateToProps(state) {
   return {

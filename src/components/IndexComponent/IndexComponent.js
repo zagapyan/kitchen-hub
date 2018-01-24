@@ -35,18 +35,18 @@ class IndexComponent extends Component {
     }
 }
 
-IndexComponent.propTypes = {}
-
-IndexComponent.defaultProps = {}
-
-// export default IndexComponent
+IndexComponent.propTypes = {
+  recipes: PropTypes.array,
+  filtering: PropTypes.bool,
+  filteredRecipes: PropTypes.array,
+  fetchRecipes: PropTypes.func,
+}
 
 function mapStateToProps(state) {
   return {
     recipes: state.domainReducer.recipes, 
     filtering: state.domainReducer.filtering,
-    filteredRecipes: state.domainReducer.filteredRecipes,
-    timeStamp: state.domainReducer.timeStamp,
+    filteredRecipes: state.domainReducer.filteredRecipes, 
     fetchRecipes: domainActions.fetchRecipes,
   };
 }

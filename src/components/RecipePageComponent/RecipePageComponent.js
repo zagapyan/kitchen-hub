@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { Menu } from 'react-feather'
 import styles from './RecipePageComponent.css'
 import RecipeListComponent from '../RecipeListComponent'
-import * as domainActions from '../../actions/domainActions'
+import { fetchRecipes } from '../../actions/domainActions'
 import SingleRecipeViewComponent from '../SingleRecipeViewComponent'
 import endpoint from '../../utils/endpoint'
 
@@ -43,21 +43,21 @@ class RecipePageComponent extends Component {
   }
 }
 
-RecipePageComponent.propTypes = {}
+RecipePageComponent.propTypes = {
+  fetchRecipes: PropTypes.func,
+  recipes: PropTypes.array,
+}
 
-RecipePageComponent.defaultProps = {}
-
-// export default RecipePageComponent
 function mapStateToProps(state) {
   return {
     recipes: state.domainReducer.recipes,
-    fetchRecipes: domainActions.fetchRecipes,
+    fetchRecipes,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    ...domainActions
+    fetchRecipes
   }, dispatch);
 }
 

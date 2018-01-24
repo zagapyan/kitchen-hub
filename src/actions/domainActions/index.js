@@ -1,11 +1,3 @@
-import axios from 'axios'
-import endpoint from '../../utils/endpoint'
-import config from '../../utils/headers'
-
-/* 
-* IMPORT ACTIONS
-*/
-
 import {
   REQUEST_RECIPES,
   requestRecipes,
@@ -46,10 +38,6 @@ import {
 } from './sendURLAction'
 
 
-
-/* 
-* EXPORT ACTIONS
-*/
 export {
   // request recipes
   REQUEST_RECIPES,

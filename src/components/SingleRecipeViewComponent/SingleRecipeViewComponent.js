@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './SingleRecipeViewComponent.css'
+import { Link } from 'react-router-dom'
 import { BookOpen } from 'react-feather'
-import { Redirect } from 'react-router-dom'
+import styles from './SingleRecipeViewComponent.css'
+
 
 class SingleRecipeViewComponent extends Component {
     constructor(props) {
@@ -48,7 +49,9 @@ class SingleRecipeViewComponent extends Component {
                             </div>
                             <div className="content">
                               <p className="subtitle is-6 has-text-left">{o.description}</p>
-                              <a className="button is-primary" href={o.url} target="_blank">Go</a>
+                              <div className="field has-addons">
+                                <a className="button" href={o.url} target="_blank">Go</a>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -57,7 +60,19 @@ class SingleRecipeViewComponent extends Component {
                 </div>
             )
         }
-        return <Redirect to={{pathname: '/'}}/>
+        else return (
+          <div className="section">
+            <div className="card">
+              <div className="card-content">
+                <div className="content">
+                  <h2 className="title is-4">No Recipe Found</h2>
+                  <h3 className="subtitle">Try a different recipe?</h3>
+                  <Link className="button is-primary" to="/">Click Here to Return Home</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          )
     }
     render() {
         const renderCurrentRecipe = this.props.recipes 

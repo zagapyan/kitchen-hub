@@ -20,12 +20,12 @@ class RecipeListComponent extends Component{
       <div className="RecipeListComponent">
         <nav className="panel">
           <div className="panel-heading">
-            <div className="level">
-              <div className="level-left">
-                  Recipes
+            <div className="field has-addons">
+              <div className="control">
+                <span className="button is-static is-small">Recipes</span>
               </div>
-              <div className="level-item">
-                <SearchComponent />
+              <div className="control is-expanded">
+                <SearchComponent />                
               </div>
             </div>
           </div>

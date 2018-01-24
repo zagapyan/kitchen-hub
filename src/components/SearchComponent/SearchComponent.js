@@ -16,26 +16,22 @@ class SearchComponent extends Component {
   render() {
       return (
         <div className="SearchComponent">
-          <div className="field">
-            <div className="control">
-              <input
-                  className="input is-small column"
-                  type="text"
-                  placeholder="Filter"
-                  onChange={this.filterListByTitle.bind(this)}
-                  ref="searchComponentInput"/>
-              {/* <div className="select is-small">
-                <select>
-                  <option>title</option>
-                  <option>tag</option>
-                </select>
-              </div>
-              <button className="button is-small">
-                <Grid size="14"/></button>
-              <button className="button is-small">
-                <List size="14"/></button> */}
-            </div>
-          </div>
+          <input
+            className="input is-small column"
+            type="text"
+            placeholder="Filter"
+            onChange={this.filterListByTitle.bind(this)}
+            ref="searchComponentInput"/>
+          {/* <div className="select is-small">
+            <select>
+              <option>title</option>
+              <option>tag</option>
+            </select>
+          </div> */}
+          {/* <button className="button is-small">
+            <Grid size="14"/></button>
+          <button className="button is-small">
+            <List size="14"/></button> */}
         </div>
       );
   }

@@ -37,30 +37,26 @@ class PushURLComponent extends Component {
     }
     render() {
         return (
-            <div className="PushURLComponent">
-            <article className={`message ${this.props.statusClass} ${this.props.statusShow ? '' : 'hidden'}`}>
-                <div className="section">
-                  <div className="container">
-                    <div className="message-header">
-                      <p>Message</p>
-                      <button className="delete" onClick={()=>this.props.removeStatus()}></button>
-                    </div>
-                    <div className="message-body">
-                      {this.props.statusText}
-                    </div>
+            <div className="PushURLComponent level">
+            <article className={`section message ${this.props.statusClass} ${this.props.statusShow ? '' : 'hidden'}`}>
+                {/* <div className="section"> */}
+                <div className="container">
+                  <div className="message-header">
+                    <p>Message</p>
+                    <button className="delete" onClick={()=>this.props.removeStatus()}></button>
+                  </div>
+                  <div className="message-body">
+                    {this.props.statusText}
                   </div>
                 </div>
+                {/* </div> */}
               </article>
-              <form className="field" onSubmit={this.handleAddRecipe.bind(this)}>
+              <form className="field has-addons column is-paddingless" onSubmit={this.handleAddRecipe.bind(this)}>
+                <div className="control is-expanded">
+                  <input className="input " type="text" ref="url" placeholder="Add a recipe Link"/>
+                </div>
                 <div className="control">
-                  <div className="level">
-                    <div className="level-item">
-                      <input className="input" type="text" ref="url" placeholder="Add a recipe Link"/>
-                    </div>
-                    <div className="level-left">
-                      <button className="button" type="submit"><Plus size="14"/></button>
-                    </div>  
-                  </div>
+                  <button className="button" type="submit"><Plus size="14"/></button>
                 </div>
               </form>
             </div>

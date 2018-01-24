@@ -29,25 +29,25 @@ class SingleRecipeViewComponent extends Component {
                 <div className="renderCurrentRecipe">
                     <div className="section">
                       {currentRecipe.map(o=>
-                        <div class="card">
-                          <div class="card-image">
-                            <figure class="image">
+                        <div className="card" key={o._id}>
+                          <div className="card-image">
+                            <figure className="image">
                               <img src={o.imgSrc} alt={o.title} style={{objectFit: 'cover', maxHeight: 200}} />
                             </figure>
                           </div>
-                          <div class="card-content">
-                            <div class="media">
-                              <div class="media-left">
-                                <figure class="image">
+                          <div className="card-content">
+                            <div className="media">
+                              <div className="media-left">
+                                <figure className="image">
                                   <BookOpen size="36"/>
                                 </figure>
                               </div>
-                              <div class="media-content">
-                                <a class="title is-4" href={o.url} target="_blank">{o.title}</a>
+                              <div className="media-content">
+                                <a className="title is-4" href={o.url} target="_blank">{o.title}</a>
                               </div>
                             </div>
-                            <div class="content">
-                              <p class="subtitle is-6 has-text-left">{o.description}</p>
+                            <div className="content">
+                              <p className="subtitle is-6 has-text-left">{o.description}</p>
                               <a className="button is-primary" href={o.url} target="_blank">Go</a>
                             </div>
                           </div>

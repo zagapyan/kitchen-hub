@@ -22,13 +22,13 @@ class RecipeControlComponent extends React.Component{
   render(){
     return(
       <div className="RecipeControlComponent"> 
-        <button className="button is-small">
-          <Edit size="14"/></button>
+        {/* <button className="button is-small">
+          <Edit size="14"/></button> */}
         <button className="button is-small"
           onClick={this.handleDeleteRecipe.bind(this, this.props)}>
           <Trash2 size="14"/></button>
-        <button className="button is-small">
-          <Star size="14"/></button>
+        {/* <button className="button is-small">
+          <Star size="14"/></button> */}
       </div>
     )
   }

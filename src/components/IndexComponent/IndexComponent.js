@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import styles from './IndexComponent.css'
-import SearchComponent from '../SearchComponent'
+import HeaderComponent from '../HeaderComponent'
 import RecipeListComponent from '../RecipeListComponent'
 import PushURLComponent from '../PushURLComponent'
 import * as domainActions from '../../actions/domainActions'
@@ -24,10 +24,12 @@ class IndexComponent extends Component {
         // return full list unless filtering is turned on
         let recipes = !!this.props.filtering ? this.props.filteredRecipes : this.props.recipes;
         return (
-            <div className="`IndexComponent">
-              <PushURLComponent />
-              <SearchComponent />
-              <RecipeListComponent recipes={recipes}/>
+            <div className="IndexComponent">
+              <HeaderComponent />
+              <div className="section">
+                <PushURLComponent />
+                <RecipeListComponent recipes={recipes}/>
+              </div>
             </div>
         );
     }

@@ -21,7 +21,7 @@ class PushURLComponent extends Component {
         console.log('url is valid')
         this.props.sendURL(URLValue)
         this.refs.url.value = ''
-        setTimeout(()=>this.props.fetchRecipes(endpoint), 1000)
+        setTimeout(()=>this.props.fetchRecipes(endpoint), 2500)
       }
       else{
         console.log('url is invalid')
@@ -32,22 +32,37 @@ class PushURLComponent extends Component {
         })
 
         setTimeout(()=>
-          this.props.removeStatus(),3000)
+          this.props.removeStatus(),5000)
       }
     }
     render() {
         return (
             <div className="PushURLComponent">
+            <article className={`message ${this.props.statusClass} ${this.props.statusShow ? '' : 'hidden'}`}>
+                <div className="section">
+                  <div className="container">
+                    <div className="message-header">
+                      <p>Message</p>
+                      <button className="delete" onClick={()=>this.props.removeStatus()}></button>
+                    </div>
+                    <div className="message-body">
+                      {this.props.statusText}
+                    </div>
+                  </div>
+                </div>
+              </article>
               <form className="field" onSubmit={this.handleAddRecipe.bind(this)}>
                 <div className="control">
-                  <input className="input is-small" type="text" ref="url"/>
-                  {/* <input type="submit" value="Add Recipe" /> */}
-                  <button className="button is-small" type="submit"><Plus size="14"/></button>
+                  <div className="level">
+                    <div className="level-item">
+                      <input className="input" type="text" ref="url" placeholder="Add a recipe Link"/>
+                    </div>
+                    <div className="level-left">
+                      <button className="button" type="submit"><Plus size="14"/></button>
+                    </div>  
+                  </div>
                 </div>
               </form>
-              <div className={`section ${this.props.statusClass} ${this.props.statusShow}`}>
-                { JSON.stringify(this.props) }
-              </div>
             </div>
         );
     }

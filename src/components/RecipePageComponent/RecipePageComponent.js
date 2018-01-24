@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Menu, Home } from 'react-feather'
+import { Menu } from 'react-feather'
 import styles from './RecipePageComponent.css'
-
-import RecipeListComponent from '../RecipeListComponent';
+import RecipeListComponent from '../RecipeListComponent'
 import * as domainActions from '../../actions/domainActions'
 import SingleRecipeViewComponent from '../SingleRecipeViewComponent'
-import endpoint from '../../utils/endpoint';
+import endpoint from '../../utils/endpoint'
 
 class RecipePageComponent extends Component {
   constructor(props) {
@@ -34,28 +33,11 @@ class RecipePageComponent extends Component {
   }
   render() {
     return (
-      <div className = "RecipePageComponent columns is-mobile">
-        <nav className="is-one-quarter-desktop">
-          <ul>
-            <li>
-              <Link to="/">Home
-                <Home /></Link>
-            </li>
-            <li><button
-              onClick={
-                this.handleNavToggle.bind(this,
-                  this.props.match.params.recipe)
-                }>
-                <Menu />
-              </button></li>
-          </ul>
-          <RecipeListComponent recipes={this.props.recipes}/>
-        </nav>
+      <div className = "RecipePageComponent">
         <SingleRecipeViewComponent
-          recipeID={this.props.match.params.recipe}
-          recipes={this.props.recipes}
-          styleProps="is-three-quarters-desktop"
-          />
+            recipeID={this.props.match.params.recipe}
+            recipes={this.props.recipes}
+            />
       </div>
     );
   }

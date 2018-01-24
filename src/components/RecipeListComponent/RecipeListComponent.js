@@ -6,6 +6,7 @@ import { Edit, Trash2, Star, Book } from 'react-feather'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchRecipes } from '../../actions/domainActions'
+import SearchComponent from '../SearchComponent'
 import RecipeControlComponent from '../RecipeControlComponent'
 import styles from './RecipeListComponent.css'
 
@@ -17,14 +18,24 @@ class RecipeListComponent extends Component{
   render(){
     return(
       <div className="RecipeListComponent">
-        <nav class="panel">
-          <p class="panel-heading">
+        <nav className="panel">
+          {/* <p className="panel-heading">
             Recipes
           </p>
-        </nav>
-        {this.props.recipes ? this.props.recipes.map(o=>
-            <span class="panel-block" key={o._id.toString()}>
-              <span class="panel-icon">
+          <SearchComponent /> */}
+          <div className="panel-heading">
+            <div className="level">
+              <div className="level-left">
+                  Recipes
+              </div>
+              <div classname="level-item">
+                <SearchComponent />
+              </div>
+            </div>
+          </div>
+          {this.props.recipes ? this.props.recipes.map(o=>
+            <span className="panel-block" key={o._id.toString()}>
+              <span className="panel-icon">
                 <Book size="14" />
               </span>
               <NavLink to={`/recipe/${o._id}`}>{o.title}</NavLink>
@@ -36,19 +47,7 @@ class RecipeListComponent extends Component{
               </span>
             </span>
             ) : <BeatLoader />}
-        {/* <ul>
-          {this.props.recipes ? this.props.recipes.map(o=>
-              <li key={o._id.toString()}>
-                <NavLink to={`/recipe/${o._id}`}>{o.title}</NavLink>
-                <RecipeControlComponent props={o}/>       
-                <span>
-                  { o.tags ? o.tags.map((i,k)=>
-                    <pre key={`${o._id}${k}`}>i.name</pre>)
-                    : false }
-                </span>
-              </li>
-            ) : <BeatLoader />}
-        </ul> */}
+        </nav>
       </div>
     )
   }

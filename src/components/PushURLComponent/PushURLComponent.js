@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Plus } from 'react-feather'
 import { setStatus, removeStatus } from '../../actions/clientActions'
 import { sendURL, fetchRecipes } from '../../actions/domainActions'
 import { bindActionCreators } from 'redux'
@@ -37,9 +38,12 @@ class PushURLComponent extends Component {
     render() {
         return (
             <div className="PushURLComponent">
-              <form onSubmit={this.handleAddRecipe.bind(this)}>
-                <input type="text" ref="url"/>
-                <input type="submit" value="Add Recipe" />
+              <form className="field" onSubmit={this.handleAddRecipe.bind(this)}>
+                <div className="control">
+                  <input className="input is-small" type="text" ref="url"/>
+                  {/* <input type="submit" value="Add Recipe" /> */}
+                  <button className="button is-small" type="submit"><Plus size="14"/></button>
+                </div>
               </form>
               <div className={`section ${this.props.statusClass} ${this.props.statusShow}`}>
                 { JSON.stringify(this.props) }

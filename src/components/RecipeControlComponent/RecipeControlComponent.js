@@ -22,7 +22,6 @@ class RecipeControlComponent extends React.Component{
   render(){
     return(
       <div className="RecipeControlComponent"> 
-        {/* {JSON.stringify(this.props)} */}
         <button className="button is-small">
           <Edit size="14"/></button>
         <button className="button is-small"

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { BeatLoader } from 'react-spinners'
 import { NavLink } from 'react-router-dom'
-import { Edit, Trash2, Star } from 'react-feather'
+import { Edit, Trash2, Star, Book } from 'react-feather'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchRecipes } from '../../actions/domainActions'
@@ -14,14 +14,29 @@ class RecipeListComponent extends Component{
     super(props)
   }
   null
-  // handleDeleteRecipe(recipe){
-  //   this.props.handleDeleteRecipe(recipe._id)
-  //   setTimeout(()=>this.props.fetchRecipes(), 2000)
-  // }
   render(){
     return(
       <div className="RecipeListComponent">
-        <ul>
+        <nav class="panel">
+          <p class="panel-heading">
+            Recipes
+          </p>
+        </nav>
+        {this.props.recipes ? this.props.recipes.map(o=>
+            <span class="panel-block" key={o._id.toString()}>
+              <span class="panel-icon">
+                <Book size="14" />
+              </span>
+              <NavLink to={`/recipe/${o._id}`}>{o.title}</NavLink>
+              <RecipeControlComponent props={o}/>       
+              <span>
+                { o.tags ? o.tags.map((i,k)=>
+                  <pre key={`${o._id}${k}`}>i.name</pre>)
+                  : false }
+              </span>
+            </span>
+            ) : <BeatLoader />}
+        {/* <ul>
           {this.props.recipes ? this.props.recipes.map(o=>
               <li key={o._id.toString()}>
                 <NavLink to={`/recipe/${o._id}`}>{o.title}</NavLink>
@@ -33,7 +48,7 @@ class RecipeListComponent extends Component{
                 </span>
               </li>
             ) : <BeatLoader />}
-        </ul>
+        </ul> */}
       </div>
     )
   }

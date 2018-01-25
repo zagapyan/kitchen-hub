@@ -15,7 +15,7 @@ export const RECEIVE_RECIPES = 'RECEIVE_RECIPES'
 export function receiveRecipes(recipes){
   return {
     type: RECEIVE_RECIPES,
-    recipes: recipes,
+    recipes: recipes.reverse(),
     fetching: false,
     timeStamp: Date.now()
   }

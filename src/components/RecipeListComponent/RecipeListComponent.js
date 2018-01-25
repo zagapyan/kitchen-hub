@@ -30,15 +30,19 @@ class RecipeListComponent extends Component{
               <span className="panel-icon">
                 <Book size="14" />
               </span>
-              <NavLink to={`/recipe/${o._id}`}>{o.title}</NavLink>
-              <RecipeControlComponent props={o}/>       
+              <NavLink to={`/recipe/${o._id}`} className="recipe-link">{o.title}</NavLink>
+              <RecipeControlComponent props={o} className="recipe-control"/>       
               <span>
                 { o.tags ? o.tags.map((i,k)=>
                   <pre key={`${o._id}${k}`}>i.name</pre>)
                   : false }
               </span>
             </span>
-            ) : <BeatLoader />}
+            )
+            : <div className="section has-text-centered">
+                <BeatLoader />
+              </div>
+            }
         </nav>
       </div>
     )

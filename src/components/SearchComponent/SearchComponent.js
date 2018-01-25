@@ -38,7 +38,7 @@ class SearchComponent extends Component {
               <button className={`button is-small`} onClick={this.handleFilterClear.bind(this)}><XCircle size="12"/></button>
             </div>
           </div>
-          <div className="field has-addons">
+          {/* <div className="field has-addons">
             <div className="control">
               <div className="select is-small">
                 <select>
@@ -55,7 +55,7 @@ class SearchComponent extends Component {
               <button className="button is-small">
                 <List size="14"/></button>
             </div>
-          </div>
+          </div> */}
         </div>
       );
   }

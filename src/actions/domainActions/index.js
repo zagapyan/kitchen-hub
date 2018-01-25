@@ -22,7 +22,9 @@ import {
 
 import {
   FILTER_RECIPE,
-  filterRecipe
+  filterRecipe,
+  FILTER_CLEAR,
+  filterClear
 } from './filterActions'
 
 
@@ -62,6 +64,8 @@ export {
   // FILTER
   FILTER_RECIPE,
   filterRecipe,
+  FILTER_CLEAR,
+  filterClear,
 
   // SEND URL
   REQUEST_SEND_URL,

@@ -16,3 +16,13 @@ export function filterRecipe(title){
     }
   }
 }
+
+export const FILTER_CLEAR = 'FILTER_CLEAR'
+export function filterClear(){
+  return{
+    type: FILTER_CLEAR,
+    filtering: false,
+    filterPayload: '',
+    filteredList: []
+  }
+}

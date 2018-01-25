@@ -8,6 +8,7 @@ import {
   REJECT_DELETE_RECIPE,
   CURRENT_RECIPE,
   FILTER_RECIPE,
+  FILTER_CLEAR
 } from '../actions/domainActions';
 
 const initalState={
@@ -52,6 +53,16 @@ export default function recipeReducer(state=initalState, action) {
       return{
         ...state,
         filtering: action.filtering,
+        filteredRecipes: state.recipes.filter(o=>
+          o.title
+            .toLowerCase()
+            .includes(action.filterPayload.toLowerCase()))
+      }
+    case FILTER_CLEAR:
+      return{
+        ...state,
+        filtering: action.filtering,
+        filtering: false,
         filteredRecipes: state.recipes.filter(o=>
           o.title
             .toLowerCase()

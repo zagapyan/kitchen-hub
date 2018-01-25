@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
-// import { Grid, List } from 'react-feather'
+import { Grid, List, XCircle} from 'react-feather'
 import styles from './SearchComponent.css'
-import * as domainActions from '../../actions/domainActions';
+// import * as domainActions from '../../actions/domainActions';
+import { filterRecipe, filterClear } from '../../actions/domainActions'
+
 
 class SearchComponent extends Component {
   constructor(props) {
@@ -13,25 +15,47 @@ class SearchComponent extends Component {
   filterListByTitle(event){
     this.props.filterRecipe(event.target.value)
   }
+  handleFilterClear(){
+    this.props.filterClear()
+    this.refs.searchComponentInput.value = ''
+  }
   render() {
       return (
         <div className="SearchComponent">
-          <input
-            className="input is-small column"
-            type="text"
-            placeholder="Filter"
-            onChange={this.filterListByTitle.bind(this)}
-            ref="searchComponentInput"/>
-          {/* <div className="select is-small">
-            <select>
-              <option>title</option>
-              <option>tag</option>
-            </select>
-          </div> */}
-          {/* <button className="button is-small">
-            <Grid size="14"/></button>
-          <button className="button is-small">
-            <List size="14"/></button> */}
+          <div className="field has-addons">
+            <div className="control">
+              <span className="button is-static is-small">Recipes</span>
+            </div>
+            <div className="control is-expanded">
+            <input
+              className="input is-small column"
+              type="text"
+              placeholder="Filter"
+              onChange={this.filterListByTitle.bind(this)}
+              ref="searchComponentInput"/>
+            </div>
+            <div className="control">
+              <button className={`button is-small`} onClick={this.handleFilterClear.bind(this)}><XCircle size="12"/></button>
+            </div>
+          </div>
+          <div className="field has-addons">
+            <div className="control">
+              <div className="select is-small">
+                <select>
+                  <option>title</option>
+                  <option>tag</option>
+                </select>
+              </div>
+            </div>
+            <div className="control">
+              <button className="button is-small">
+                <Grid size="14"/></button>
+            </div>
+            <div className="control">
+              <button className="button is-small">
+                <List size="14"/></button>
+            </div>
+          </div>
         </div>
       );
   }
@@ -43,13 +67,15 @@ SearchComponent.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    filterRecipe: domainActions.filterRecipe
+    filterRecipe,
+    filterClear
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    ...domainActions
+    filterRecipe,
+    filterClear
   }, dispatch);
 }
 

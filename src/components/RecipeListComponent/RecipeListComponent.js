@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { Book } from 'react-feather'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchRecipes } from '../../actions/domainActions'
+import { fetchRecipes, filterClear } from '../../actions/domainActions'
 import SearchComponent from '../SearchComponent'
 import RecipeControlComponent from '../RecipeControlComponent'
 import styles from './RecipeListComponent.css'
@@ -15,19 +15,15 @@ class RecipeListComponent extends Component{
     super(props)
   }
   null
+  componentWillUnmount(){
+    this.props.filterClear()
+  }
   render(){
     return(
       <div className="RecipeListComponent">
         <nav className="panel">
           <div className="panel-heading">
-            <div className="field has-addons">
-              <div className="control">
-                <span className="button is-static is-small">Recipes</span>
-              </div>
-              <div className="control is-expanded">
-                <SearchComponent />                
-              </div>
-            </div>
+            <SearchComponent/>
           </div>
           {this.props.recipes ? this.props.recipes.map(o=>
             <span className="panel-block" key={o._id.toString()}>
@@ -51,18 +47,21 @@ class RecipeListComponent extends Component{
 
 RecipeListComponent.propTypes = {
   fetchRecipes: PropTypes.func,
+  filterClear: PropTypes.func,
   recipes: PropTypes.array,
 }
 
 function mapStateToProps(state) {
   return {
     fetchRecipes,
+    filterClear
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    fetchRecipes
+    fetchRecipes,
+    filterClear
   }, dispatch)
 }
 

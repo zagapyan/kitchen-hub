@@ -1,3 +1,9 @@
 .RecipeListComponent{
     text-align: left;
 }
+.RecipeListComponent .recipe-link{
+  flex-grow: 2;
+}
+.RecipeListComponent .recipe-control{
+  flex-grow: 1;
+}

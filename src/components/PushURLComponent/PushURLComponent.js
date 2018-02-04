@@ -5,7 +5,7 @@ import { setStatus, removeStatus } from '../../actions/clientActions'
 import { sendURL, fetchRecipes } from '../../actions/domainActions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import styles from './PushURLComponent.css'
+import styles from './PushURLComponent.scss'
 import endpoint from '../../utils/endpoint'
 
 class PushURLComponent extends Component {

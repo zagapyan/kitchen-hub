@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { fetchRecipes, filterClear } from '../../actions/domainActions'
 import SearchComponent from '../SearchComponent'
 import RecipeControlComponent from '../RecipeControlComponent'
-import styles from './RecipeListComponent.css'
+import styles from './RecipeListComponent.scss'
 
 class RecipeListComponent extends Component{
   constructor(props){

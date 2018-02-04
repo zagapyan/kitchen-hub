@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
-import styles from './IndexComponent.css'
+import styles from './IndexComponent.scss'
 import HeaderComponent from '../HeaderComponent'
 import RecipeListComponent from '../RecipeListComponent'
 import PushURLComponent from '../PushURLComponent'

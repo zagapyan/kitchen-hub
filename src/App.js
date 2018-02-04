@@ -4,8 +4,8 @@ import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux'
 import { store, history } from './store';
 import Routes from './components/Routes'
-import 'bulma/css/bulma.css'
-import './App.css'
+import 'bulma/bulma.sass'
+import './App.scss'
 
 class App extends Component {
   render() {

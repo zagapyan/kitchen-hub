@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Grid, List, XCircle} from 'react-feather'
-import styles from './SearchComponent.css'
+import styles from './SearchComponent.scss'
 // import * as domainActions from '../../actions/domainActions';
 import { filterRecipe, filterClear } from '../../actions/domainActions'
 

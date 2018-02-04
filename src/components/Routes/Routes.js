@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import IndexComponent from '../IndexComponent'
 import RecipePageComponent from '../RecipePageComponent'
 import NoMatchComponent from '../NoMatchComponent'
-import style from './Routes.css'
+import style from './Routes.scss'
 
 class Routes extends Component {
     constructor(props) {

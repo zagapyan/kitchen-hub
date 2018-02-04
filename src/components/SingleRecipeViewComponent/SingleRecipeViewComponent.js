@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { BookOpen } from 'react-feather'
-import styles from './SingleRecipeViewComponent.css'
+import styles from './SingleRecipeViewComponent.scss'
 
 
 class SingleRecipeViewComponent extends Component {

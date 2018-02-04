@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './RecipeControlComponent.css'
+import styles from './RecipeControlComponent.scss'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 // import { Edit, Trash2, Star } from 'react-feather'

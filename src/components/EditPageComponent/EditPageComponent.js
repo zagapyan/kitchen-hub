@@ -13,32 +13,41 @@ class EditPageComponent extends Component {
   componentDidMount(){
     let id = this.props.match.params.recipe;
     this.props.fetchSingleRecipe(id)
+    this.props.fetchTags
   }
   render() {
     return (
       <div className="EditPageComponent">
         <HeaderComponent />
-        <div className="container">
-          <h1 className="title is-2 has-text-left">Edit Recipe</h1>
-          <div className="section">
-            <form htmlFor="" className="field">
-              <label className="label has-text-left">Title</label>
-              <div className="control">
-                <input type="text" className="input" refs="title"/>
-              </div>
-              <label className="label has-text-left">Description</label>
-              <div className="control">
-                <input type="text" className="input" refs="description"/>
-              </div>
-              <label className="label has-text-left">Image Source</label>
-              <div className="control">
-                <input type="text" className="input" refs="imgSrc"/>
-              </div>
-              <div className="control">
-                
-              </div>
-              <button type="submit" className="button">Update</button>
-            </form>
+        <div className="section">
+          <div className="container">
+            <h1 className="title is-2 has-text-left">Edit Recipe</h1>
+            <div className="panel">
+              <form htmlFor="" className="field">
+                <div className="columns">
+                  <div className="column">
+                    <label className="label has-text-left">Title</label>
+                    <h2 className="title is-3 has-text-left">{this.props.currentRecipe.title}</h2>
+                    <div className="control">
+                      <input type="text" className="input" refs="title"/>
+                    </div>
+                    <label className="label has-text-left">Description</label>
+                    <p className="has-text-left">{this.props.currentRecipe.description}</p>
+                    <div className="control">
+                      <input type="text" className="input" refs="description"/>
+                    </div>
+                  </div>
+                  <div className="column">
+                    <label className="label has-text-left">Image Source</label>
+                    <img src={this.props.currentRecipe.imgSrc} />
+                    <div className="control">
+                      <input type="text" className="input" refs="imgSrc"/>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" className="button">Update</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

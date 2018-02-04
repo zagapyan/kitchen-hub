@@ -12,16 +12,33 @@ class EditPageComponent extends Component {
   }
   componentDidMount(){
     let id = this.props.match.params.recipe;
-    
+    this.props.fetchSingleRecipe(id)
   }
   render() {
     return (
       <div className="EditPageComponent">
         <HeaderComponent />
-        <div className="">
-          <h1 className="title is-1">{this.props.match.params.recipe}</h1>
+        <div className="container">
+          <h1 className="title is-2 has-text-left">Edit Recipe</h1>
           <div className="section">
-            {JSON.stringify(this.props)}
+            <form htmlFor="" className="field">
+              <label className="label has-text-left">Title</label>
+              <div className="control">
+                <input type="text" className="input" refs="title"/>
+              </div>
+              <label className="label has-text-left">Description</label>
+              <div className="control">
+                <input type="text" className="input" refs="description"/>
+              </div>
+              <label className="label has-text-left">Image Source</label>
+              <div className="control">
+                <input type="text" className="input" refs="imgSrc"/>
+              </div>
+              <div className="control">
+                
+              </div>
+              <button type="submit" className="button">Update</button>
+            </form>
           </div>
         </div>
       </div>
@@ -33,7 +50,8 @@ EditPageComponent.propTypes = {}
 
 function mapStateToProps(state) {
   return {
-    fetchSingleRecipe
+    fetchSingleRecipe,
+    currentRecipe: state.domainReducer.currentRecipe
   }
 }
 

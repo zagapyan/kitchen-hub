@@ -27,8 +27,10 @@ class IndexComponent extends Component {
             <div className="IndexComponent">
               <HeaderComponent />
               <div className="section">
-                <PushURLComponent />
-                <RecipeListComponent recipes={recipes}/>
+                <div className="container">
+                  <PushURLComponent />
+                  <RecipeListComponent recipes={recipes}/>
+                </div>
               </div>
             </div>
         );

@@ -1,1 +1,8 @@
-.SingleRecipeViewComponent{}
+.SingleRecipeViewComponent{
+  .edit{
+    position: absolute;
+    padding: 4px 6px;
+    top: 0;
+    right: 0;
+  }
+}

@@ -42,3 +42,36 @@ export function fetchRecipes(){
       .catch(err=>dispatch(rejectRecipes({ message: err.toString() })))
   }
 }
+
+export const REQUEST_SINGLE_RECIPE = 'REQUEST_SINGLE_RECIPE'
+export function requestSingleRecipe(){
+  console.log('requestSingleRecipe')
+  return{
+    type: REQUEST_SINGLE_RECIPE,
+  }
+}
+
+export const RECEIVE_SINGLE_RECIPE = 'RECEIVE_SINGLE_RECIPE'
+export function receiveSingleRecipe(recipes){
+  return {
+    type: RECEIVE_SINGLE_RECIPE,
+  }
+}
+
+export const REJECT_SINGLE_RECIPE = 'REJECT_SINGLE_RECIPE'
+export function rejectSingleRecipe(err){
+  return{
+    type: REJECT_SINGLE_RECIPE,
+  }
+}
+
+export const FETCH_SINGLE_RECIPE = 'FETCH_SINGLE_RECIPE'
+export function fetchSingleRecipe(){
+  console.log('fetching single recipes')
+  return dispatch =>{
+    dispatch(requestSingleRecipe())
+    return{
+
+    }
+  }
+}

@@ -6,7 +6,15 @@ import {
   REJECT_RECIPES,
   rejectRecipes,
   FETCH_RECIPES,
-  fetchRecipes
+  fetchRecipes,
+  REQUEST_SINGLE_RECIPE,
+  requestSingleRecipe,
+  RECEIVE_SINGLE_RECIPE,
+  receiveSingleRecipe,
+  REJECT_SINGLE_RECIPE,
+  rejectSingleRecipe,
+  FETCH_SINGLE_RECIPE,
+  fetchSingleRecipe
 } from './fetchActions'
 
 import {
@@ -50,6 +58,14 @@ export {
   rejectRecipes,
   FETCH_RECIPES,
   fetchRecipes,
+  REQUEST_SINGLE_RECIPE,
+  requestSingleRecipe,
+  RECEIVE_SINGLE_RECIPE,
+  receiveSingleRecipe,
+  REJECT_SINGLE_RECIPE,
+  rejectSingleRecipe,
+  FETCH_SINGLE_RECIPE,
+  fetchSingleRecipe,
 
   // delete recipes
   REQUEST_DELETE_RECIPE,

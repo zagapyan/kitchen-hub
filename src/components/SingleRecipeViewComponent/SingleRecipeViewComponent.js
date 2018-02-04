@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { BookOpen } from 'react-feather'
+import { BookOpen, Edit } from 'react-feather'
 import styles from './SingleRecipeViewComponent.scss'
 
 
@@ -33,6 +33,7 @@ class SingleRecipeViewComponent extends Component {
                         <div className="card" key={o._id}>
                           <div className="card-image">
                             <figure className="image">
+                              <Link to={`/edit/${o._id}`} className="edit"><Edit size="24" stroke="#333333"/></Link>
                               <img src={o.imgSrc} alt={o.title} style={{objectFit: 'cover', maxHeight: 200}} />
                             </figure>
                           </div>
@@ -40,7 +41,7 @@ class SingleRecipeViewComponent extends Component {
                             <div className="media">
                               <div className="media-left">
                                 <figure className="image">
-                                  <BookOpen size="36"/>
+                                  <BookOpen size="36" stroke="#333333"/>
                                 </figure>
                               </div>
                               <div className="media-content">

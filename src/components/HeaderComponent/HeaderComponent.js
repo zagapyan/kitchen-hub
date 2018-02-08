@@ -8,7 +8,7 @@ export const HeaderComponent = ()=>
       <div className="hero-body">
         <div className="container">
           <h1 className="title is-3 has-text-left has-text-grey-dark">
-            <Link className="link is-info" to="/">KitchenHub</Link>
+            <Link href="/" className="a is-info" to="/">KitchenHub</Link>
           </h1>
           <h2 className="subtitle has-text-left has-text-grey-dark">
             an application by Zigmund Sun Oo©

@@ -11,23 +11,14 @@ import {
 import styles from "./SingleRecipeViewComponent.scss";
 
 class SingleRecipeViewComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
-  null;
   componentDidMount() {
     this.props.fetchSingleRecipe(this.props.recipeID);
-  }
-  componentDidUpdate(nextProps) {
-    if (nextProps.id !== this.props.recipeID) {
-      console.log("recipeId Changed");
-    }
   }
   render() {
     const currentRecipe = this.props.currentRecipe;
     if (currentRecipe) {
       return (
-        <div className="renderCurrentRecipe">
+        <div className="SingleRecipeViewComponent">
           <div className="section">
             <div className="container">
               <div className="card" key={currentRecipe._id}>

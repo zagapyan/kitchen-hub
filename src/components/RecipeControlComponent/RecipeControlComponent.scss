@@ -1,1 +1,14 @@
-.RecipeControlComponent{}
+.RecipeControlComponent{
+  .level-item{
+    .level-item{
+      margin: 0 0.5rem 0 0;
+    }
+  }
+  @media(max-width: 768px){
+    width: 100%;
+    display: flex;
+    .level-item{
+      justify-content: flex-start;
+    }
+  }
+}

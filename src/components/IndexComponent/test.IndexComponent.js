@@ -1,17 +1,17 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import IndexComponent from './IndexComponent'
+import IndexComponent from "./IndexComponent";
 
-describe('IndexComponent', () => {
-  let component, props
+describe("IndexComponent", () => {
+  let component, props;
 
   beforeEach(() => {
-    props = {}
-    component = shallow(<IndexComponent {...props} />)
-  })
+    props = {};
+    component = shallow(<IndexComponent {...props} />);
+  });
 
-  it('should', () => {
-    expect(component).toMatchSnapshot()
-  })
-})
+  it("should", () => {
+    expect(component).toMatchSnapshot();
+  });
+});

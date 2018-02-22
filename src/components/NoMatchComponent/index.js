@@ -1,3 +1,3 @@
-import NoMatchComponent from './NoMatchComponent'
+import NoMatchComponent from "./NoMatchComponent";
 
-export default NoMatchComponent
+export default NoMatchComponent;

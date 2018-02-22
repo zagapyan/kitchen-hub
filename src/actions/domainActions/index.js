@@ -47,6 +47,10 @@ import {
   sendURL
 } from './sendURLAction'
 
+import {
+  FILTER_SINGLE_RECIPE_FROM_LIST,
+  filterSingleRecipeFromList
+} from './filterFromListActions'
 
 export {
   // request recipes
@@ -91,6 +95,10 @@ export {
   SEND_URL_REJECTED,
   sendURLRejected,
   SEND_URL,
-  sendURL
+  sendURL,
+
+  // FILTER SINGLE RECIPE FROM LIST
+  FILTER_SINGLE_RECIPE_FROM_LIST,
+  filterSingleRecipeFromList
 }
 

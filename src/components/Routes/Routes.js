@@ -16,6 +16,7 @@ class Routes extends Component {
         <main className="Routes">
           <Switch>
             <Route exact path="/" component={IndexComponent}/>
+            <Route exact path="/tags/:tag" component={IndexComponent}/>
             <Route exact path="/recipe/:recipe" component={RecipePageComponent}/>
             <Route exact path="/edit/:recipe" component={EditPageComponent}/>
             <Route component={NoMatchComponent} />          

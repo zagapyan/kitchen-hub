@@ -1,17 +1,17 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import SearchComponent from './SearchComponent'
+import SearchComponent from "./SearchComponent";
 
-describe('SearchComponent', () => {
-  let component, props
+describe("SearchComponent", () => {
+  let component, props;
 
   beforeEach(() => {
-    props = {}
-    component = shallow(<SearchComponent {...props} />)
-  })
+    props = {};
+    component = shallow(<SearchComponent {...props} />);
+  });
 
-  it('should', () => {
-    expect(component).toMatchSnapshot()
-  })
-})
+  it("should", () => {
+    expect(component).toMatchSnapshot();
+  });
+});

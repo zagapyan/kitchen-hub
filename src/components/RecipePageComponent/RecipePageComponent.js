@@ -34,7 +34,6 @@ class RecipePageComponent extends Component {
   render() {
     return (
       <div className = "RecipePageComponent">
-        {/* <Link className="title is-5 has-text-left" to="/">KitchenHub</Link> */}
         <HeaderComponent />
         <SingleRecipeViewComponent
             recipeID={this.props.match.params.recipe}

@@ -1,15 +1,12 @@
-import EditPageComponent from './EditPageComponent'
-import { connect } from 'react-redux'
+import EditPageComponent from "./EditPageComponent";
+import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {}
-}
+  return {};
+};
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
-}
+  return {};
+};
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(EditPageComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(EditPageComponent);

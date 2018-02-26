@@ -52,6 +52,17 @@ import {
   filterSingleRecipeFromList
 } from './filterFromListActions'
 
+import {
+  REQUEST_UPDATE_RECIPE,
+  requestUpdateRecipe,
+  UPDATE_RECIPE_SUCCESS,
+  updateRecipeSuccess,
+  UPDATE_RECIPE_REJECTED,
+  updateRecipeRejected,
+  UPDATE_RECIPE,
+  updateRecipe
+} from './updateRecipeActions'
+
 export {
   // request recipes
   REQUEST_RECIPES,
@@ -96,6 +107,16 @@ export {
   sendURLRejected,
   SEND_URL,
   sendURL,
+
+  // UPDATE RECIPES
+  REQUEST_UPDATE_RECIPE,
+  requestUpdateRecipe,
+  UPDATE_RECIPE_SUCCESS,
+  updateRecipeSuccess,
+  UPDATE_RECIPE_REJECTED,
+  updateRecipeRejected,
+  UPDATE_RECIPE,
+  updateRecipe,
 
   // FILTER SINGLE RECIPE FROM LIST
   FILTER_SINGLE_RECIPE_FROM_LIST,

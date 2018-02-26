@@ -48,11 +48,6 @@ import {
 } from './sendURLAction'
 
 import {
-  FILTER_SINGLE_RECIPE_FROM_LIST,
-  filterSingleRecipeFromList
-} from './filterFromListActions'
-
-import {
   REQUEST_UPDATE_RECIPE,
   requestUpdateRecipe,
   UPDATE_RECIPE_SUCCESS,
@@ -62,6 +57,11 @@ import {
   UPDATE_RECIPE,
   updateRecipe
 } from './updateRecipeActions'
+
+import {
+  ADD_TAG,
+  addTag
+} from './tagActions'
 
 export {
   // request recipes
@@ -118,8 +118,8 @@ export {
   UPDATE_RECIPE,
   updateRecipe,
 
-  // FILTER SINGLE RECIPE FROM LIST
-  FILTER_SINGLE_RECIPE_FROM_LIST,
-  filterSingleRecipeFromList
+  // TAGS
+  ADD_TAG,
+  addTag
 }
 

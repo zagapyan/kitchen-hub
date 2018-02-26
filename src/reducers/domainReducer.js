@@ -11,7 +11,8 @@ import {
   REJECT_SINGLE_RECIPE,
   FETCH_SINGLE_RECIPE,
   FILTER_RECIPE,
-  FILTER_CLEAR
+  FILTER_CLEAR,
+  ADD_TAG
 } from '../actions/domainActions';
 
 
@@ -22,7 +23,12 @@ import {
 */
 
 const initalState={
-  currentRecipe: {},
+  currentRecipe: {
+    title: '',
+    description: '',
+    imgSrc: '',
+    tags: []
+  },
   recipes: [],
   filteredRecipes: [],
   timeStamp: '',
@@ -76,7 +82,6 @@ export default function recipeReducer(state=initalState, action) {
         ...state
       }
     case RECEIVE_SINGLE_RECIPE:
-      console.log(action.currentRecipe)
       return{
         ...state,
         timeStamp: action.timeStamp,
@@ -117,6 +122,17 @@ export default function recipeReducer(state=initalState, action) {
             .includes(action.filterPayload.toLowerCase()))
       }
 
+    /*
+    * ========================================
+    * TAGS
+    * ========================================
+    */
+    case ADD_TAG:
+      console.log('ADD_TAG')
+      return{
+        ...state,
+        tags: action.tags
+      }
 
     /*
     * ========================================

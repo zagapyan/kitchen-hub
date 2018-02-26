@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { BookOpen, Edit } from "react-feather";
 import {
-  fetchSingleRecipe,
-  filterSingleRecipeFromList
+  fetchSingleRecipe
 } from "../../actions/domainActions";
 import styles from "./SingleRecipeViewComponent.scss";
 
@@ -105,7 +104,6 @@ SingleRecipeViewComponent.defaultProps = {
 function mapStateToProps(state) {
   return {
     fetchSingleRecipe,
-    filterSingleRecipeFromList,
     currentRecipe: state.domainReducer.currentRecipe
   };
 }
@@ -114,7 +112,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       fetchSingleRecipe,
-      filterSingleRecipeFromList
+
     },
     dispatch
   );

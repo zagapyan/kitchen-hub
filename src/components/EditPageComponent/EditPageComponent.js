@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Plus } from "react-feather";
 import HeaderComponent from "../HeaderComponent";
-import { fetchSingleRecipe, updateRecipe, addTag } from "../../actions/domainActions";
+import { fetchSingleRecipe, updateRecipe, assignTags, addTag } from "../../actions/domainActions";
 import styles from "./EditPageComponent.scss";
 
 class EditPageComponent extends Component {
@@ -12,6 +12,10 @@ class EditPageComponent extends Component {
   componentDidMount() {
     let id = this.props.match.params.recipe;
     this.props.fetchSingleRecipe(id);
+  }
+  componentDidUpdate(nextProps){
+    if(this.props.currentRecipe !== nextProps.currentRecipe);
+      this.props.assignTags(this.props.currentRecipe.tags);
   }
   handleUpdateRecipe() {
     const payload = {
@@ -21,16 +25,16 @@ class EditPageComponent extends Component {
       imgSrc: this.payload.imgSrc.value || this.props.currentRecipe.imgSrc,
       tags: this.payload.tags || this.props.currentRecipe.tags
     }
-    this.props.updateRecipe(payload)
+    this.props.updateRecipe(payload);
   }
   handleAddTag(){
     const tags = this.props.currentRecipe.tags || [];
     const testTag = this.payload.tag.value || '';
-    console.log('handleAddTag')
+    console.log('handleAddTag');
     if(testTag !== ''){
       console.log('does not === blank')
       if(!tags.includes(testTag)){
-        this.props.addTag(testTag, tags)
+        this.props.addTag(testTag, tags);
         this.payload.tag.value = '';
       }
       else return false;
@@ -176,6 +180,7 @@ function mapStateToProps(state) {
   return {
     fetchSingleRecipe,
     updateRecipe,
+    assignTags,
     addTag,
     currentRecipe: state.domainReducer.currentRecipe
   };
@@ -186,6 +191,7 @@ function mapDispatchToProps(dispatch) {
     {
       fetchSingleRecipe,
       updateRecipe,
+      assignTags,
       addTag
     },
     dispatch

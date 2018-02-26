@@ -59,6 +59,8 @@ import {
 } from './updateRecipeActions'
 
 import {
+  ASSIGN_TAGS,
+  assignTags,
   ADD_TAG,
   addTag
 } from './tagActions'
@@ -119,6 +121,8 @@ export {
   updateRecipe,
 
   // TAGS
+  ASSIGN_TAGS,
+  assignTags,
   ADD_TAG,
   addTag
 }

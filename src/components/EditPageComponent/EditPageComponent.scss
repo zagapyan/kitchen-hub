@@ -1,2 +1,7 @@
 .EditPageComponent {
+  .tag{
+    &.inactive{
+      opacity: .5
+    }
+  }
 }

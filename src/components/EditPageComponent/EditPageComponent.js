@@ -8,7 +8,8 @@ import {
   fetchSingleRecipe,
   updateRecipe,
   assignTags,
-  addTag
+  addTag,
+  removeTag
 } from "../../actions/domainActions";
 import styles from "./EditPageComponent.scss";
 
@@ -35,17 +36,24 @@ class EditPageComponent extends Component {
     this.props.updateRecipe(payload);
   }
   handleAddTag() {
-    const tags = this.props.currentRecipe.tags || [];
+    const tags = this.props.editableTags || [];
     const testTagValue = this.payload.tag.value || "";
-
+    console.log(testTagValue, tags);
     if (testTagValue !== "") {
-      // console.log("does not === blank");
       if (!tags.includes({ value: testTagValue })) {
         this.props.addTag({ value: testTagValue, active: true }, tags);
         this.payload.tag.value = "";
       } else return false;
     }
     return false;
+  }
+  handleKeyPress = (e)=>{
+    if (e.key === 'Enter') {
+      this.handleAddTag();
+    }
+  }
+  handleRemoveTag = (key)=>{  
+    this.props.removeTag(key, this.props.editableTags)
   }
   render() {
     return (
@@ -96,16 +104,14 @@ class EditPageComponent extends Component {
                       <div className="field">
                         <label className="label has-text-left">Tags</label>
                         {this.props.editableTags ? (
-                          <ul className="level">
+                          <ul className="tags">
                             {this.props.editableTags.map((tag, key) => (
-                              <li className="level-item" key={`tag_${key}`}>
-                                <span class="tag is-primary is-medium">
+                              <li className={`tag is-primary is-small ${tag.active ? '' : 'inactive'}`} key={`tag_${key}`}>
                                   {tag.value}
                                   <button
-                                    class="delete is-small"
-                                    onClick={() => console.log("delete")}
+                                    className="delete is-small"
+                                    onClick={ ()=> this.handleRemoveTag(key) }
                                   />
-                                </span>
                               </li>
                             ))}
                           </ul>
@@ -121,6 +127,7 @@ class EditPageComponent extends Component {
                             ref={input => {
                               this.payload.tag = input;
                             }}
+                            onKeyPress={ this.handleKeyPress }
                           />
                         </div>
                         <div className="control">
@@ -150,7 +157,7 @@ class EditPageComponent extends Component {
                     </div>
                   </div>
                   <button
-                    onClick={this.handleUpdateRecipe.bind(this)}
+                    onClick={ this.handleUpdateRecipe.bind(this) }
                     className="button is-primary"
                   >
                     Update
@@ -198,6 +205,7 @@ function mapStateToProps(state) {
     updateRecipe,
     assignTags,
     addTag,
+    removeTag,
     currentRecipe: state.domainReducer.currentRecipe,
     editableTags: state.domainReducer.editableTags
   };
@@ -209,7 +217,8 @@ function mapDispatchToProps(dispatch) {
       fetchSingleRecipe,
       updateRecipe,
       assignTags,
-      addTag
+      addTag,
+      removeTag
     },
     dispatch
   );

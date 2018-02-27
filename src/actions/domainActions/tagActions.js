@@ -7,10 +7,12 @@ export function addTag(tag, tags) {
 }
 
 export const REMOVE_TAG = "REMOVE_TAG";
-export function removeTag(tag, tags) {
+export function removeTag(key, tags) {
+  const newTag = Object.assign({}, tags[key], {active: false});
+  tags[key] = newTag;
   return {
     type: REMOVE_TAG,
-    editableTags: [...tags, tag]
+    editableTags: [...tags]
   };
 }
 
@@ -18,7 +20,6 @@ export const ASSIGN_TAGS = "ASSIGN_TAGS";
 export function assignTags(tags) {
   return {
     type: ASSIGN_TAGS,
-    editableTags:
-      tags.map(tag => Object.assign({}, { ...tag, active: true })) || []
+    editableTags: tags || []
   };
 }

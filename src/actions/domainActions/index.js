@@ -62,7 +62,9 @@ import {
   ASSIGN_TAGS,
   assignTags,
   ADD_TAG,
-  addTag
+  addTag,
+  REMOVE_TAG,
+  removeTag
 } from './tagActions'
 
 export {
@@ -124,6 +126,8 @@ export {
   ASSIGN_TAGS,
   assignTags,
   ADD_TAG,
-  addTag
+  addTag,
+  REMOVE_TAG,
+  removeTag
 }
 

@@ -12,7 +12,9 @@ import {
   FETCH_SINGLE_RECIPE,
   FILTER_RECIPE,
   FILTER_CLEAR,
-  ADD_TAG
+  ADD_TAG,
+  REMOVE_TAG,
+  ASSIGN_TAGS
 } from '../actions/domainActions';
 
 
@@ -127,7 +129,20 @@ export default function recipeReducer(state=initalState, action) {
     * TAGS
     * ========================================
     */
+
     case ADD_TAG:
+      return{
+        ...state,
+        editableTags: action.editableTags
+      }
+    
+    case REMOVE_TAG:
+      return{
+        ...state,
+        editableTags: action.editableTags
+      }
+
+    case ASSIGN_TAGS:
       return{
         ...state,
         editableTags: action.editableTags

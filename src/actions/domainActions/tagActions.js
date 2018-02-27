@@ -6,6 +6,14 @@ export function addTag(tag, tags) {
   };
 }
 
+export const REMOVE_TAG = "REMOVE_TAG";
+export function removeTag(tag, tags) {
+  return {
+    type: REMOVE_TAG,
+    editableTags: [...tags, tag]
+  };
+}
+
 export const ASSIGN_TAGS = "ASSIGN_TAGS";
 export function assignTags(tags) {
   return {

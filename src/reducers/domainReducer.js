@@ -128,10 +128,9 @@ export default function recipeReducer(state=initalState, action) {
     * ========================================
     */
     case ADD_TAG:
-      console.log('ADD_TAG')
       return{
         ...state,
-        tags: action.tags
+        editableTags: action.editableTags
       }
 
     /*

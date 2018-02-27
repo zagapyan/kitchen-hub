@@ -4,7 +4,12 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Plus } from "react-feather";
 import HeaderComponent from "../HeaderComponent";
-import { fetchSingleRecipe, updateRecipe, assignTags, addTag } from "../../actions/domainActions";
+import {
+  fetchSingleRecipe,
+  updateRecipe,
+  assignTags,
+  addTag
+} from "../../actions/domainActions";
 import styles from "./EditPageComponent.scss";
 
 class EditPageComponent extends Component {
@@ -13,31 +18,31 @@ class EditPageComponent extends Component {
     let id = this.props.match.params.recipe;
     this.props.fetchSingleRecipe(id);
   }
-  componentDidUpdate(nextProps){
-    if(this.props.currentRecipe !== nextProps.currentRecipe);
-      this.props.assignTags(this.props.currentRecipe.tags);
+  componentDidUpdate(nextProps) {
+    if (this.props.currentRecipe !== nextProps.currentRecipe);
+    this.props.assignTags(this.props.currentRecipe.tags);
   }
   handleUpdateRecipe() {
     const payload = {
       _id: this.props.match.params.recipe,
       title: this.payload.title.value || this.props.currentRecipe.title,
-      description: this.payload.description.value || this.props.currentRecipe.description,
+      description:
+        this.payload.description.value || this.props.currentRecipe.description,
       imgSrc: this.payload.imgSrc.value || this.props.currentRecipe.imgSrc,
       tags: this.payload.tags || this.props.currentRecipe.tags
-    }
+    };
     this.props.updateRecipe(payload);
   }
-  handleAddTag(){
+  handleAddTag() {
     const tags = this.props.currentRecipe.tags || [];
-    const testTag = this.payload.tag.value || '';
-    console.log('handleAddTag');
-    if(testTag !== ''){
-      console.log('does not === blank')
-      if(!tags.includes(testTag)){
-        this.props.addTag(testTag, tags);
-        this.payload.tag.value = '';
-      }
-      else return false;
+    const testTagValue = this.payload.tag.value || "";
+
+    if (testTagValue !== "") {
+      console.log("does not === blank");
+      if (!tags.includes({ value: testTagValue })) {
+        this.props.addTag({ value: testTagValue, active: true }, tags);
+        this.payload.tag.value = "";
+      } else return false;
     }
     return false;
   }
@@ -89,12 +94,12 @@ class EditPageComponent extends Component {
                       </div>
                       <div className="field">
                         <label className="label has-text-left">Tags</label>
-                        {this.props.currentRecipe.tags ? (
+                        {this.props.editableTags ? (
                           <ul className="level">
-                            {this.props.currentRecipe.tags.map((tag, key) => (
-                              <li className="level-item">
+                            {this.props.editableTags.map((tag, key) => (
+                              <li className="level-item" key={`tag_${key}`}>
                                 <span class="tag is-primary is-medium">
-                                  {tag}
+                                  {tag.value}
                                   <button
                                     class="delete is-small"
                                     onClick={() => console.log("delete")}
@@ -108,7 +113,6 @@ class EditPageComponent extends Component {
                         )}
                       </div>
                       <div className="field has-addons is-paddingless">
-                        
                         <div className="control is-expanded">
                           <input
                             type="text"
@@ -121,7 +125,7 @@ class EditPageComponent extends Component {
                         <div className="control">
                           <button
                             className="button"
-                            onClick={ this.handleAddTag.bind(this) }
+                            onClick={this.handleAddTag.bind(this)}
                           >
                             <Plus size={14} />
                           </button>
@@ -171,9 +175,20 @@ EditPageComponent.propTypes = {
   currentRecipe: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    imgSrc : PropTypes.string,
-    tags: PropTypes.arrayOf(PropTypes.string)
-  })
+    imgSrc: PropTypes.string,
+    tags: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.string,
+        active: PropTypes.bool
+      })
+    )
+  }),
+  editableTags: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string,
+      active: PropTypes.bool
+    })
+  )
 };
 
 function mapStateToProps(state) {
@@ -182,7 +197,8 @@ function mapStateToProps(state) {
     updateRecipe,
     assignTags,
     addTag,
-    currentRecipe: state.domainReducer.currentRecipe
+    currentRecipe: state.domainReducer.currentRecipe,
+    editableTags: state.domainReducer.editableTags
   };
 }
 

@@ -1,15 +1,16 @@
-export const ADD_TAG = 'ADD_TAG'
-export function addTag(tag, tags){
-  console.log('addTags action')
-  return{
+export const ADD_TAG = "ADD_TAG";
+export function addTag(tag, tags) {
+  return {
     type: ADD_TAG,
-    currentTags: tags.push(tag)
-  }
+    editableTags: [...tags, tag]
+  };
 }
-export const ASSIGN_TAGS = 'ASSIGN_TAGS'
-export function assignTags(tags){
-  return{
+
+export const ASSIGN_TAGS = "ASSIGN_TAGS";
+export function assignTags(tags) {
+  return {
     type: ASSIGN_TAGS,
-    currentTags: tags || []
-  }
+    editableTags:
+      tags.map(tag => Object.assign({}, { ...tag, active: true })) || []
+  };
 }

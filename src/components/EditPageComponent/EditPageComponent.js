@@ -9,7 +9,7 @@ import {
   updateRecipe,
   assignTags,
   addTag,
-  removeTag
+  toggleActive
 } from "../../actions/domainActions";
 import styles from "./EditPageComponent.scss";
 
@@ -31,7 +31,7 @@ class EditPageComponent extends Component {
       description:
         this.payload.description.value || this.props.currentRecipe.description,
       imgSrc: this.payload.imgSrc.value || this.props.currentRecipe.imgSrc,
-      tags: this.payload.tags || this.props.currentRecipe.tags
+      tags: this.props.editableTags || this.props.currentRecipe.tags || []
     };
     this.props.updateRecipe(payload);
   }
@@ -52,8 +52,8 @@ class EditPageComponent extends Component {
       this.handleAddTag();
     }
   }
-  handleRemoveTag = (key)=>{  
-    this.props.removeTag(key, this.props.editableTags)
+  handletoggleActive = (key)=>{  
+    this.props.toggleActive(key, this.props.editableTags)
   }
   render() {
     return (
@@ -104,16 +104,28 @@ class EditPageComponent extends Component {
                       <div className="field">
                         <label className="label has-text-left">Tags</label>
                         {this.props.editableTags ? (
-                          <ul className="tags">
-                            {this.props.editableTags.map((tag, key) => (
-                              <li className={`tag is-primary is-small ${tag.active ? '' : 'inactive'}`} key={`tag_${key}`}>
-                                  {tag.value}
-                                  <button
-                                    className="delete is-small"
-                                    onClick={ ()=> this.handleRemoveTag(key) }
-                                  />
-                              </li>
-                            ))}
+                          <ul className="field is-grouped is-grouped-multiline">
+                            {this.props.editableTags.map((tag, key) =>{
+                              if(tag.active){
+                                return(
+                                  <li className="control" key={`tag_${key}`}>
+                                    {tag.active}
+                                    <span className="tags has-addons">
+                                      <span className="tag is-primary">{tag.value}</span>
+                                      <span className="tag is-primary is-delete" onClick={ ()=> this.handletoggleActive(key) }></span>
+                                    </span>
+                                  </li>
+                                )
+                              }
+                              else{
+                                return(<li className="control" key={`tag_${key}`}>
+                                {tag.active}
+                                <span className="tags has-addons">
+                                  <a className={`tag is-primary ${tag.active ? '': 'inactive'}`} onClick={ ()=> this.handletoggleActive(key)}>{tag.value}</a>
+                                </span>
+                              </li>)
+                              }
+                            })}
                           </ul>
                         ) : (
                           false
@@ -205,7 +217,7 @@ function mapStateToProps(state) {
     updateRecipe,
     assignTags,
     addTag,
-    removeTag,
+    toggleActive,
     currentRecipe: state.domainReducer.currentRecipe,
     editableTags: state.domainReducer.editableTags
   };
@@ -218,7 +230,7 @@ function mapDispatchToProps(dispatch) {
       updateRecipe,
       assignTags,
       addTag,
-      removeTag
+      toggleActive
     },
     dispatch
   );

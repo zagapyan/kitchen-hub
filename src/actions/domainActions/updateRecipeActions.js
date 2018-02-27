@@ -35,10 +35,9 @@ export function updateRecipeRejected(payload){
 export const UPDATE_RECIPE = 'UPDATE_RECIPE';
 export function updateRecipe(payload){
   const recipeEndpoint = `${endpoint}/${payload.id}`
-  console.log(recipeEndpoint, payload)
   return dispatch =>{
     dispatch(requestUpdateRecipe())
-    axios.put(recipeEndpoint, { ...payload }, config)
+    axios.put(recipeEndpoint, {...payload, tags: payload.tags.filter(obj=>obj.active) }, config)
       .then(response => response.data)
       .then(json => dispatch(updateRecipeSuccess(json)))
       .catch(err => dispatch(updateRecipeRejected({message: err.toString()})))

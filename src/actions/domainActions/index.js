@@ -63,12 +63,12 @@ import {
   assignTags,
   ADD_TAG,
   addTag,
-  REMOVE_TAG,
-  removeTag
+  TOGGLE_ACTIVE,
+  toggleActive
 } from './tagActions'
 
 export {
-  // request recipes
+  // quest recipes
   REQUEST_RECIPES,
   requestRecipes,
   RECEIVE_RECIPES,
@@ -127,7 +127,7 @@ export {
   assignTags,
   ADD_TAG,
   addTag,
-  REMOVE_TAG,
-  removeTag
+  TOGGLE_ACTIVE,
+  toggleActive
 }
 

@@ -13,7 +13,7 @@ import {
   FILTER_RECIPE,
   FILTER_CLEAR,
   ADD_TAG,
-  REMOVE_TAG,
+  TOGGLE_ACTIVE,
   ASSIGN_TAGS
 } from '../actions/domainActions';
 
@@ -136,7 +136,7 @@ export default function recipeReducer(state=initalState, action) {
         editableTags: action.editableTags
       }
     
-    case REMOVE_TAG:
+    case TOGGLE_ACTIVE:
       return{
         ...state,
         editableTags: action.editableTags

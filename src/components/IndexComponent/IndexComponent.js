@@ -23,7 +23,7 @@ class IndexComponent extends Component {
       console.log('props have been received')
       if(nextProps.match.params.tag !== this.props.match.params.tag){
         let tag = nextProps.match.params.tag
-        
+        console.log(tag)
         this.handleFetchRecipes(tag)
       }
     }

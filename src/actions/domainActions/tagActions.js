@@ -6,12 +6,13 @@ export function addTag(tag, tags) {
   };
 }
 
-export const REMOVE_TAG = "REMOVE_TAG";
-export function removeTag(key, tags) {
-  const newTag = Object.assign({}, tags[key], {active: false});
+export const TOGGLE_ACTIVE = "TOGGLE_ACTIVE";
+export function toggleActive(key, tags) {
+  const newTag = Object.assign({}, tags[key], {active: !tags[key].active});
   tags[key] = newTag;
+  console.log(tags)
   return {
-    type: REMOVE_TAG,
+    type: TOGGLE_ACTIVE,
     editableTags: [...tags]
   };
 }

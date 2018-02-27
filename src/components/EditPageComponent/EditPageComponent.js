@@ -19,8 +19,9 @@ class EditPageComponent extends Component {
     this.props.fetchSingleRecipe(id);
   }
   componentDidUpdate(nextProps) {
-    if (this.props.currentRecipe !== nextProps.currentRecipe);
-    this.props.assignTags(this.props.currentRecipe.tags);
+    if (this.props.currentRecipe !== nextProps.currentRecipe){
+      this.props.assignTags(this.props.currentRecipe.tags);
+    }
   }
   handleUpdateRecipe() {
     const payload = {
@@ -38,7 +39,7 @@ class EditPageComponent extends Component {
     const testTagValue = this.payload.tag.value || "";
 
     if (testTagValue !== "") {
-      console.log("does not === blank");
+      // console.log("does not === blank");
       if (!tags.includes({ value: testTagValue })) {
         this.props.addTag({ value: testTagValue, active: true }, tags);
         this.payload.tag.value = "";

@@ -4,4 +4,9 @@
       opacity: .5
     }
   }
+  .button.update{
+    @media(max-width:768px){
+      width: 100%;
+    }
+  }
 }

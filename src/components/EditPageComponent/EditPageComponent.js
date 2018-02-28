@@ -154,10 +154,10 @@ class EditPageComponent extends Component {
                     </div>
                     <div className="column">
                       <label className="label has-text-left">
-                        Image Source
+                        Image
                       </label>
                       <img src={this.props.currentRecipe.imgSrc} />
-                      <div className="control">
+                      {/* <div className="control">
                         <input
                           type="text"
                           className="input"
@@ -165,22 +165,28 @@ class EditPageComponent extends Component {
                             this.payload.imgSrc = input;
                           }}
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
-                  <button
-                    onClick={ this.handleUpdateRecipe.bind(this) }
-                    className="button is-primary"
-                  >
-                    Update
-                  </button>
-                  <a
-                    href={this.props.currentRecipe.url}
-                    target="_blank"
-                    className="button"
-                  >
-                    View Page
-                  </a>
+                  <div className="level">
+                    <div className="level-left">
+                      <button
+                        onClick={ this.handleUpdateRecipe.bind(this) }
+                        className="button is-primary level-item update"
+                      >
+                        Update
+                      </button>
+                    </div>
+                    <div className="level-right">
+                      <a
+                        href={this.props.currentRecipe.url}
+                        target="_blank"
+                        className="button level-item"
+                      >
+                        View Page
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

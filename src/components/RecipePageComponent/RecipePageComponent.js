@@ -12,12 +12,7 @@ import { HeaderComponent } from '../HeaderComponent/HeaderComponent';
 class RecipePageComponent extends Component {
   constructor(props) {
     super(props)
-    // if location params change in the same component
-    // this.props.history.listen((location, action)=>{
-    //   let recipeID = this.props.match.params.recipe
-    // })
   }
-  null
   componentDidMount(){
     console.log('componentDidMount');
     this.handleSingleRecipeFetch()

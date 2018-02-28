@@ -1,20 +1,40 @@
 import {
-  FETCH_RECIPES,
+  // quest recipes
   REQUEST_RECIPES,
   RECEIVE_RECIPES,
-  REJECTED_FETCH,
-  DELETE_RECIPE,
-  RECEIVE_DELETE_RECIPE,
-  REJECT_DELETE_RECIPE,
+  REJECT_RECIPES,
+  FETCH_RECIPES,
   REQUEST_SINGLE_RECIPE,
   RECEIVE_SINGLE_RECIPE,
   REJECT_SINGLE_RECIPE,
   FETCH_SINGLE_RECIPE,
+
+  // delete recipes
+  REQUEST_DELETE_RECIPE,
+  REJECT_DELETE_RECIPE,
+  RECEIVE_DELETE_RECIPE,
+  DELETE_RECIPE,
+  
+  // FILTER
   FILTER_RECIPE,
   FILTER_CLEAR,
+
+  // SEND URL
+  REQUEST_SEND_URL,
+  SEND_URL_SUCCESS,
+  SEND_URL_REJECTED,
+  SEND_URL,
+
+  // UPDATE RECIPES
+  REQUEST_UPDATE_RECIPE,
+  UPDATE_RECIPE_SUCCESS,
+  UPDATE_RECIPE_REJECTED,
+  UPDATE_RECIPE,
+
+  // TAGS
+  ASSIGN_TAGS,
   ADD_TAG,
   TOGGLE_ACTIVE,
-  ASSIGN_TAGS
 } from '../actions/domainActions';
 
 
@@ -35,6 +55,8 @@ const initalState={
   filteredRecipes: [],
   timeStamp: '',
   filtering: false,
+  fetching: false,
+  updateComplete: false,
   filterPayload: ''
 }
 
@@ -124,6 +146,30 @@ export default function recipeReducer(state=initalState, action) {
             .includes(action.filterPayload.toLowerCase()))
       }
 
+    case REQUEST_UPDATE_RECIPE:
+      return{
+        ...state,
+        fetching: action.fetching,
+        updateComplete: action.updateComplete
+      }
+    case UPDATE_RECIPE_SUCCESS:
+      return{
+        ...state,
+        fetching: action.fetching,
+        updateComplete: action.updateComplete
+      }
+    case UPDATE_RECIPE_REJECTED:
+      return{
+        ...state,
+        fetching: action.fetching,
+        updateComplete: action.updateComplete
+      }
+    case UPDATE_RECIPE:
+      return{
+        ...state,
+        fetching: action.fetching,
+        updateComplete: action.updateComplete
+      }
     /*
     * ========================================
     * TAGS

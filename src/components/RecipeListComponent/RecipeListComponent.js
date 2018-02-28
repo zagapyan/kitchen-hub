@@ -11,10 +11,6 @@ import RecipeControlComponent from "../RecipeControlComponent";
 import styles from "./RecipeListComponent.scss";
 
 class RecipeListComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
-  null;
   componentWillUnmount() {
     this.props.filterClear();
   }

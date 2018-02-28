@@ -1,13 +1,15 @@
 import axios from 'axios'
 import endpoint from '../../utils/endpoint'
 import config from '../../utils/headers'
+import { fetchSingleRecipe } from './fetchActions'
 
 export const REQUEST_UPDATE_RECIPE = 'REQUEST_UPDATE_RECIPE'
 export function requestUpdateRecipe(){
   console.log('requestSendRecipes')
   return{
     type: REQUEST_UPDATE_RECIPE,
-    fetching: true
+    fetching: true,
+    updateComplete: false,
   }
 }
 
@@ -17,8 +19,7 @@ export function updateRecipeSuccess(payload){
   return{
     type: UPDATE_RECIPE_SUCCESS,
     fetching: false,
-    // messageClass: 'success',
-    // message: payload.message
+    updateComplete: true,
   }
 }
 
@@ -27,8 +28,7 @@ export function updateRecipeRejected(payload){
   return{
     type: UPDATE_RECIPE_REJECTED,
     fetching: false,
-    // messageClass: 'error',
-    // message: payload.message
+    updateComplete: true,
   } 
 }
 

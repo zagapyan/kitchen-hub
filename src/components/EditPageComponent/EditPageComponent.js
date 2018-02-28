@@ -30,7 +30,7 @@ class EditPageComponent extends Component {
       title: this.payload.title.value || this.props.currentRecipe.title,
       description:
         this.payload.description.value || this.props.currentRecipe.description,
-      imgSrc: this.payload.imgSrc.value || this.props.currentRecipe.imgSrc,
+      // imgSrc: this.payload.imgSrc.value || this.props.currentRecipe.imgSrc,
       tags: this.props.editableTags || this.props.currentRecipe.tags || []
     };
     this.props.updateRecipe(payload);
@@ -201,7 +201,7 @@ EditPageComponent.propTypes = {
   currentRecipe: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    imgSrc: PropTypes.string,
+    // imgSrc: PropTypes.string,
     tags: PropTypes.arrayOf(
       PropTypes.shape({
         value: PropTypes.string,

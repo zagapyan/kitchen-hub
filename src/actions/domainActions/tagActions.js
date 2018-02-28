@@ -19,8 +19,9 @@ export function toggleActive(key, tags) {
 
 export const ASSIGN_TAGS = "ASSIGN_TAGS";
 export function assignTags(tags) {
+  const editableTags = tags ? tags.map(obj=>({value: obj, active: true})) : []
   return {
     type: ASSIGN_TAGS,
-    editableTags: tags || []
+    editableTags
   };
 }

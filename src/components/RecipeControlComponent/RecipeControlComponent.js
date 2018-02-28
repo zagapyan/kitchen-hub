@@ -29,9 +29,9 @@ class RecipeControlComponent extends React.Component{
             ? props.tags.map((tag,key)=>
               <li key={key} className="level-item">
                 <Link
-                  to={`/tags/${tag.value}`}
+                  to={`/tags/${tag}`}
                   className="tag is-primary">
-                {tag.value}
+                {tag}
                 </Link></li>)
                 .reverse()
                 .slice(0,3)

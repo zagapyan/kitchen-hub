@@ -1,15 +1,14 @@
-import SingleRecipeViewComponent from './SingleRecipeViewComponent'
-import { connect } from 'react-redux'
+import SingleRecipeViewComponent from "./SingleRecipeViewComponent";
+import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {}
-}
+  return {};
+};
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
-}
+  return {};
+};
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(SingleRecipeViewComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  SingleRecipeViewComponent
+);

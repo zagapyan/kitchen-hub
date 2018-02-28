@@ -6,7 +6,15 @@ import {
   REJECT_RECIPES,
   rejectRecipes,
   FETCH_RECIPES,
-  fetchRecipes
+  fetchRecipes,
+  REQUEST_SINGLE_RECIPE,
+  requestSingleRecipe,
+  RECEIVE_SINGLE_RECIPE,
+  receiveSingleRecipe,
+  REJECT_SINGLE_RECIPE,
+  rejectSingleRecipe,
+  FETCH_SINGLE_RECIPE,
+  fetchSingleRecipe
 } from './fetchActions'
 
 import {
@@ -39,9 +47,28 @@ import {
   sendURL
 } from './sendURLAction'
 
+import {
+  REQUEST_UPDATE_RECIPE,
+  requestUpdateRecipe,
+  UPDATE_RECIPE_SUCCESS,
+  updateRecipeSuccess,
+  UPDATE_RECIPE_REJECTED,
+  updateRecipeRejected,
+  UPDATE_RECIPE,
+  updateRecipe
+} from './updateRecipeActions'
+
+import {
+  ASSIGN_TAGS,
+  assignTags,
+  ADD_TAG,
+  addTag,
+  TOGGLE_ACTIVE,
+  toggleActive
+} from './tagActions'
 
 export {
-  // request recipes
+  // quest recipes
   REQUEST_RECIPES,
   requestRecipes,
   RECEIVE_RECIPES,
@@ -50,6 +77,14 @@ export {
   rejectRecipes,
   FETCH_RECIPES,
   fetchRecipes,
+  REQUEST_SINGLE_RECIPE,
+  requestSingleRecipe,
+  RECEIVE_SINGLE_RECIPE,
+  receiveSingleRecipe,
+  REJECT_SINGLE_RECIPE,
+  rejectSingleRecipe,
+  FETCH_SINGLE_RECIPE,
+  fetchSingleRecipe,
 
   // delete recipes
   REQUEST_DELETE_RECIPE,
@@ -75,6 +110,24 @@ export {
   SEND_URL_REJECTED,
   sendURLRejected,
   SEND_URL,
-  sendURL
+  sendURL,
+
+  // UPDATE RECIPES
+  REQUEST_UPDATE_RECIPE,
+  requestUpdateRecipe,
+  UPDATE_RECIPE_SUCCESS,
+  updateRecipeSuccess,
+  UPDATE_RECIPE_REJECTED,
+  updateRecipeRejected,
+  UPDATE_RECIPE,
+  updateRecipe,
+
+  // TAGS
+  ASSIGN_TAGS,
+  assignTags,
+  ADD_TAG,
+  addTag,
+  TOGGLE_ACTIVE,
+  toggleActive
 }
 

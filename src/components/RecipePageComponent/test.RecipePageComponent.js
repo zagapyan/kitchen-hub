@@ -1,17 +1,17 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import RecipePageComponent from './RecipePageComponent'
+import RecipePageComponent from "./RecipePageComponent";
 
-describe('RecipePageComponent', () => {
-  let component, props
+describe("RecipePageComponent", () => {
+  let component, props;
 
   beforeEach(() => {
-    props = {}
-    component = shallow(<RecipePageComponent {...props} />)
-  })
+    props = {};
+    component = shallow(<RecipePageComponent {...props} />);
+  });
 
-  it('should', () => {
-    expect(component).toMatchSnapshot()
-  })
-})
+  it("should", () => {
+    expect(component).toMatchSnapshot();
+  });
+});

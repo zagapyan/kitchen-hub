@@ -1,17 +1,17 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import Routes from './Routes'
+import Routes from "./Routes";
 
-describe('Routes', () => {
-  let component, props
+describe("Routes", () => {
+  let component, props;
 
   beforeEach(() => {
-    props = {}
-    component = shallow(<Routes {...props} />)
-  })
+    props = {};
+    component = shallow(<Routes {...props} />);
+  });
 
-  it('should', () => {
-    expect(component).toMatchSnapshot()
-  })
-})
+  it("should", () => {
+    expect(component).toMatchSnapshot();
+  });
+});

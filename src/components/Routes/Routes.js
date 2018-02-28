@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import IndexComponent from '../IndexComponent'
 import RecipePageComponent from '../RecipePageComponent'
+import EditPageComponent from '../EditPageComponent'
 import NoMatchComponent from '../NoMatchComponent'
 import style from './Routes.scss'
 
@@ -15,7 +16,9 @@ class Routes extends Component {
         <main className="Routes">
           <Switch>
             <Route exact path="/" component={IndexComponent}/>
+            <Route exact path="/tags/:tag" component={IndexComponent}/>
             <Route exact path="/recipe/:recipe" component={RecipePageComponent}/>
+            <Route exact path="/edit/:recipe" component={EditPageComponent}/>
             <Route component={NoMatchComponent} />          
           </Switch>
         </main>

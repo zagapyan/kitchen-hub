@@ -7,7 +7,7 @@ import HeaderComponent from '../HeaderComponent'
 import RecipeListComponent from '../RecipeListComponent'
 import PushURLComponent from '../PushURLComponent'
 import * as domainActions from '../../actions/domainActions'
-import endpoint from '../../utils/endpoint';
+// import endpoint from '../../utils/endpoint';
 
 class IndexComponent extends Component {
     constructor(props) {
@@ -16,9 +16,20 @@ class IndexComponent extends Component {
     componentWillMount(){
     }
     componentDidMount(){
-      this.props.fetchRecipes(endpoint) 
+      let tag = this.props.match.params.tag;
+      this.handleFetchRecipes(tag)
     }
-    handleRefreshRecipesList(event){}
+    componentWillReceiveProps(nextProps){
+      console.log('props have been received')
+      if(nextProps.match.params.tag !== this.props.match.params.tag){
+        let tag = nextProps.match.params.tag
+        console.log(tag)
+        this.handleFetchRecipes(tag)
+      }
+    }
+    handleFetchRecipes(tag){
+      this.props.fetchRecipes(tag)
+    }
     null
     render() {
         // return full list unless filtering is turned on
@@ -27,8 +38,10 @@ class IndexComponent extends Component {
             <div className="IndexComponent">
               <HeaderComponent />
               <div className="section">
-                <PushURLComponent />
-                <RecipeListComponent recipes={recipes}/>
+                <div className="container">
+                  <PushURLComponent />
+                  <RecipeListComponent recipes={recipes}/>
+                </div>
               </div>
             </div>
         );

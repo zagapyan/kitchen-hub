@@ -1,15 +1,14 @@
-import RecipeListComponent from './RecipeListComponent'
-import { connect } from 'react-redux'
+import RecipeListComponent from "./RecipeListComponent";
+import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {}
-}
+  return {};
+};
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
-}
+  return {};
+};
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(RecipeListComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  RecipeListComponent
+);

@@ -6,13 +6,31 @@ import {
   DELETE_RECIPE,
   RECEIVE_DELETE_RECIPE,
   REJECT_DELETE_RECIPE,
-  CURRENT_RECIPE,
+  REQUEST_SINGLE_RECIPE,
+  RECEIVE_SINGLE_RECIPE,
+  REJECT_SINGLE_RECIPE,
+  FETCH_SINGLE_RECIPE,
   FILTER_RECIPE,
-  FILTER_CLEAR
+  FILTER_CLEAR,
+  ADD_TAG,
+  TOGGLE_ACTIVE,
+  ASSIGN_TAGS
 } from '../actions/domainActions';
 
+
+/*
+* ========================================
+* DEFAULT STATE
+* ========================================
+*/
+
 const initalState={
-  currentRecipe: {},
+  currentRecipe: {
+    title: '',
+    description: '',
+    imgSrc: '',
+    tags: []
+  },
   recipes: [],
   filteredRecipes: [],
   timeStamp: '',
@@ -22,6 +40,11 @@ const initalState={
 
 export default function recipeReducer(state=initalState, action) {
   switch (action.type) {
+    /*
+    * ========================================
+    * MULTIPLE RECIPES
+    * ========================================
+    */
     case FETCH_RECIPES:
       return {
         ...state,
@@ -49,6 +72,38 @@ export default function recipeReducer(state=initalState, action) {
       return{
         ...state
       }
+
+
+    /*
+    * ========================================
+    * SINGLE RECIPE
+    * ========================================
+    */ 
+    case REQUEST_SINGLE_RECIPE:
+      return{
+        ...state
+      }
+    case RECEIVE_SINGLE_RECIPE:
+      return{
+        ...state,
+        timeStamp: action.timeStamp,
+        currentRecipe: action.currentRecipe[0]
+      }
+    case REJECT_SINGLE_RECIPE:
+      return{
+        ...state
+      }
+    case FETCH_SINGLE_RECIPE:
+      return{
+        ...state
+      }
+
+
+    /*
+    * ========================================
+    * FILTERING RECIPE FROM MULTIPLE RECIPES
+    * ========================================
+    */
     case FILTER_RECIPE:
       return{
         ...state,
@@ -68,8 +123,37 @@ export default function recipeReducer(state=initalState, action) {
             .toLowerCase()
             .includes(action.filterPayload.toLowerCase()))
       }
+
+    /*
+    * ========================================
+    * TAGS
+    * ========================================
+    */
+
+    case ADD_TAG:
+      return{
+        ...state,
+        editableTags: action.editableTags
+      }
+    
+    case TOGGLE_ACTIVE:
+      return{
+        ...state,
+        editableTags: action.editableTags
+      }
+
+    case ASSIGN_TAGS:
+      return{
+        ...state,
+        editableTags: action.editableTags
+      }
+
+    /*
+    * ========================================
+    * FALL THROUGH
+    * ========================================
+    */
     default:
-      console.log('fall through');
       return state;
   }
 }

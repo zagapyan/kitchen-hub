@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './RecipeControlComponent.scss'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-// import { Edit, Trash2, Star } from 'react-feather'
+import { Link } from 'react-router-dom'
 import { Trash2 } from 'react-feather'
 import { deleteRecipe, fetchRecipes } from '../../actions/domainActions'
 
@@ -21,16 +21,27 @@ class RecipeControlComponent extends React.Component{
     console.log(props)
   }
   render(){
+    let {props} = this.props
     return(
-      <div className="RecipeControlComponent"> 
-        {/* <button className="button is-small">
-          <Edit size="14"/></button> */}
+      <span className="RecipeControlComponent level"> 
+        <ul className="level-item is-marginless">{
+            props.tags
+            ? props.tags.map((tag,key)=>
+              <li key={key} className="level-item">
+                <Link
+                  to={`/tags/${tag}`}
+                  className="tag is-primary">
+                {tag}
+                </Link></li>)
+                .reverse()
+                .slice(0,3)
+            : false }
+            { (props.tags && window.location.pathname !== '/') ? <li className="level-item"><Link to="/" className="tag is-danger">Clear</Link></li>: false}
+        </ul>
         <button className="button is-small"
-          onClick={this.handleDeleteRecipe.bind(this, this.props)}>
+          onClick={ this.handleDeleteRecipe.bind(this, this.props) }>
           <Trash2 size="14"/></button>
-        {/* <button className="button is-small">
-          <Star size="14"/></button> */}
-      </div>
+      </span>
     )
   }
 }

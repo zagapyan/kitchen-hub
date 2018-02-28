@@ -1,17 +1,17 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import PushURLComponent from './PushURLComponent'
+import PushURLComponent from "./PushURLComponent";
 
-describe('PushURLComponent', () => {
-  let component, props
+describe("PushURLComponent", () => {
+  let component, props;
 
   beforeEach(() => {
-    props = {}
-    component = shallow(<PushURLComponent {...props} />)
-  })
+    props = {};
+    component = shallow(<PushURLComponent {...props} />);
+  });
 
-  it('should', () => {
-    expect(component).toMatchSnapshot()
-  })
-})
+  it("should", () => {
+    expect(component).toMatchSnapshot();
+  });
+});

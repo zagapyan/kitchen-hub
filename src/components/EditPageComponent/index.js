@@ -1,4 +1,4 @@
-import PushURLComponent from "./PushURLComponent";
+import EditPageComponent from "./EditPageComponent";
 import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -9,4 +9,4 @@ const mapStateToProps = (state, ownProps) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PushURLComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(EditPageComponent);

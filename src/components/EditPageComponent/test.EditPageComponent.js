@@ -1,14 +1,14 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import SearchComponent from "./SearchComponent";
+import EditPageComponent from "./EditPageComponent";
 
-describe("SearchComponent", () => {
+describe("EditPageComponent", () => {
   let component, props;
 
   beforeEach(() => {
     props = {};
-    component = shallow(<SearchComponent {...props} />);
+    component = shallow(<EditPageComponent {...props} />);
   });
 
   it("should", () => {

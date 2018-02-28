@@ -1,9 +1,21 @@
 .RecipeListComponent{
-    text-align: left;
-}
-.RecipeListComponent .recipe-link{
-  flex-grow: 2;
-}
-.RecipeListComponent .recipe-control{
-  flex-grow: 1;
+  text-align: left;
+  
+  .title-container{
+    flex-grow: 1;
+  }
+  .panel-block {
+    .recipe-link{
+      flex-grow: 2;
+    }
+    @media(max-width: 768px){
+      flex-direction: column;
+      .title-container{
+        width: 100%;
+        .panel-icon{
+          display: none;
+        }
+      }
+    }
+  }
 }

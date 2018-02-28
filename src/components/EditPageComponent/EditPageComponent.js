@@ -16,12 +16,22 @@ import styles from "./EditPageComponent.scss";
 class EditPageComponent extends Component {
   payload = {};
   componentDidMount() {
-    let id = this.props.match.params.recipe;
+    const id = this.props.match.params.recipe;
     this.props.fetchSingleRecipe(id);
   }
   componentDidUpdate(nextProps) {
     if (this.props.currentRecipe !== nextProps.currentRecipe){
       this.props.assignTags(this.props.currentRecipe.tags);
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.updateComplete !== this.props.updateComplete && nextProps.fetching !== this.props.fetching){
+      if(nextProps.updateComplete === true && nextProps.fetching === false){
+        console.log('catch me if you can')
+        const id = this.props.match.params.recipe;
+        console.log(id)
+        this.props.fetchSingleRecipe(id);
+      }
     }
   }
   handleUpdateRecipe() {
@@ -156,7 +166,7 @@ class EditPageComponent extends Component {
                       <label className="label has-text-left">
                         Image
                       </label>
-                      <img src={this.props.currentRecipe.imgSrc} />
+                      <img src={this.props.currentRecipe.imgSrc} alt={this.props.currentRecipe.title}/>
                       {/* <div className="control">
                         <input
                           type="text"
@@ -203,10 +213,7 @@ EditPageComponent.propTypes = {
     description: PropTypes.string,
     // imgSrc: PropTypes.string,
     tags: PropTypes.arrayOf(
-      PropTypes.shape({
-        value: PropTypes.string,
-        active: PropTypes.bool
-      })
+      PropTypes.string
     )
   }),
   editableTags: PropTypes.arrayOf(
@@ -225,7 +232,9 @@ function mapStateToProps(state) {
     addTag,
     toggleActive,
     currentRecipe: state.domainReducer.currentRecipe,
-    editableTags: state.domainReducer.editableTags
+    editableTags: state.domainReducer.editableTags,
+    fetching: state.domainReducer.fetching,
+    updateComplete: state.domainReducer.updateComplete   
   };
 }
 

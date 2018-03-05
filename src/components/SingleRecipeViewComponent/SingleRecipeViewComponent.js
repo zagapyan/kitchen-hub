@@ -104,7 +104,7 @@ SingleRecipeViewComponent.defaultProps = {
 function mapStateToProps(state) {
   return {
     fetchSingleRecipe,
-    currentRecipe: state.domainReducer.currentRecipe
+    currentRecipe: state.domainReducer.currentRecipe,
   };
 }
 

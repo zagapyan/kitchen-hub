@@ -35,6 +35,10 @@ import {
   ASSIGN_TAGS,
   ADD_TAG,
   TOGGLE_ACTIVE,
+
+  // NEXT ACTIONS
+  TRIGGER_NEXT_ACTION,
+  HOLD_NEXT_ACTION,
 } from '../actions/domainActions';
 
 
@@ -56,7 +60,7 @@ const initalState={
   timeStamp: '',
   filtering: false,
   fetching: false,
-  updateComplete: false,
+  triggerNextAction: false,
   filterPayload: ''
 }
 
@@ -64,7 +68,7 @@ export default function recipeReducer(state=initalState, action) {
   switch (action.type) {
     /*
     * ========================================
-    * MULTIPLE RECIPES
+    * FETCH MULTIPLE RECIPES
     * ========================================
     */
     case FETCH_RECIPES:
@@ -98,7 +102,7 @@ export default function recipeReducer(state=initalState, action) {
 
     /*
     * ========================================
-    * SINGLE RECIPE
+    * FETCH SINGLE RECIPE
     * ========================================
     */ 
     case REQUEST_SINGLE_RECIPE:
@@ -145,31 +149,47 @@ export default function recipeReducer(state=initalState, action) {
             .toLowerCase()
             .includes(action.filterPayload.toLowerCase()))
       }
+    
+    /*
+    * ========================================
+    * SEND URL
+    * ========================================
+    */
 
+   case REQUEST_SEND_URL:
+   case SEND_URL_SUCCESS:
+   case SEND_URL_REJECTED:
+   case SEND_URL:
+      return{
+        ...state
+      }
+
+    /*
+    * ========================================
+    * UPDATING EXITING RECIPES
+    * ========================================
+    */
     case REQUEST_UPDATE_RECIPE:
       return{
         ...state,
         fetching: action.fetching,
-        updateComplete: action.updateComplete
       }
     case UPDATE_RECIPE_SUCCESS:
       return{
         ...state,
         fetching: action.fetching,
-        updateComplete: action.updateComplete
       }
     case UPDATE_RECIPE_REJECTED:
       return{
         ...state,
         fetching: action.fetching,
-        updateComplete: action.updateComplete
       }
     case UPDATE_RECIPE:
       return{
         ...state,
         fetching: action.fetching,
-        updateComplete: action.updateComplete
       }
+    
     /*
     * ========================================
     * TAGS
@@ -192,6 +212,18 @@ export default function recipeReducer(state=initalState, action) {
       return{
         ...state,
         editableTags: action.editableTags
+      }
+
+    /*
+    * ========================================
+    * NEXT ACTIONS
+    * ========================================
+    */
+    case TRIGGER_NEXT_ACTION:
+    case HOLD_NEXT_ACTION:
+      return{
+        ...state,
+        triggerNextAction : action.triggerNextAction
       }
 
     /*

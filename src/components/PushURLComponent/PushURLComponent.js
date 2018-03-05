@@ -21,7 +21,6 @@ class PushURLComponent extends Component {
       console.log("url is valid");
       this.props.sendURL(URLValue);
       this.refs.url.value = "";
-      setTimeout(() => this.props.fetchRecipes(endpoint), 2500);
     } else {
       console.log("url is invalid");
 
@@ -41,7 +40,6 @@ class PushURLComponent extends Component {
             this.props.statusShow ? "" : "hidden"
           }`}
         >
-          {/* <div className="section"> */}
           <div className="container">
             <div className="message-header">
               <p>Message</p>
@@ -52,7 +50,6 @@ class PushURLComponent extends Component {
             </div>
             <div className="message-body">{this.props.statusText}</div>
           </div>
-          {/* </div> */}
         </article>
         <form
           className="field has-addons column is-paddingless"
@@ -79,7 +76,6 @@ class PushURLComponent extends Component {
 
 PushURLComponent.propTypes = {
   sendURL: PropTypes.func,
-  fetchRecipes: PropTypes.func,
   setStatus: PropTypes.func,
   removeStatus: PropTypes.func,
   statusClass: PropTypes.string,
@@ -92,7 +88,6 @@ PushURLComponent.defaultProps = {};
 function mapStateToProps(state) {
   return {
     sendURL,
-    fetchRecipes,
     setStatus,
     removeStatus,
     statusClass: state.clientReducer.statusClass,
@@ -105,7 +100,6 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       sendURL,
-      fetchRecipes,
       setStatus,
       removeStatus
     },

@@ -7,7 +7,6 @@ import HeaderComponent from '../HeaderComponent'
 import RecipeListComponent from '../RecipeListComponent'
 import PushURLComponent from '../PushURLComponent'
 import * as domainActions from '../../actions/domainActions'
-// import endpoint from '../../utils/endpoint';
 
 class IndexComponent extends Component {
     constructor(props) {
@@ -23,6 +22,11 @@ class IndexComponent extends Component {
       console.log('props have been received')
       if(nextProps.match.params.tag !== this.props.match.params.tag){
         let tag = nextProps.match.params.tag
+        this.handleFetchRecipes(tag)
+      }
+      if(this.props.triggerNextAction !== nextProps.triggerNextAction && nextProps.triggerNextAction === true){
+        console.log('fire in the sky')
+        let tag = this.props.match.params.tag;
         this.handleFetchRecipes(tag)
       }
     }
@@ -60,6 +64,7 @@ function mapStateToProps(state) {
     filtering: state.domainReducer.filtering,
     filteredRecipes: state.domainReducer.filteredRecipes,
     fetchRecipes: domainActions.fetchRecipes,
+    triggerNextAction: state.domainReducer.triggerNextAction
   };
 }
 

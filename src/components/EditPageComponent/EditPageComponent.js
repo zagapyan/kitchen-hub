@@ -33,6 +33,10 @@ class EditPageComponent extends Component {
         this.props.fetchSingleRecipe(id);
       }
     }
+    if(this.props.triggerNextAction !== nextProps.triggerNextAction && nextProps.triggerNextAction === true){
+      const id = this.props.match.params.recipe;
+      this.props.fetchSingleRecipe(id);
+    }
   }
   handleUpdateRecipe() {
     const payload = {
@@ -234,7 +238,8 @@ function mapStateToProps(state) {
     currentRecipe: state.domainReducer.currentRecipe,
     editableTags: state.domainReducer.editableTags,
     fetching: state.domainReducer.fetching,
-    updateComplete: state.domainReducer.updateComplete   
+    updateComplete: state.domainReducer.updateComplete,
+    triggerNextAction: state.domainReducer.triggerNextAction
   };
 }
 

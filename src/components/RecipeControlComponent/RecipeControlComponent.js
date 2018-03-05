@@ -11,10 +11,6 @@ class RecipeControlComponent extends React.Component {
   handleDeleteRecipe(recipe) {
     let id = recipe.props._id;
     this.props.deleteRecipe(id);
-    setTimeout(() => this.props.fetchRecipes(), 1000);
-  }
-  fuck(props) {
-    console.log(props);
   }
   render() {
     let { props } = this.props;

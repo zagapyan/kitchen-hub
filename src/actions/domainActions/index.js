@@ -67,6 +67,14 @@ import {
   toggleActive
 } from './tagActions'
 
+import {
+  TRIGGER_NEXT_ACTION,
+  triggerNexAction,
+  HOLD_NEXT_ACTION,
+  holdNextAction,
+} from './nextActions'
+
+
 export {
   // quest recipes
   REQUEST_RECIPES,
@@ -128,6 +136,12 @@ export {
   ADD_TAG,
   addTag,
   TOGGLE_ACTIVE,
-  toggleActive
+  toggleActive,
+
+  // NEXT ACTION
+  TRIGGER_NEXT_ACTION,
+  triggerNexAction,
+  HOLD_NEXT_ACTION,
+  holdNextAction,
 }
 

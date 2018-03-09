@@ -28,6 +28,7 @@ class SingleRecipeViewComponent extends Component {
                     </Link>
                     <img
                       src={currentRecipe.imgSrc}
+                      onError={(e)=>{e.target.src = `${process.env.PUBLIC_URL}/fallback.jpg`}}
                       alt={currentRecipe.title}
                       style={{ objectFit: "cover", maxHeight: 200 }}
                     />

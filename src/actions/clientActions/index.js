@@ -23,3 +23,10 @@ export function removeStatus(){
     statusClass: '',
   }
 }
+
+export const TOGGLE_LIST_STYLE = 'TOGGLE_LIST_STYLE'
+export function toggleListStyle(){
+  return{
+    type: TOGGLE_LIST_STYLE
+  }
+}

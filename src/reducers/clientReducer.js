@@ -1,13 +1,15 @@
 import {
   SET_STATUS,
   REMOVE_STATUS,
+  TOGGLE_LIST_STYLE,
 } from '../actions/clientActions';
 
 const initalState={
   statusShow: false,
   statusType: '',
   statusClass: '',
-  statusText: ''
+  statusText: '',
+  isListStyle : false
 }
 
 export default function statusReducer(state=initalState, action) {
@@ -26,6 +28,11 @@ export default function statusReducer(state=initalState, action) {
         statusShow: false,
         statusClass: '',
         statusText: '',
+      }
+    case TOGGLE_LIST_STYLE:
+      return{
+        ...state,
+        isListStyle: !state.isListStyle
       }
     default:
       return state;

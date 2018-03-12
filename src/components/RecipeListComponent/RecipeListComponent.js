@@ -22,8 +22,8 @@ class RecipeListComponent extends Component {
         <div className={ this.props.isListStyle ? "panel-heading" : "panel-heading column is-12"}>
           <SearchComponent/>
         </div>
-        <nav className={ this.props.isListStyle ? 'panel-body': 'columns panel-body column'}>
-          
+        <nav className={`RecipeListContainer ${this.props.isListStyle ? 'panel-body': 'columns panel-body column'}`}>
+
           {this.props.recipes
             ? (this.props.recipes.map(o => this.props.isListStyle ? (
             

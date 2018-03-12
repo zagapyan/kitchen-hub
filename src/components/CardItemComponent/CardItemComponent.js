@@ -11,6 +11,7 @@ const CardItemComponent = ({props}) => (
         <figure class="image is-4by3">
           <img
             src={props.imgSrc}
+            onError={(e)=>{e.target.src = `${process.env.PUBLIC_URL}/fallback.jpg`}}
             alt={props.title}/></figure>
       </div>
       <div class="card-content">

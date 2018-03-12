@@ -1,1 +1,9 @@
-.CardItemComponent{}
+.CardItemComponent{
+  .card-image{
+    img{
+      object-fit: cover;
+      object-position: center;
+      border-bottom: 1px solid #eee;
+    }
+  }
+}

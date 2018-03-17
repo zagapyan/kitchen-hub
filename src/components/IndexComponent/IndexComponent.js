@@ -16,22 +16,26 @@ class IndexComponent extends Component {
     }
     componentDidMount(){
       let tag = this.props.match.params.tag;
-      this.handleFetchRecipes(tag)
+      let page = this.props.page;
+      this.handleFetchRecipes({tag, page})
     }
     componentWillReceiveProps(nextProps){
       console.log('props have been received')
       if(nextProps.match.params.tag !== this.props.match.params.tag){
-        let tag = nextProps.match.params.tag
-        this.handleFetchRecipes(tag)
+        let tag = nextProps.match.params.tag;
+        let page = this.props.page;        
+        this.handleFetchRecipes({tag, page})
       }
       if(this.props.triggerNextAction !== nextProps.triggerNextAction && nextProps.triggerNextAction === true){
-        console.log('fire in the sky')
         let tag = this.props.match.params.tag;
-        this.handleFetchRecipes(tag)
+        this.handleFetchRecipes({tag})
       }
     }
-    handleFetchRecipes(tag){
-      this.props.fetchRecipes(tag)
+    componentWillUnmount() {
+      // this.props.resetPagination()
+    }
+    handleFetchRecipes(options){
+      this.props.fetchRecipes(options)
     }
     null
     render() {
@@ -56,6 +60,7 @@ IndexComponent.propTypes = {
   filtering: PropTypes.bool,
   filteredRecipes: PropTypes.array,
   fetchRecipes: PropTypes.func,
+  page: PropTypes.number
 }
 
 function mapStateToProps(state) {
@@ -64,7 +69,8 @@ function mapStateToProps(state) {
     filtering: state.domainReducer.filtering,
     filteredRecipes: state.domainReducer.filteredRecipes,
     fetchRecipes: domainActions.fetchRecipes,
-    triggerNextAction: state.domainReducer.triggerNextAction
+    triggerNextAction: state.domainReducer.triggerNextAction,
+    page: state.domainReducer.page,
   };
 }
 

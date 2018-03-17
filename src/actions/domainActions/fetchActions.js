@@ -36,15 +36,19 @@ export function rejectRecipes(err) {
 }
 
 export const FETCH_RECIPES = "FETCH_RECIPES";
-export function fetchRecipes(tag) {
-  console.log("fetching recipes");
-  let filterParams = tag !== undefined ? `?tags=${tag}` : "";
-  console.log("filterParams", filterParams);
+export function fetchRecipes(options) {
+  const skip = options.page * 10;
+
+  const filterParams = options.tag !== undefined ? `&tags=${options.tag}` : "";
+  console.log('options.tag',options.tag)
+  console.log('filterParams',filterParams)
+  const queryParams = `?limit=10&skip=${skip}${filterParams}`
+  console.log(queryParams)
   return dispatch => {
     dispatch(requestRecipes());
 
     return axios
-      .get(`${endpoint}/${filterParams}`, config.headers)
+      .get(`${endpoint}/${queryParams}`, config.headers)
       .then(response => response.data)
       .then(data => dispatch(receiveRecipes(data)))
       .catch(err => dispatch(rejectRecipes({ message: err.toString() })));

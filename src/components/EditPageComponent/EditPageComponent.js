@@ -27,9 +27,7 @@ class EditPageComponent extends Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.updateComplete !== this.props.updateComplete && nextProps.fetching !== this.props.fetching){
       if(nextProps.updateComplete === true && nextProps.fetching === false){
-        console.log('catch me if you can')
         const id = this.props.match.params.recipe;
-        console.log(id)
         this.props.fetchSingleRecipe(id);
       }
     }

@@ -62,7 +62,6 @@ const initalState={
   fetching: false,
   triggerNextAction: false,
   filterPayload: '',
-  page: 0
 }
 
 export default function recipeReducer(state=initalState, action) {

@@ -14,17 +14,15 @@ class RecipePageComponent extends Component {
     super(props)
   }
   componentDidMount(){
-    console.log('componentDidMount');
     this.handleSingleRecipeFetch()
   }
   handleSingleRecipeFetch(){
     if(this.props.recipes.length <= 0){
-      console.log('fetchingRecipes')
       this.props.fetchRecipes(endpoint)
     }
   }
   handleNavToggle(recipe){
-    console.log(recipe)
+    recipe
   }
   render() {
     return (

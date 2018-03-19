@@ -1,19 +1,21 @@
 import {
   SET_STATUS,
   REMOVE_STATUS,
+  PAGE_UP,
+  PAGE_RESET
 } from '../actions/clientActions';
 
 const initalState={
   statusShow: false,
   statusType: '',
   statusClass: '',
-  statusText: ''
+  statusText: '',
+  page: 0
 }
 
 export default function statusReducer(state=initalState, action) {
   switch (action.type) {
     case SET_STATUS:
-      console.log(action)
       return{
         ...state,
         statusShow: true,
@@ -26,6 +28,16 @@ export default function statusReducer(state=initalState, action) {
         statusShow: false,
         statusClass: '',
         statusText: '',
+      }
+    case PAGE_UP:
+      return{
+        ...state,
+        page: action.page++,
+      }
+    case PAGE_RESET:
+      return{
+        ...state,
+        page: 0
       }
     default:
       return state;

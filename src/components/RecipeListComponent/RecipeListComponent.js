@@ -22,19 +22,30 @@ class RecipeListComponent extends Component {
             <SearchComponent />
           </div>
           {this.props.recipes ? (
-            this.props.recipes.map(o => (
-              <span className="panel-block" key={o._id.toString()}>
-                <span className="title-container level is-marginless">
-                  <span className="panel-icon">
-                    <Book size="14" />
+            this.props.recipes.length > 0 ? (
+              this.props.recipes.map(o => (
+                <span className="panel-block" key={o._id.toString()}>
+                  <span className="title-container level is-marginless">
+                    <span className="panel-icon">
+                      <Book size="14" />
+                    </span>
+                    <NavLink to={`/recipe/${o._id}`} className="recipe-link">
+                      {o.title}
+                    </NavLink>
                   </span>
-                  <NavLink to={`/recipe/${o._id}`} className="recipe-link">
-                    {o.title}
-                  </NavLink>
+                  <RecipeControlComponent
+                    props={o}
+                    className="recipe-control"
+                  />
                 </span>
-                <RecipeControlComponent props={o} className="recipe-control" />
+              ))
+            ) : (
+              <span className="panel-block">
+                {this.props.isTagPage
+                  ? "You have no recipes pertaining to this tag. Add some tags!"
+                  : "You currently have no recipes. Add start adding some!"}
               </span>
-            ))
+            )
           ) : (
             <div className="section has-text-centered">
               <BeatLoader />

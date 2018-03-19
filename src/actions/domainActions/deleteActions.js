@@ -5,7 +5,6 @@ import { holdNextAction, triggerNextAction } from "./nextActions";
 
 export const REQUEST_DELETE_RECIPE = 'REQUEST_DELETE_RECIPE'
 export function requestDeleteRecipe(){
-  console.log('requestDeleteRecipe')
   return{
     type: REQUEST_DELETE_RECIPE,
     fetching: true,
@@ -14,7 +13,6 @@ export function requestDeleteRecipe(){
 
 export const RECEIVE_DELETE_RECIPE = 'RECEIVE_DELETE_RECIPE'
 export function receiveDeleteRecipe(deletedRecipe){
-  console.log('recipe deleted:', deletedRecipe)
   return dispatch => {
     dispatch(triggerNextAction())
     return{
@@ -38,7 +36,6 @@ export function rejectDeleteRecipe(err){
 
 export const DELETE_RECIPE = 'DELETE_RECIPE'
 export function deleteRecipe(id){
-  console.log(id)
   let deleteEndPoint = `${endpoint}/${id}`
   return dispatch => {
     dispatch(requestDeleteRecipe())

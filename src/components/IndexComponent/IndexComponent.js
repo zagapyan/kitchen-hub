@@ -6,6 +6,7 @@ import styles from './IndexComponent.scss'
 import HeaderComponent from '../HeaderComponent'
 import RecipeListComponent from '../RecipeListComponent'
 import PushURLComponent from '../PushURLComponent'
+import { pageReset, pageUp } from '../../actions/clientActions'
 import * as domainActions from '../../actions/domainActions'
 
 class IndexComponent extends Component {
@@ -20,7 +21,6 @@ class IndexComponent extends Component {
       this.handleFetchRecipes({tag, page})
     }
     componentWillReceiveProps(nextProps){
-      console.log('props have been received')
       if(nextProps.match.params.tag !== this.props.match.params.tag){
         let tag = nextProps.match.params.tag;
         let page = this.props.page;        
@@ -47,7 +47,7 @@ class IndexComponent extends Component {
               <div className="section">
                 <div className="container">
                   <PushURLComponent />
-                  <RecipeListComponent recipes={recipes}/>
+                  <RecipeListComponent recipes={recipes} isTagPage={!!this.props.match.params.tag}/>
                 </div>
               </div>
             </div>
@@ -70,12 +70,16 @@ function mapStateToProps(state) {
     filteredRecipes: state.domainReducer.filteredRecipes,
     fetchRecipes: domainActions.fetchRecipes,
     triggerNextAction: state.domainReducer.triggerNextAction,
-    page: state.domainReducer.page,
+    page: state.clientReducer.page,
+    pageReset,
+    pageUp
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
+    pageReset,
+    pageUp,
     ...domainActions
   }, dispatch);
 }

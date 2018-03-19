@@ -40,10 +40,7 @@ export function fetchRecipes(options) {
   const skip = options.page * 10;
 
   const filterParams = options.tag !== undefined ? `&tags=${options.tag}` : "";
-  console.log('options.tag',options.tag)
-  console.log('filterParams',filterParams)
   const queryParams = `?limit=10&skip=${skip}${filterParams}`
-  console.log(queryParams)
   return dispatch => {
     dispatch(requestRecipes());
 
@@ -63,7 +60,6 @@ export function fetchRecipes(options) {
 
 export const REQUEST_SINGLE_RECIPE = "REQUEST_SINGLE_RECIPE";
 export function requestSingleRecipe() {
-  console.log("requestSingleRecipe");
   return {
     type: REQUEST_SINGLE_RECIPE,
     fetching: true
@@ -72,7 +68,6 @@ export function requestSingleRecipe() {
 
 export const RECEIVE_SINGLE_RECIPE = "RECEIVE_SINGLE_RECIPE";
 export function receiveSingleRecipe(currentRecipe) {
-  // console.log(currentRecipe[0])
   return {
     type: RECEIVE_SINGLE_RECIPE,
     fetching: false,
@@ -92,7 +87,6 @@ export function rejectSingleRecipe(err) {
 
 export const FETCH_SINGLE_RECIPE = "FETCH_SINGLE_RECIPE";
 export function fetchSingleRecipe(id) {
-  console.log("fetching single recipes");
   return dispatch => {
     dispatch(requestSingleRecipe());
     return axios
@@ -111,7 +105,6 @@ export function fetchSingleRecipe(id) {
 
 export const REQUEST_FETCH_TAGS = "REQUEST_FETCH_TAGS";
 export function requestFetchTags() {
-  console.log("requestFetchTags");
   return {
     type: REQUEST_FETCH_TAGS,
     fetching: true
@@ -139,7 +132,6 @@ export function rejectFetchTags(err) {
 
 export const FETCH_TAGS = "FETCH_TAGS";
 export function fetchTags() {
-  console.log("fetching recipes");
   return dispatch => {
     dispatch(requestRecipes());
 

@@ -50,7 +50,6 @@ class EditPageComponent extends Component {
   handleAddTag() {
     const tags = this.props.editableTags || [];
     const testTagValue = this.payload.tag.value || "";
-    console.log(testTagValue, tags);
     if (testTagValue !== "") {
       if (!tags.includes({ value: testTagValue })) {
         this.props.addTag({ value: testTagValue, active: true }, tags);

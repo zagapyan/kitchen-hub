@@ -17,12 +17,13 @@ class RecipeControlComponent extends React.Component {
     return (
       <span className="RecipeControlComponent level">
         <ul className="level-item is-marginless">
+          {/* {JSON.stringify(props.tags)} */}
           {props.tags
             ? props.tags
                 .map((tag, key) => (
                   <li key={key} className="level-item">
-                    <Link to={`/tags/${tag}`} className="tag is-primary">
-                      {tag}
+                    <Link to={`/tags/${tag.value}`} className="tag is-primary">
+                      {tag.value}
                     </Link>
                   </li>
                 ))

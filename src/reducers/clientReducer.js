@@ -9,7 +9,7 @@ const initalState={
   statusType: '',
   statusClass: '',
   statusText: '',
-  isListStyle : false
+  isListStyle : true
 }
 
 export default function statusReducer(state=initalState, action) {

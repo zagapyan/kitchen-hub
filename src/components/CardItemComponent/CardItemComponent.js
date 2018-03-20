@@ -7,17 +7,17 @@ const CardItemComponent = ({props}) => (
   <div className="column is-one-quarter">
     <div className="CardItemComponent card">
     <NavLink to={`/recipe/${props._id}`}>
-      <div class="card-image">
-        <figure class="image is-4by3">
+      <div className="card-image">
+        <figure className="image is-4by3">
           <img
             src={props.imgSrc}
             onError={(e)=>{e.target.src = `${process.env.PUBLIC_URL}/fallback.jpg`}}
             alt={props.title}/></figure>
       </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <p class="title is-6">{props.title}</p>
+      <div className="card-content">
+        <div className="media">
+          <div className="media-content">
+            <p className="title is-6">{props.title}</p>
           </div>
         </div>
       </div>

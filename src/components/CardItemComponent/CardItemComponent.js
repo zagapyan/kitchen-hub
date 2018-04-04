@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from "react-router-dom";
+import RecipeControlComponent from "../RecipeControlComponent";
+
 import styles from './CardItemComponent.scss'
 
 const CardItemComponent = ({props}) => (
@@ -16,6 +18,7 @@ const CardItemComponent = ({props}) => (
       </div>
       <div className="card-content">
         <div className="media">
+          {/* <RecipeControlComponent props={props} className="recipe-control"/> */}
           <div className="media-content">
             <p className="title is-6">{props.title}</p>
           </div>

@@ -6,7 +6,7 @@
   }
   .RecipeListContainer{
     flex-wrap: wrap;
-    &.panel-block {
+    .panel-block {
       .recipe-link{
         flex-grow: 2;
       }

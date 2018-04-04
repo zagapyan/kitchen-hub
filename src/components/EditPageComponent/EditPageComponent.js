@@ -118,7 +118,7 @@ class EditPageComponent extends Component {
                       <div className="field">
                         <label className="label has-text-left">Tags</label>
                         {/* {JSON.stringify(this.props.currentRecipe.tags)} */}
-                        {/* {this.props.editableTags ? (
+                        {this.props.editableTags ? (
                           <ul className="field is-grouped is-grouped-multiline">
                             {this.props.editableTags.map((tag, key) =>{
                               if(tag.active){
@@ -144,7 +144,7 @@ class EditPageComponent extends Component {
                           </ul>
                         ) : (
                           false
-                        )} */}
+                        )}
                       </div>
                       <div className="field has-addons is-paddingless">
                         <div className="control is-expanded">

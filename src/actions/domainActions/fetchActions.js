@@ -40,7 +40,9 @@ export function fetchRecipes(options) {
   const skip = (options.page - 1) * 10;
 
   const filterParams = options.tag !== undefined ? `&tags=${options.tag}` : "";
-  const queryParams = `?limit=10&skip=${skip}${filterParams}`
+  // const queryParams = `?limit=10&skip=${skip}${filterParams}`
+  const queryParams = `?${filterParams}`
+  
   return dispatch => {
     dispatch(requestRecipes());
 

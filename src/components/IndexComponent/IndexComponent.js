@@ -64,11 +64,11 @@ class IndexComponent extends Component {
               recipes={recipes}
               isTagPage={!!this.props.match.params.tag}
             />
-            <PaginationComponent
+            {/* <PaginationComponent
               props={{
                 currentPage: this.props.match.params.pageNumber
               }}
-            />
+            /> */}
           </div>
         </div>
       </div>

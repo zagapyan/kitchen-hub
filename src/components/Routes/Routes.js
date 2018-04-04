@@ -15,16 +15,17 @@ class Routes extends Component {
         return (
         <main className="Routes">
           <Switch>
-            <Redirect exact path="/" to="/page/1"/>
-            <Route exact path="/page/:pageNumber" component={IndexComponent}/>
+            {/* <Redirect exact path="/" to="/page/1"/>
+            <Route exact path="/page/:pageNumber" component={IndexComponent}/> */}
+            <Route exact path="/" component={IndexComponent} />
             <Route exact path="/tags/:tag" component={IndexComponent}/>
             <Route exact path="/recipe/:recipe" component={RecipePageComponent}/>
             <Route exact path="/edit/:recipe" component={EditPageComponent}/>
             <Route component={NoMatchComponent} />          
           </Switch>
-          <footer class="footer">
-            <div class="container">
-              <div class="content has-text-centered">
+          <footer className="footer">
+            <div className="container">
+              <div className="content has-text-centered">
                 <p>
                   <strong>KitchenHub</strong> is built by <a href="//zigmundsunoo.com">Zigmund Sun Oo©</a>.
                 </p>

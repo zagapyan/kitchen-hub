@@ -22,6 +22,15 @@ class Routes extends Component {
             <Route exact path="/edit/:recipe" component={EditPageComponent}/>
             <Route component={NoMatchComponent} />          
           </Switch>
+          <footer class="footer">
+            <div class="container">
+              <div class="content has-text-centered">
+                <p>
+                  <strong>KitchenHub</strong> is built by <a href="//zigmundsunoo.com">Zigmund Sun Oo©</a>.
+                </p>
+              </div>
+            </div>
+          </footer>
         </main>
         );
     }

@@ -17,7 +17,7 @@ class RecipesPageComponent extends Component {
   }
   render() {
     return (
-      <div className="RecipesPageComponent">
+      <div className="RecipesPageComponent level">
         <nav className="panel">
           <div className="panel-heading">
             <SearchComponent />

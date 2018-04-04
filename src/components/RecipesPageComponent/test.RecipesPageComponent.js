@@ -1,14 +1,14 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import RecipeListComponent from "./RecipeListComponent";
+import RecipesPageComponent from "./RecipesPageComponent";
 
-describe("RecipeListComponent", () => {
+describe("RecipesPageComponent", () => {
   let component, props;
 
   beforeEach(() => {
     props = {};
-    component = shallow(<RecipeListComponent {...props} />);
+    component = shallow(<RecipesPageComponent {...props} />);
   });
 
   it("should", () => {

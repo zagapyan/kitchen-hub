@@ -17,7 +17,6 @@ export function requestUpdateRecipe(){
 
 export const UPDATE_RECIPE_SUCCESS = 'UPDATE_RECIPE_SUCCESS';
 export function updateRecipeSuccess(payload){
-  console.log('updateRecipeSuccess',payload)
   return dispatch => {
     dispatch(triggerNextAction())
     return{

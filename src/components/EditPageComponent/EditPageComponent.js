@@ -27,9 +27,7 @@ class EditPageComponent extends Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.updateComplete !== this.props.updateComplete && nextProps.fetching !== this.props.fetching){
       if(nextProps.updateComplete === true && nextProps.fetching === false){
-        console.log('catch me if you can')
         const id = this.props.match.params.recipe;
-        console.log(id)
         this.props.fetchSingleRecipe(id);
       }
     }
@@ -52,7 +50,6 @@ class EditPageComponent extends Component {
   handleAddTag() {
     const tags = this.props.editableTags || [];
     const testTagValue = this.payload.tag.value || "";
-    console.log(testTagValue, tags);
     if (testTagValue !== "") {
       if (!tags.includes({ value: testTagValue })) {
         this.props.addTag({ value: testTagValue, active: true }, tags);

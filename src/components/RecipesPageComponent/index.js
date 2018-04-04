@@ -1,4 +1,4 @@
-import RecipeListComponent from "./RecipeListComponent";
+import RecipesPageComponent from "./RecipesPageComponent";
 import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -10,5 +10,5 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  RecipeListComponent
+  RecipesPageComponent
 );

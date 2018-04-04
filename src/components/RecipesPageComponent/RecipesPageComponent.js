@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { BeatLoader } from "react-spinners";
 import { NavLink } from "react-router-dom";
 import { Book } from "react-feather";
 import { bindActionCreators } from "redux";
@@ -8,15 +7,17 @@ import { connect } from "react-redux";
 import { fetchRecipes, filterClear } from "../../actions/domainActions";
 import SearchComponent from "../SearchComponent";
 import RecipeControlComponent from "../RecipeControlComponent";
-import styles from "./RecipeListComponent.scss";
+import RecipesListComponent from '../RecipesListComponent'
+import styles from "./RecipesPageComponent.scss";
+import { BeatLoader } from 'react-spinners'
 
-class RecipeListComponent extends Component {
+class RecipesPageComponent extends Component {
   componentWillUnmount() {
     this.props.filterClear();
   }
   render() {
     return (
-      <div className="RecipeListComponent">
+      <div className="RecipesPageComponent">
         <nav className="panel">
           <div className="panel-heading">
             <SearchComponent />
@@ -57,7 +58,7 @@ class RecipeListComponent extends Component {
   }
 }
 
-RecipeListComponent.propTypes = {
+RecipesPageComponent.propTypes = {
   fetchRecipes: PropTypes.func,
   filterClear: PropTypes.func,
   recipes: PropTypes.array
@@ -81,5 +82,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  RecipeListComponent
+  RecipesPageComponent
 );

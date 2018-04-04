@@ -14,7 +14,7 @@ import {
   REJECT_DELETE_RECIPE,
   RECEIVE_DELETE_RECIPE,
   DELETE_RECIPE,
-  
+
   // FILTER
   FILTER_RECIPE,
   FILTER_CLEAR,
@@ -38,9 +38,8 @@ import {
 
   // NEXT ACTIONS
   TRIGGER_NEXT_ACTION,
-  HOLD_NEXT_ACTION,
-} from '../actions/domainActions';
-
+  HOLD_NEXT_ACTION
+} from "../actions/domainActions";
 
 /*
 * ========================================
@@ -48,23 +47,23 @@ import {
 * ========================================
 */
 
-const initalState={
+const initalState = {
   currentRecipe: {
-    title: '',
-    description: '',
-    imgSrc: '',
+    title: "",
+    description: "",
+    imgSrc: "",
     tags: []
   },
   recipes: [],
   filteredRecipes: [],
-  timeStamp: '',
+  timeStamp: "",
   filtering: false,
   fetching: false,
   triggerNextAction: false,
-  filterPayload: '',
-}
+  filterPayload: ""
+};
 
-export default function recipeReducer(state=initalState, action) {
+export default function recipeReducer(state = initalState, action) {
   switch (action.type) {
     /*
     * ========================================
@@ -73,57 +72,56 @@ export default function recipeReducer(state=initalState, action) {
     */
     case FETCH_RECIPES:
       return {
-        ...state,
-      }
+        ...state
+      };
     case REQUEST_RECIPES:
       return {
         ...state,
         recipes: action.recipes
-      }
+      };
     case RECEIVE_RECIPES:
-      return{
+      return {
         ...state,
         timeStamp: action.timeStamp,
-        recipes: action.recipes
-      }
+        recipes: action.recipes.reverse()
+      };
     case DELETE_RECIPE:
-      return{
+      return {
         ...state
-      }
+      };
     case RECEIVE_DELETE_RECIPE:
-      return{
+      return {
         ...state
-      }
+      };
     case REJECT_DELETE_RECIPE:
-      return{
+      return {
         ...state
-      }
-
+      };
 
     /*
     * ========================================
     * FETCH SINGLE RECIPE
     * ========================================
-    */ 
+    */
+
     case REQUEST_SINGLE_RECIPE:
-      return{
+      return {
         ...state
-      }
+      };
     case RECEIVE_SINGLE_RECIPE:
-      return{
+      return {
         ...state,
         timeStamp: action.timeStamp,
         currentRecipe: action.currentRecipe[0]
-      }
+      };
     case REJECT_SINGLE_RECIPE:
-      return{
+      return {
         ...state
-      }
+      };
     case FETCH_SINGLE_RECIPE:
-      return{
+      return {
         ...state
-      }
-
+      };
 
     /*
     * ========================================
@@ -131,38 +129,36 @@ export default function recipeReducer(state=initalState, action) {
     * ========================================
     */
     case FILTER_RECIPE:
-      return{
+      return {
         ...state,
         filtering: action.filtering,
-        filteredRecipes: state.recipes.filter(o=>
-          o.title
-            .toLowerCase()
-            .includes(action.filterPayload.toLowerCase()))
-      }
+        filteredRecipes: state.recipes.filter(o =>
+          o.title.toLowerCase().includes(action.filterPayload.toLowerCase())
+        )
+      };
     case FILTER_CLEAR:
-      return{
+      return {
         ...state,
         filtering: action.filtering,
         filtering: false,
-        filteredRecipes: state.recipes.filter(o=>
-          o.title
-            .toLowerCase()
-            .includes(action.filterPayload.toLowerCase()))
-      }
-    
+        filteredRecipes: state.recipes.filter(o =>
+          o.title.toLowerCase().includes(action.filterPayload.toLowerCase())
+        )
+      };
+
     /*
     * ========================================
     * SEND URL
     * ========================================
     */
 
-   case REQUEST_SEND_URL:
-   case SEND_URL_SUCCESS:
-   case SEND_URL_REJECTED:
-   case SEND_URL:
-      return{
+    case REQUEST_SEND_URL:
+    case SEND_URL_SUCCESS:
+    case SEND_URL_REJECTED:
+    case SEND_URL:
+      return {
         ...state
-      }
+      };
 
     /*
     * ========================================
@@ -170,26 +166,26 @@ export default function recipeReducer(state=initalState, action) {
     * ========================================
     */
     case REQUEST_UPDATE_RECIPE:
-      return{
+      return {
         ...state,
-        fetching: action.fetching,
-      }
+        fetching: action.fetching
+      };
     case UPDATE_RECIPE_SUCCESS:
-      return{
+      return {
         ...state,
-        fetching: action.fetching,
-      }
+        fetching: action.fetching
+      };
     case UPDATE_RECIPE_REJECTED:
-      return{
+      return {
         ...state,
-        fetching: action.fetching,
-      }
+        fetching: action.fetching
+      };
     case UPDATE_RECIPE:
-      return{
+      return {
         ...state,
-        fetching: action.fetching,
-      }
-    
+        fetching: action.fetching
+      };
+
     /*
     * ========================================
     * TAGS
@@ -197,22 +193,22 @@ export default function recipeReducer(state=initalState, action) {
     */
 
     case ADD_TAG:
-      return{
+      return {
         ...state,
         editableTags: action.editableTags
-      }
-    
+      };
+
     case TOGGLE_ACTIVE:
-      return{
+      return {
         ...state,
         editableTags: action.editableTags
-      }
+      };
 
     case ASSIGN_TAGS:
-      return{
+      return {
         ...state,
         editableTags: action.editableTags
-      }
+      };
 
     /*
     * ========================================
@@ -221,10 +217,10 @@ export default function recipeReducer(state=initalState, action) {
     */
     case TRIGGER_NEXT_ACTION:
     case HOLD_NEXT_ACTION:
-      return{
+      return {
         ...state,
-        triggerNextAction : action.triggerNextAction
-      }
+        triggerNextAction: action.triggerNextAction
+      };
 
     /*
     * ========================================

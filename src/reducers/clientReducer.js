@@ -1,7 +1,7 @@
 import {
   SET_STATUS,
   REMOVE_STATUS,
-  PAGE_UP,
+  PAGE_CHANGE,
   PAGE_RESET
 } from '../actions/clientActions';
 
@@ -10,7 +10,8 @@ const initalState={
   statusType: '',
   statusClass: '',
   statusText: '',
-  page: 0
+  isFetchLocked: false,
+  page: 1,
 }
 
 export default function statusReducer(state=initalState, action) {
@@ -29,15 +30,15 @@ export default function statusReducer(state=initalState, action) {
         statusClass: '',
         statusText: '',
       }
-    case PAGE_UP:
+    case PAGE_CHANGE:
       return{
         ...state,
-        page: action.page++,
+        page: action.page,
       }
     case PAGE_RESET:
       return{
         ...state,
-        page: 0
+        page: 1,
       }
     default:
       return state;

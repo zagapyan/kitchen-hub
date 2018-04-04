@@ -1,7 +1,7 @@
 import axios from "axios";
 import endpoint from "../../utils/endpoint";
 import config from "../../utils/headers";
-
+// import {} from '../clientActions'
 /*
 * ========================================
 * MULTIPLE RECIPES
@@ -20,7 +20,7 @@ export const RECEIVE_RECIPES = "RECEIVE_RECIPES";
 export function receiveRecipes(recipes) {
   return {
     type: RECEIVE_RECIPES,
-    recipes: recipes.reverse(),
+    recipes: recipes,
     fetching: false,
     timeStamp: Date.now()
   };
@@ -37,7 +37,7 @@ export function rejectRecipes(err) {
 
 export const FETCH_RECIPES = "FETCH_RECIPES";
 export function fetchRecipes(options) {
-  const skip = options.page * 10;
+  const skip = (options.page - 1) * 10;
 
   const filterParams = options.tag !== undefined ? `&tags=${options.tag}` : "";
   const queryParams = `?limit=10&skip=${skip}${filterParams}`
@@ -47,7 +47,10 @@ export function fetchRecipes(options) {
     return axios
       .get(`${endpoint}/${queryParams}`, config.headers)
       .then(response => response.data)
-      .then(data => dispatch(receiveRecipes(data)))
+      .then(data => {
+        dispatch(receiveRecipes(data, options.addToExistingRecipes))
+        dispatch(receiveRecipes(data, options.addToExistingRecipes))
+      })
       .catch(err => dispatch(rejectRecipes({ message: err.toString() })));
   };
 }

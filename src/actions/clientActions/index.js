@@ -22,11 +22,25 @@ export function removeStatus() {
   };
 }
 
-export const PAGE_UP = "PAGE_UP";
-export function pageUp(currentPage){
+export const LOCK_FETCH = "LOCK_FETCH";
+export function lockFetch(){
   return{
-    type: PAGE_UP,
-    currentPage
+    type: LOCK_FETCH
+  }
+}
+
+export const RELEASE_LOCK_FETCH = "RELEASE_LOCK_FETCH";
+export function releaseLockFetch(){
+  return{
+    type: RELEASE_LOCK_FETCH
+  }
+}
+
+export const PAGE_CHANGE = "PAGE_CHANGE";
+export function pageChange({page}){
+  return{
+    type: PAGE_CHANGE,
+    page
   }
 }
 

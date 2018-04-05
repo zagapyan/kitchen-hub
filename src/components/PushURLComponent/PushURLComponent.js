@@ -18,12 +18,9 @@ class PushURLComponent extends Component {
     const validURL = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
     const URLValue = this.refs.url.value;
     if (validURL.test(URLValue)) {
-      console.log("url is valid");
       this.props.sendURL(URLValue);
       this.refs.url.value = "";
     } else {
-      console.log("url is invalid");
-
       this.props.setStatus({
         statusText: "Invalid Url Input... please provide a proper url",
         statusClass: "is-warning"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect} from 'react-router-dom'
 import IndexComponent from '../IndexComponent'
 import RecipePageComponent from '../RecipePageComponent'
 import EditPageComponent from '../EditPageComponent'
@@ -15,12 +15,23 @@ class Routes extends Component {
         return (
         <main className="Routes">
           <Switch>
-            <Route exact path="/" component={IndexComponent}/>
+            {/* <Redirect exact path="/" to="/page/1"/>
+            <Route exact path="/page/:pageNumber" component={IndexComponent}/> */}
+            <Route exact path="/" component={IndexComponent} />
             <Route exact path="/tags/:tag" component={IndexComponent}/>
             <Route exact path="/recipe/:recipe" component={RecipePageComponent}/>
             <Route exact path="/edit/:recipe" component={EditPageComponent}/>
             <Route component={NoMatchComponent} />          
           </Switch>
+          <footer className="footer">
+            <div className="container">
+              <div className="content has-text-centered">
+                <p>
+                  <strong>KitchenHub</strong> is built by <a href="//zigmundsunoo.com">Zigmund Sun Oo©</a>.
+                </p>
+              </div>
+            </div>
+          </footer>
         </main>
         );
     }

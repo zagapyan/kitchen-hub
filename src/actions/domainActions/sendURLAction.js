@@ -13,7 +13,6 @@ export function requestSendURL() {
 
 export const SEND_URL_SUCCESS = "SEND_URL_SUCCESS";
 export function sendURLSuccess(payload) {
-  console.log("sendURLSuccess", payload);
   return dispatch => {
     dispatch(triggerNextAction());
     return {
@@ -40,7 +39,6 @@ export function sendURLRejected(payload) {
 
 export const SEND_URL = "SEND_URL";
 export function sendURL(url) {
-  console.log("sendURL");
   return dispatch => {
     dispatch(requestSendURL());
     dispatch(holdNextAction());

@@ -10,7 +10,6 @@ export const TOGGLE_ACTIVE = "TOGGLE_ACTIVE";
 export function toggleActive(key, tags) {
   const newTag = Object.assign({}, tags[key], {active: !tags[key].active});
   tags[key] = newTag;
-  console.log(tags)
   return {
     type: TOGGLE_ACTIVE,
     editableTags: [...tags]

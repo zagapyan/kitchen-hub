@@ -8,9 +8,9 @@ import SearchComponent from "../SearchComponent";
 import ListItemComponent from '../ListItemComponent';
 import CardItemComponent from '../CardItemComponent';
 
-import styles from "./RecipeListComponent.scss";
+import styles from "./RecipesPageComponent.scss";
 
-class RecipeListComponent extends Component {
+class RecipesPageComponent extends Component {
   componentWillUnmount() {
     this
       .props
@@ -18,7 +18,7 @@ class RecipeListComponent extends Component {
   }
   render() {
     return (
-      <div className="RecipeListComponent panel">
+      <div className="RecipesPageComponent panel">
         <div className={ this.props.isListStyle ? "panel-heading" : "panel-heading column is-12"}>
           <SearchComponent/>
         </div>
@@ -48,7 +48,7 @@ class RecipeListComponent extends Component {
   }
 }
 
-RecipeListComponent.propTypes = {
+RecipesPageComponent.propTypes = {
   fetchRecipes: PropTypes.func,
   filterClear: PropTypes.func,
   recipes: PropTypes.array
@@ -65,4 +65,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeListComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesPageComponent);

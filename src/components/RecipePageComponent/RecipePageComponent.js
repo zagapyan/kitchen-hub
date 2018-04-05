@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import styles from './RecipePageComponent.scss'
-import RecipeListComponent from '../RecipeListComponent'
+import RecipesListComponent from '../RecipesListComponent'
 import { fetchRecipes } from '../../actions/domainActions'
 import SingleRecipeViewComponent from '../SingleRecipeViewComponent'
 import endpoint from '../../utils/endpoint'
@@ -14,17 +14,15 @@ class RecipePageComponent extends Component {
     super(props)
   }
   componentDidMount(){
-    console.log('componentDidMount');
     this.handleSingleRecipeFetch()
   }
   handleSingleRecipeFetch(){
     if(this.props.recipes.length <= 0){
-      console.log('fetchingRecipes')
       this.props.fetchRecipes(endpoint)
     }
   }
   handleNavToggle(recipe){
-    console.log(recipe)
+    recipe
   }
   render() {
     return (

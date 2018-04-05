@@ -1,7 +1,7 @@
 import axios from "axios";
 import endpoint from "../../utils/endpoint";
 import config from "../../utils/headers";
-
+// import {} from '../clientActions'
 /*
 * ========================================
 * MULTIPLE RECIPES
@@ -20,7 +20,7 @@ export const RECEIVE_RECIPES = "RECEIVE_RECIPES";
 export function receiveRecipes(recipes) {
   return {
     type: RECEIVE_RECIPES,
-    recipes: recipes.reverse(),
+    recipes: recipes,
     fetching: false,
     timeStamp: Date.now()
   };
@@ -36,17 +36,23 @@ export function rejectRecipes(err) {
 }
 
 export const FETCH_RECIPES = "FETCH_RECIPES";
-export function fetchRecipes(tag) {
-  console.log("fetching recipes");
-  let filterParams = tag !== undefined ? `?tags=${tag}` : "";
-  console.log("filterParams", filterParams);
+export function fetchRecipes(options) {
+  const skip = (options.page - 1) * 10;
+
+  const filterParams = options.tag !== undefined ? `&tags=${options.tag}` : "";
+  // const queryParams = `?limit=10&skip=${skip}${filterParams}`
+  const queryParams = `?${filterParams}`
+  
   return dispatch => {
     dispatch(requestRecipes());
 
     return axios
-      .get(`${endpoint}/${filterParams}`, config.headers)
+      .get(`${endpoint}/${queryParams}`, config.headers)
       .then(response => response.data)
-      .then(data => dispatch(receiveRecipes(data)))
+      .then(data => {
+        dispatch(receiveRecipes(data, options.addToExistingRecipes))
+        dispatch(receiveRecipes(data, options.addToExistingRecipes))
+      })
       .catch(err => dispatch(rejectRecipes({ message: err.toString() })));
   };
 }
@@ -59,7 +65,6 @@ export function fetchRecipes(tag) {
 
 export const REQUEST_SINGLE_RECIPE = "REQUEST_SINGLE_RECIPE";
 export function requestSingleRecipe() {
-  console.log("requestSingleRecipe");
   return {
     type: REQUEST_SINGLE_RECIPE,
     fetching: true
@@ -68,7 +73,6 @@ export function requestSingleRecipe() {
 
 export const RECEIVE_SINGLE_RECIPE = "RECEIVE_SINGLE_RECIPE";
 export function receiveSingleRecipe(currentRecipe) {
-  // console.log(currentRecipe[0])
   return {
     type: RECEIVE_SINGLE_RECIPE,
     fetching: false,
@@ -88,7 +92,6 @@ export function rejectSingleRecipe(err) {
 
 export const FETCH_SINGLE_RECIPE = "FETCH_SINGLE_RECIPE";
 export function fetchSingleRecipe(id) {
-  console.log("fetching single recipes");
   return dispatch => {
     dispatch(requestSingleRecipe());
     return axios
@@ -107,7 +110,6 @@ export function fetchSingleRecipe(id) {
 
 export const REQUEST_FETCH_TAGS = "REQUEST_FETCH_TAGS";
 export function requestFetchTags() {
-  console.log("requestFetchTags");
   return {
     type: REQUEST_FETCH_TAGS,
     fetching: true
@@ -135,7 +137,6 @@ export function rejectFetchTags(err) {
 
 export const FETCH_TAGS = "FETCH_TAGS";
 export function fetchTags() {
-  console.log("fetching recipes");
   return dispatch => {
     dispatch(requestRecipes());
 

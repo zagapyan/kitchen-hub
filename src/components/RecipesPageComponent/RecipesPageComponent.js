@@ -1,57 +1,47 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
-import { Book } from "react-feather";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { fetchRecipes, filterClear } from "../../actions/domainActions";
+import {BeatLoader} from "react-spinners";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
+import {fetchRecipes, filterClear} from "../../actions/domainActions";
 import SearchComponent from "../SearchComponent";
-import RecipeControlComponent from "../RecipeControlComponent";
-import RecipesListComponent from '../RecipesListComponent'
+import ListItemComponent from '../ListItemComponent';
+import CardItemComponent from '../CardItemComponent';
+
 import styles from "./RecipesPageComponent.scss";
-import { BeatLoader } from 'react-spinners'
 
 class RecipesPageComponent extends Component {
   componentWillUnmount() {
-    this.props.filterClear();
+    this
+      .props
+      .filterClear();
   }
   render() {
     return (
-      <div className="RecipesPageComponent">
-        <nav className="panel">
-          <div className="panel-heading">
-            <SearchComponent />
-          </div>
-          {this.props.recipes ? (
-            this.props.recipes.length > 0 ? (
-              this.props.recipes.map(o => (
-                <span className="panel-block" key={o._id.toString()}>
-                  <span className="title-container level is-marginless">
-                    <span className="panel-icon">
-                      <Book size="14" />
-                    </span>
-                    <NavLink to={`/recipe/${o._id}`} className="recipe-link">
-                      {o.title}
-                    </NavLink>
-                  </span>
-                  <RecipeControlComponent
-                    props={o}
-                    className="recipe-control"
-                  />
-                </span>
-              ))
-            ) : (
-              <span className="panel-block">
-                {this.props.isTagPage
-                  ? "You have no recipes pertaining to this tag. Add some tags!"
-                  : "You currently have no recipes. Add start adding some!"}
-              </span>
-            )
-          ) : (
-            <div className="section has-text-centered">
-              <BeatLoader />
-            </div>
-          )}
+      <div className="RecipesPageComponent panel">
+        <div className={ this.props.isListStyle ? "panel-heading" : "panel-heading column is-12"}>
+          <SearchComponent/>
+        </div>
+        <nav className={`RecipeListContainer ${this.props.isListStyle ? 'panel-body': 'columns panel-body column'}`}>
+
+          {this.props.recipes
+            ? (this.props.recipes.map(o => this.props.isListStyle ? (
+            
+            <ListItemComponent
+              props={o}
+              key={o
+              ._id
+              .toString()}/>) : (<CardItemComponent
+                props={o}
+                key={o
+                ._id
+                .toString()}/>)
+            ))
+            : (
+              <div className="column has-text-centered is-fluid">
+                <BeatLoader/>
+              </div>
+            )}
         </nav>
       </div>
     );
@@ -65,22 +55,14 @@ RecipesPageComponent.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return {
-    fetchRecipes,
-    filterClear
-  };
+  return {fetchRecipes, filterClear, isListStyle: state.clientReducer.isListStyle};
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      fetchRecipes,
-      filterClear
-    },
-    dispatch
-  );
+  return bindActionCreators({
+    fetchRecipes,
+    filterClear
+  }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  RecipesPageComponent
-);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesPageComponent);

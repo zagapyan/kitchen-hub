@@ -1,6 +1,7 @@
 import {
   SET_STATUS,
   REMOVE_STATUS,
+  TOGGLE_LIST_STYLE,
   PAGE_CHANGE,
   PAGE_RESET
 } from '../actions/clientActions';
@@ -10,6 +11,7 @@ const initalState={
   statusType: '',
   statusClass: '',
   statusText: '',
+  isListStyle : false,
   isFetchLocked: false,
   page: 1,
 }
@@ -29,6 +31,11 @@ export default function statusReducer(state=initalState, action) {
         statusShow: false,
         statusClass: '',
         statusText: '',
+      }
+    case TOGGLE_LIST_STYLE:
+      return{
+        ...state,
+        isListStyle: !state.isListStyle
       }
     case PAGE_CHANGE:
       return{

@@ -114,6 +114,7 @@ class EditPageComponent extends Component {
                       </div>
                       <div className="field">
                         <label className="label has-text-left">Tags</label>
+                        {/* {JSON.stringify(this.props.currentRecipe.tags)} */}
                         {this.props.editableTags ? (
                           <ul className="field is-grouped is-grouped-multiline">
                             {this.props.editableTags.map((tag, key) =>{
@@ -167,7 +168,10 @@ class EditPageComponent extends Component {
                       <label className="label has-text-left">
                         Image
                       </label>
-                      <img src={this.props.currentRecipe.imgSrc} alt={this.props.currentRecipe.title}/>
+                      <img
+                        src={this.props.currentRecipe.imgSrc}
+                        onError={(e)=>{e.target.src = `${process.env.PUBLIC_URL}/fallback.jpg`}}
+                        alt={this.props.currentRecipe.title}/>
                       {/* <div className="control">
                         <input
                           type="text"

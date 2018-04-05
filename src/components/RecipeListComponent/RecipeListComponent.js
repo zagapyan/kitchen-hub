@@ -38,7 +38,7 @@ class RecipeListComponent extends Component {
                 .toString()}/>)
             ))
             : (
-              <div className="section has-text-centered">
+              <div className="column has-text-centered is-fluid">
                 <BeatLoader/>
               </div>
             )}

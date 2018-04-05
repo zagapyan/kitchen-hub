@@ -6,7 +6,7 @@ import RecipeControlComponent from "../RecipeControlComponent";
 import styles from './ListItemComponent.scss'
 
 const ListItemComponent = ({props}) => (
-  <span className="panel-block">
+  <span className="ListItemComponent panel-block">
     <span className="title-container level is-marginless">
       <span className="panel-icon">
         <Book size="14"/>

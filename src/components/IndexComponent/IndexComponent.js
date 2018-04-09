@@ -23,6 +23,7 @@ class IndexComponent extends Component {
     const page = nextProps.page;
 
     if (nextProps.match.params.tag !== this.props.match.params.tag) {
+      let tag = nextProps.match.params.tag;
       this.handleFetchRecipes({ tag, page });
     }
     if (
@@ -37,6 +38,7 @@ class IndexComponent extends Component {
     if (
       this.props.match.params.pageNumber !== nextProps.match.params.pageNumber
     ){
+      // console.log('new page number from router')
       this.handleChangePage({ page: nextProps.match.params.pageNumber });
     }
   }

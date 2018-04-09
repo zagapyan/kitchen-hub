@@ -8,7 +8,8 @@ import { createBrowserHistory } from 'history';
 const middleware = applyMiddleware(
   promiseMiddleware(),
   thunk,
-  createLogger())
+  // createLogger()
+)
 
 function RunDevToolExtensionIfNotInProduction () {
   const shouldExposeState =

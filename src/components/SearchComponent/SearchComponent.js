@@ -23,7 +23,6 @@ class SearchComponent extends Component {
     this.refs.searchComponentInput.value = "";
   }
   handleListStyle = () => {
-    console.log('handleListStyle')
     this
       .props
       .toggleListStyle()
@@ -88,7 +87,6 @@ SearchComponent.propTypes = {
 };
 
 function mapStateToProps(state) {
-  console.log(state)
   return {filterRecipe, filterClear, isListStyle: state.clientReducer.isListStyle};
 }
 

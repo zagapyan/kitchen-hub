@@ -83,7 +83,7 @@ export default function recipeReducer(state = initalState, action) {
       return {
         ...state,
         timeStamp: action.timeStamp,
-        recipes: action.recipes.reverse()
+        recipes: action.recipes
       };
     case DELETE_RECIPE:
       return {

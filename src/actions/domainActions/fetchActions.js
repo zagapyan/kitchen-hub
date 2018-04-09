@@ -38,7 +38,6 @@ export function rejectRecipes(err) {
 export const FETCH_RECIPES = "FETCH_RECIPES";
 export function fetchRecipes(options) {
   const skip = (options.page - 1) * 10;
-
   const filterParams = options.tag !== undefined ? `&tags=${options.tag}` : "";
   // const queryParams = `?limit=10&skip=${skip}${filterParams}`
   const queryParams = `?${filterParams}`
@@ -120,7 +119,7 @@ export const RECEIVE_FETCH_TAGS = "RECEIVE_FETCH_TAGS";
 export function receiveFetchTags(recipes) {
   return {
     type: RECEIVE_FETCH_TAGS,
-    recipes: recipes.reverse(),
+    recipes: recipes,
     fetching: false,
     timeStamp: Date.now()
   };

@@ -101,6 +101,22 @@ export function fetchSingleRecipe(id) {
   };
 }
 
+export const RESET_SINGLE_RECIPE = "RESET_SINGLE_RECIPE";
+export function resetSingleRecipe(){
+  return{
+    type: RESET_SINGLE_RECIPE,
+    currentRecipe: [{
+      title: '',
+      description: '',
+      imgSrc: '',
+      tags: [],
+      _id: '',
+      url: '',
+      __v: ''
+    }]
+  }
+}
+
 /*
 * ========================================
 * MULTIPLE TAGS

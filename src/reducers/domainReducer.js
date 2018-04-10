@@ -38,7 +38,8 @@ import {
 
   // NEXT ACTIONS
   TRIGGER_NEXT_ACTION,
-  HOLD_NEXT_ACTION
+  HOLD_NEXT_ACTION,
+  RESET_SINGLE_RECIPE
 } from "../actions/domainActions";
 
 /*
@@ -109,6 +110,7 @@ export default function recipeReducer(state = initalState, action) {
         ...state
       };
     case RECEIVE_SINGLE_RECIPE:
+    case RESET_SINGLE_RECIPE:
       return {
         ...state,
         timeStamp: action.timeStamp,
@@ -122,7 +124,6 @@ export default function recipeReducer(state = initalState, action) {
       return {
         ...state
       };
-
     /*
     * ========================================
     * FILTERING RECIPE FROM MULTIPLE RECIPES

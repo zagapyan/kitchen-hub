@@ -5,13 +5,17 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { BookOpen, Edit } from "react-feather";
 import {
-  fetchSingleRecipe
+  fetchSingleRecipe,
+  resetSingleRecipe,
 } from "../../actions/domainActions";
 import styles from "./SingleRecipeViewComponent.scss";
 
 class SingleRecipeViewComponent extends Component {
   componentDidMount() {
     this.props.fetchSingleRecipe(this.props.recipeID);
+  }
+  componentWillUnmount(){
+    this.props.resetSingleRecipe()
   }
   render() {
     const currentRecipe = this.props.currentRecipe;
@@ -94,7 +98,9 @@ class SingleRecipeViewComponent extends Component {
 
 SingleRecipeViewComponent.propTypes = {
   recipeID: PropTypes.string,
-  recipes: PropTypes.array
+  recipes: PropTypes.array,
+  fetchSingleRecipe: PropTypes.func,
+  resetSingleRecipe: PropTypes.func,
 };
 
 SingleRecipeViewComponent.defaultProps = {
@@ -105,6 +111,7 @@ SingleRecipeViewComponent.defaultProps = {
 function mapStateToProps(state) {
   return {
     fetchSingleRecipe,
+    resetSingleRecipe,
     currentRecipe: state.domainReducer.currentRecipe,
   };
 }
@@ -113,7 +120,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       fetchSingleRecipe,
-
+      resetSingleRecipe,
     },
     dispatch
   );

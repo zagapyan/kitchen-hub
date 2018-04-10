@@ -14,7 +14,9 @@ import {
   REJECT_SINGLE_RECIPE,
   rejectSingleRecipe,
   FETCH_SINGLE_RECIPE,
-  fetchSingleRecipe
+  fetchSingleRecipe,
+  RESET_SINGLE_RECIPE,
+  resetSingleRecipe
 } from './fetchActions'
 
 import {
@@ -93,6 +95,8 @@ export {
   rejectSingleRecipe,
   FETCH_SINGLE_RECIPE,
   fetchSingleRecipe,
+  RESET_SINGLE_RECIPE,
+  resetSingleRecipe,
 
   // delete recipes
   REQUEST_DELETE_RECIPE,

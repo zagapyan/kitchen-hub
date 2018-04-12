@@ -1,14 +1,19 @@
 import React from 'react'
+import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 
 import RecipeControlComponent from './RecipeControlComponent'
 
 describe('RecipeControlComponent', () => {
   let component, props
-
+  let initialState = {
+    recipes: []
+  }
+  let store = mockStore(initialState)
   beforeEach(() => {
     props = {}
-    component = shallow(<RecipeControlComponent {...props} />)
+    component = shallow(<Provider> store={store}<RecipeControlComponent {...props} /></Provider>)
   })
 
   it('should', () => {

@@ -7,13 +7,15 @@ import RecipeControlComponent from './RecipeControlComponent'
 
 describe('RecipeControlComponent', () => {
   let component, props
-  let initialState = {
-    recipes: []
-  }
+  let middlewares = []
+  let mockStore = configureStore(middlewares)
+  
+  let initialState = {}
   let store = mockStore(initialState)
+  
   beforeEach(() => {
     props = {}
-    component = shallow(<Provider> store={store}<RecipeControlComponent {...props} /></Provider>)
+    component = shallow(<Provider store={store}><RecipeControlComponent {...props} /></Provider>)
   })
 
   it('should', () => {

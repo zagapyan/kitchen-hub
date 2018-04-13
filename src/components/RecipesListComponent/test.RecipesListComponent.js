@@ -1,14 +1,14 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import RecipeListComponent from './RecipeListComponent'
+import RecipesListComponent from './RecipesListComponent'
 
-describe('RecipeListComponent', () => {
+describe('RecipesListComponent', () => {
   let component, props
 
   beforeEach(() => {
     props = {}
-    component = shallow(<RecipeListComponent {...props} />)
+    component = shallow(<RecipesListComponent {...props} />)
   })
 
   it('should', () => {

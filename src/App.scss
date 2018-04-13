@@ -1,3 +1,6 @@
+.container{
+  max-width: 960px;
+}
 .App {
   text-align: center;
 }
@@ -29,4 +32,8 @@
 
 .hidden{
   display: none;
+}
+
+.pagination-previous[disabled], .pagination-next[disabled], .pagination-link[disabled]{
+  pointer-events: none;
 }

@@ -1,10 +1,10 @@
 import axios from 'axios'
 import endpoint from '../../utils/endpoint'
 import config from '../../utils/headers'
+import { holdNextAction, triggerNextAction } from "./nextActions";
 
 export const REQUEST_DELETE_RECIPE = 'REQUEST_DELETE_RECIPE'
 export function requestDeleteRecipe(){
-  console.log('requestDeleteRecipe')
   return{
     type: REQUEST_DELETE_RECIPE,
     fetching: true,
@@ -13,28 +13,33 @@ export function requestDeleteRecipe(){
 
 export const RECEIVE_DELETE_RECIPE = 'RECEIVE_DELETE_RECIPE'
 export function receiveDeleteRecipe(deletedRecipe){
-  console.log('recipe deleted:', deletedRecipe)
-  return{
-    type: RECEIVE_DELETE_RECIPE,
-    fetching: false
+  return dispatch => {
+    dispatch(triggerNextAction())
+    return{
+      type: RECEIVE_DELETE_RECIPE,
+      fetching: false
+    }
   }
 }
 
 export const REJECT_DELETE_RECIPE = 'REJECT_DELETE_RECIPE'
 export function rejectDeleteRecipe(err){
-  return{
-    type: REJECT_DELETE_RECIPE,
-    fetching: false,
-    message: err
+  return dispatch => {
+    dispatch(triggerNextAction())
+    return{
+      type: REJECT_DELETE_RECIPE,
+      fetching: false,
+      message: err
+    }
   }
 }
 
 export const DELETE_RECIPE = 'DELETE_RECIPE'
 export function deleteRecipe(id){
-  console.log(id)
   let deleteEndPoint = `${endpoint}/${id}`
   return dispatch => {
     dispatch(requestDeleteRecipe())
+    dispatch(holdNextAction())
     return axios.delete(deleteEndPoint, config.headers)
       .then(response => response.data)
       .then(json => dispatch(receiveDeleteRecipe(json)))

@@ -1,17 +1,17 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import HeaderComponent from './HeaderComponent'
+import HeaderComponent from "./HeaderComponent";
 
-describe('HeaderComponent', () => {
-  let component, props
+describe("HeaderComponent", () => {
+  let component, props;
 
   beforeEach(() => {
-    props = {}
-    component = shallow(<HeaderComponent {...props} />)
-  })
+    props = {};
+    component = shallow(<HeaderComponent {...props} />);
+  });
 
-  it('should', () => {
-    expect(component).toMatchSnapshot()
-  })
-})
+  it("should", () => {
+    expect(component).toMatchSnapshot();
+  });
+});

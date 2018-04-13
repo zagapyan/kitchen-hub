@@ -1,17 +1,17 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import NoMatchComponent from './NoMatchComponent'
+import NoMatchComponent from "./NoMatchComponent";
 
-describe('NoMatchComponent', () => {
-  let component, props
+describe("NoMatchComponent", () => {
+  let component, props;
 
   beforeEach(() => {
-    props = {}
-    component = shallow(<NoMatchComponent {...props} />)
-  })
+    props = {};
+    component = shallow(<NoMatchComponent {...props} />);
+  });
 
-  it('should', () => {
-    expect(component).toMatchSnapshot()
-  })
-})
+  it("should", () => {
+    expect(component).toMatchSnapshot();
+  });
+});

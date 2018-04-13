@@ -1,15 +1,14 @@
-import RecipePageComponent from './RecipePageComponent'
-import { connect } from 'react-redux'
+import RecipePageComponent from "./RecipePageComponent";
+import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {}
-}
+  return {};
+};
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
-}
+  return {};
+};
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(RecipePageComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  RecipePageComponent
+);

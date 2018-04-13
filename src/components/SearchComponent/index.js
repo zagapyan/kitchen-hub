@@ -1,15 +1,12 @@
-import SearchComponent from './SearchComponent'
-import { connect } from 'react-redux'
+import SearchComponent from "./SearchComponent";
+import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {}
-}
+  return {};
+};
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
-}
+  return {};
+};
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(SearchComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchComponent);

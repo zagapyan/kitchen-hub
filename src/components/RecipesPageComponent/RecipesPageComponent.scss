@@ -1,0 +1,25 @@
+.RecipesPageComponent{
+  text-align: left;
+  margin-bottom: 1.5rem;
+
+  .title-container{
+    flex-grow: 1;
+  }
+  .RecipeListContainer{
+    flex-wrap: wrap;
+    .panel-block {
+      .recipe-link{
+        flex-grow: 2;
+      }
+      @media(max-width: 768px){
+        flex-direction: column;
+        .title-container{
+          width: 100%;
+          .panel-icon{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -58,18 +58,22 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "updateSnapshot": "./node_modules/jest/bin/jest.js --updateSnapshot"
   },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/test_utils/enzymeSetup.js",
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/src/test_utils/setupFile.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}",
+      "<rootDir>/src/**/(spec|test).*.{js,jsx,mjs}"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",
@@ -103,7 +107,13 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jsdom": "^11.7.0",
     "node-sass": "^4.7.2",
+    "react-test-renderer": "^16.3.1",
+    "react-test-utils": "^0.0.1",
+    "redux-mock-store": "^1.5.1",
     "sass-loader": "^6.0.6"
   }
 }

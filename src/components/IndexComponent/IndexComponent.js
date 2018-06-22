@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import styles from "./IndexComponent.scss";
-import HeaderComponent from "../HeaderComponent";
 import RecipesPageComponent from "../RecipesPageComponent";
 import PushURLComponent from "../PushURLComponent";
 import PaginationComponent from "../PaginationComponent";
@@ -17,6 +16,7 @@ class IndexComponent extends Component {
     const tag = this.props.match.params.tag;
     const page = this.props.match.params.pageNumber;
     this.handleChangePage({page});
+    this.handleFetchRecipes({ tag, page });
   }
   componentWillReceiveProps(nextProps) {
     const tag = this.props.match.params.tag;
@@ -58,7 +58,6 @@ class IndexComponent extends Component {
       : this.props.recipes;
     return (
       <div className="IndexComponent">
-        <HeaderComponent />
         <div className="section">
           <div className="container">
             <PushURLComponent />

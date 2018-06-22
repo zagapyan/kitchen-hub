@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect} from 'react-router-dom'
+import HeaderComponent from '../HeaderComponent'
 import IndexComponent from '../IndexComponent'
 import RecipePageComponent from '../RecipePageComponent'
 import EditPageComponent from '../EditPageComponent'
@@ -14,6 +15,7 @@ class Routes extends Component {
     render() {
         return (
         <main className="Routes">
+          <HeaderComponent />
           <Switch>
             {/* <Redirect exact path="/" to="/page/1"/>
             <Route exact path="/page/:pageNumber" component={IndexComponent}/> */}

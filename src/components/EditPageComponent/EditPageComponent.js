@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Plus } from "react-feather";
-import HeaderComponent from "../HeaderComponent";
 import {
   fetchSingleRecipe,
   updateRecipe,
@@ -69,7 +69,6 @@ class EditPageComponent extends Component {
   render() {
     return (
       <div className="EditPageComponent">
-        <HeaderComponent />
         <div className="section">
           <div className="container">
             <div className="card">

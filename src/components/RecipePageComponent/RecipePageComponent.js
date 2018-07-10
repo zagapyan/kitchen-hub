@@ -7,7 +7,6 @@ import RecipesListComponent from '../RecipesListComponent'
 import { fetchRecipes } from '../../actions/domainActions'
 import SingleRecipeViewComponent from '../SingleRecipeViewComponent'
 import endpoint from '../../utils/endpoint'
-import { HeaderComponent } from '../HeaderComponent/HeaderComponent';
 
 class RecipePageComponent extends Component {
   constructor(props) {
@@ -27,7 +26,6 @@ class RecipePageComponent extends Component {
   render() {
     return (
       <div className = "RecipePageComponent">
-        <HeaderComponent />
         <SingleRecipeViewComponent
             recipeID={this.props.match.params.recipe}
             recipes={this.props.recipes}

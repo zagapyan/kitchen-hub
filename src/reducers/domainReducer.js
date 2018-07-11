@@ -61,7 +61,8 @@ const initalState = {
   filtering: false,
   fetching: false,
   triggerNextAction: false,
-  filterPayload: ""
+  filterPayload: "",
+  isLoggedIn: false
 };
 
 export default function recipeReducer(state = initalState, action) {

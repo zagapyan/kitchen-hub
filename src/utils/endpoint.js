@@ -1,3 +1,10 @@
-const endpoint = /localhost/.test(window.location.hostname) ? 'http://localhost:3000/api/recipes' : 'https://open.zigmundsunoo.com/api/recipes';
+const domain = /localhost/.test(window.location.hostname) ? 'http://localhost:1337' : 'https://api-kitchen-hub.zigmundsunoo.com'
+
+const endpoint = {
+  domain : domain,
+  login: domain+'/auth/local',
+  recipes: domain+'/recipes'
+}
+
 
 export default endpoint;

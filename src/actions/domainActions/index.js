@@ -1,4 +1,13 @@
 import {
+  SEND_AUTH_CREDENTIALS,
+  sendAuthCredentials,
+  RECEIVE_AUTH_CREDENTIALS,
+  receiveAuthCredentials,
+  IS_AUTHED,
+  isAuthed
+} from './authActions'
+
+import {
   REQUEST_RECIPES,
   requestRecipes,
   RECEIVE_RECIPES,
@@ -36,7 +45,6 @@ import {
   FILTER_CLEAR,
   filterClear
 } from './filterActions'
-
 
 import {
   REQUEST_SEND_URL,
@@ -147,5 +155,12 @@ export {
   triggerNexAction,
   HOLD_NEXT_ACTION,
   holdNextAction,
-}
 
+  // AUTHENTICATION
+  SEND_AUTH_CREDENTIALS,
+  sendAuthCredentials,
+  RECEIVE_AUTH_CREDENTIALS,
+  receiveAuthCredentials,
+  IS_AUTHED,
+  isAuthed
+}

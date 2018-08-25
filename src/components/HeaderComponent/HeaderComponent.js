@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HeaderComponent.scss";
 
-export const HeaderComponent = ({isLoggedIn}) => (
+export const HeaderComponent = ({isAuthed}) => (
   <section className="hero is-primary is-warning is-bold">
     <div className="hero-body">
       <div className="container">
@@ -14,7 +14,7 @@ export const HeaderComponent = ({isLoggedIn}) => (
         <h2 className="subtitle has-text-left has-text-grey-dark">
           an application by Zigmund Sun Oo©
         </h2>
-        {/* {JSON.stringify({isLoggedIn})} */}
+        {/* {JSON.stringify({isAuthed})} */}
       </div>
     </div>
   </section>

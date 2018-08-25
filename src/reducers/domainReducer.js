@@ -39,7 +39,12 @@ import {
   // NEXT ACTIONS
   TRIGGER_NEXT_ACTION,
   HOLD_NEXT_ACTION,
-  RESET_SINGLE_RECIPE
+  RESET_SINGLE_RECIPE,
+
+  // AUTHENTICATION
+  SEND_AUTH_CREDENTIALS,
+  RECEIVE_AUTH_CREDENTIALS,
+  IS_AUTHED,
 } from "../actions/domainActions";
 
 /*
@@ -62,7 +67,7 @@ const initalState = {
   fetching: false,
   triggerNextAction: false,
   filterPayload: "",
-  isLoggedIn: false
+  isAuthed: false
 };
 
 export default function recipeReducer(state = initalState, action) {
@@ -224,6 +229,24 @@ export default function recipeReducer(state = initalState, action) {
         triggerNextAction: action.triggerNextAction
       };
 
+    /*
+    * ========================================
+    * NEXT ACTIONS
+    * ========================================
+    */
+   
+    case SEND_AUTH_CREDENTIALS:
+    case RECEIVE_AUTH_CREDENTIALS:
+      return{
+        ...state,
+        fetching: action
+      };
+
+    case IS_AUTHED:
+      return{
+        ...state,
+        isAuthed: action.isAuthed 
+      }
     /*
     * ========================================
     * FALL THROUGH

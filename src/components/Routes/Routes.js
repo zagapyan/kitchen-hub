@@ -12,32 +12,34 @@ import NoMatchComponent from '../NoMatchComponent'
 import LoginComponent from '../LoginComponent'
 import style from './Routes.scss'
 
-const PrivateRoute = ({ component: Component, ...rest }) =>
-  <Route {...rest} render={props =>
-    props.isLoggedIn
-      ? <Component {...props} />
-      : <Redirect to={{ pathname: "/login", state: { from: props.location } }} />}
-  />
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props => rest.isAuthed
+      ? (<Component {...props} />)
+      : (<Redirect to={{ pathname: "/login", state: { from: props.location } }} />)
+    } />);
 
 class Routes extends Component {
   constructor(props) {
     super(props)
   }
-  static propTypes={
-    isLoggedIn: PropTypes.bool
+  static propTypes = {
+    isAuthed: PropTypes.bool
   }
   render() {
     return (
       <main className="Routes">
-        <HeaderComponent isLoggedIn={this.props.isLoggedIn}/>
+        {this.props.isAuthed ? 'You are authenticateed' : 'Nope'}
+        <HeaderComponent isAuthed={this.props.isAuthed} />
         <Switch>
           <Route exact path="/login" component={LoginComponent} />
           {/* <Redirect exact path="/" to="/page/1"/>
             <Route exact path="/page/:pageNumber" component={IndexComponent}/> */}
-          <PrivateRoute exact path="/" component={IndexComponent} />
-          <PrivateRoute exact path="/tags/:tag" component={IndexComponent} />
-          <PrivateRoute exact path="/recipe/:recipe" component={RecipePageComponent} />
-          <PrivateRoute exact path="/edit/:recipe" component={EditPageComponent} />
+          <PrivateRoute exact path="/" component={IndexComponent} {...this.props} />
+          <PrivateRoute exact path="/tags/:tag" component={IndexComponent} {...this.props} />
+          <PrivateRoute exact path="/recipe/:recipe" component={RecipePageComponent} {...this.props} />
+          <PrivateRoute exact path="/edit/:recipe" component={EditPageComponent} {...this.props} />
           <Route component={NoMatchComponent} />
         </Switch>
         <FooterComponent />
@@ -46,13 +48,9 @@ class Routes extends Component {
   }
 }
 
-// Routes.propTypes = {
-//   isLoggedIn: PropTypes.bool
-// };
-
 function mapStateToProps(state) {
   return {
-    isLoggedIn: state.domainReducer.isLoggedIn,
+    isAuthed: state.domainReducer.isAuthed,
   };
 }
 

@@ -1,14 +1,14 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import Routes from './Routes'
+import RecipesPage from './RecipesPage'
 
-describe('Routes', () => {
+describe('RecipesPage', () => {
   let component, props
 
   beforeEach(() => {
     props = {}
-    component = shallow(<Routes {...props} />)
+    component = shallow(<RecipesPage {...props} />)
   })
 
   it('should', () => {

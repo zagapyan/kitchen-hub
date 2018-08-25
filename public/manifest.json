@@ -1,30 +1,15 @@
 {
-  "short_name": "Kitchen Hub",
-  "name": "Kitchen Hub | Zigmund Sun Oo",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
-      "src": "pizza_16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "pizza_48.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
-      "src": "pizza_128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "pizza_512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
     }
   ],
-  "start_url": "/",
+  "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#333333",
+  "theme_color": "#000000",
   "background_color": "#ffffff"
 }

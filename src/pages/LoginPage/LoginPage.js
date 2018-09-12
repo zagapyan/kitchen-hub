@@ -16,10 +16,14 @@ class LoginPage extends Component {
     }
     return (
       <div className="LoginPage">
-        <h1>Login</h1>
-        <input type="text" onChange={input => identifier = input.target.value }/><br />
-        <input type="password" onChange={input => password = input.target.value }/><br />
-        <button onClick={() => requestSendAuth({ identifier, password })}>Log In</button>
+        <div className="field">
+          <div className="control">
+            <h1 className="title is-1">Login</h1>
+            <input className="input" type="text" onChange={input => identifier = input.target.value }/><br />
+            <input className="input" type="password" onChange={input => password = input.target.value }/><br />
+            <button className="button is-primary" onClick={() => requestSendAuth({ identifier, password })}>Log In</button>
+          </div>
+        </div>
       </div>
     )
   }

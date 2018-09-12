@@ -18,6 +18,8 @@ import {
 } from '../actions'
 
 const recipeState = {
+  recipeLists: [],
+  currentList: [],
   recipes: [],
   currentRecipe: {},
 }

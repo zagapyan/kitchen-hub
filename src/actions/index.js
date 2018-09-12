@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { endpoint, config } from '../utils';
 
+/*
+* ==========
+* RECIPES
+* ==========
+*/
+
 export const FETCH_TRANSIENT = 'FETCH_TRANSIENT';
 export const fetchTransient = (payload) => {
   return {
@@ -88,6 +94,48 @@ export const clearCurrentRecipe = (payload) => {
     message: 'Recipe Cleared'
   }
 }
+
+/*
+* ====================
+* RECIPE LIST
+* ====================
+*/
+
+export const REQUEST_FETCH_RECIPES_LIST = 'REQUEST_FETCH_RECIPES_LIST';
+export const requestFetchRecipesList = () => dispatch => {
+  dispatch(fetchTransient())
+  return axios
+    .get(endpoint.recipeList, config)
+    .then(response => response.data)
+    .then(json => dispatch(fetchRecipesSuccess(json)))
+    .catch(err => dispatch(fetchRecipesRejected({ message: err.toString() })));
+}
+
+export const FETCH_RECIPE_LISTS_SUCCESS = 'FETCH_RECIPE_LISTS_SUCCESS';
+export const fetchRecipesListSuccess = (payload) => {
+  return {
+    type: FETCH_RECIPE_LISTS_SUCCESS,
+    isFetching: false,
+    recipes: payload.recipes,
+    message: 'Fetch Success!'
+  }
+}
+
+export const FETCH_RECIPES_LIST_REJECTED = 'FETCH_RECIPES_LIST_REJECTED';
+export const fetchRecipesListRejected = ({ message }) => {
+  return {
+    type: FETCH_RECIPES_LIST_REJECTED,
+    isFetching: false,
+    recipes: [],
+    message: message
+  }
+}
+
+/*
+* ====================
+* AUTHENTICATION
+* ====================
+*/
 
 export const REQUEST_SEND_AUTH = 'REQUEST_SEND_AUTH';
 export const requestSendAuth = payload => dispatch => {

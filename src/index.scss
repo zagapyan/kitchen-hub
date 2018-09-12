@@ -1,0 +1,22 @@
+@import '../node_modules/bulma/bulma.sass';
+@import "../node_modules/bulma/sass/utilities/functions.sass";
+@import "../node_modules/bulma/sass/utilities/derived-variables.sass";
+
+$purple: hsl(275,87%,45%);
+$purple-invert: findColorInvert($purple);
+
+$addColors: (
+  "purple":($purple, $purple-invert),
+);
+
+$colors: map-merge($colors, $addColors);
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#logo{
+  width: 48px;
+}

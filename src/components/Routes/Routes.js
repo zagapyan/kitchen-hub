@@ -33,11 +33,11 @@ class Routes extends Component {
     return <Redirect to="/login" />
   }
   render() {
-    const { isAuthed, hasToken } = this.props;
-    const renderIfAuthed = ({isAuthed, hasToken}) => isAuthed && hasToken ? (
+    const { isAuthed, hasToken, user } = this.props;
+    const renderIfAuthed = ({ isAuthed, hasToken }) => isAuthed && hasToken ? (
       <span className="level-right">
         <span className=" level-item">
-          {JSON.stringify(this.props)}
+          {user ? <p className="title is-4">Hello {user.username}!</p> : false}
           <button className="button is-primary" onClick={this.handleLogout}>Logout</button><br />
         </span>
       </span>
@@ -50,12 +50,12 @@ class Routes extends Component {
               <span className="level-left">
                 <span className="level-item">
                   <h1 className="title is-4 level-item">
-                    <img id="logo" src={Logo} title="KitchenHub" />
-                    KitchenHub
+                    <img id="logo" src={Logo} title="SAVR" />
+                    SAVR
                 </h1>
                 </span>
               </span>
-              {renderIfAuthed({isAuthed, hasToken})}
+              {renderIfAuthed({ isAuthed, hasToken })}
             </section>
           </nav>
           <Switch>
@@ -77,7 +77,8 @@ class Routes extends Component {
 const mapStateToProps = state => {
   return {
     isAuthed: state.authenticationReducer.isAuthed,
-    hasToken: state.tokenReducer.hasToken
+    hasToken: state.tokenReducer.hasToken,
+    user: state.authenticationReducer.user
   }
 }
 

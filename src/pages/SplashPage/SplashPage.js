@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 const SplashPage = ({}) => (
   <div className="SplashPage">
-    <h1>Welcome to KitchenHub!</h1>
+    <h1>Welcome to SAVR!</h1>
     <Link to="/recipes">Get Started</Link>
   </div>
 );

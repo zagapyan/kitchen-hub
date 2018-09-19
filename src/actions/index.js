@@ -145,7 +145,7 @@ export const requestSendAuth = payload => dispatch => {
   }
 
   dispatch(authTransient());
-  
+
   return axios.post(endpoint.login, { ...data }, config)
     .then(response => response.data)
     .then(json => {
@@ -228,24 +228,40 @@ export const checkToken = () => dispatch => {
     const token = localStorage.khtoken;
     const options = Object.assign({},
       config,
-      { headers: Object.assign({},
-        config.headers,
-        {Authorization: `Bearer ${token}`})
-    });
-    
+      {
+        headers: Object.assign({},
+          config.headers,
+          { Authorization: `Bearer ${token}` })
+      });
+
     return axios.get('http://localhost:1337/user', options)
       .then(response => response.data)
       .then(json => {
-        console.log(json)
+        const user = json[0]
         dispatch(authSuccess())
-        dispatch(setToken({jwt: token}))
+        dispatch(setToken({ jwt: token }))
+        dispatch(setUser(user))
       })
       .catch(err => {
         console.log(err)
         dispatch(authRejected({ message: 'Incorrect Token' }))
+        dispatch(setUser({}))
       });
   }
   else {
     dispatch(authRejected({ message: 'No Token' }))
   }
 }
+
+export const SET_USER = 'SET_USER';
+export const setUser = user => ({
+  type: SET_USER,
+  user: {
+    ...user,
+    _id: 'id_hidden',
+    role: {
+      ...user.role,
+      _id: 'id_hidden'
+    }
+  }
+})

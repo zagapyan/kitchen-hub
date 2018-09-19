@@ -14,7 +14,8 @@ import {
   AUTH_SUCCESS,
   SET_TOKEN,
   REMOVE_TOKEN,
-  CHECK_TOKEN
+  CHECK_TOKEN,
+  SET_USER
 } from '../actions'
 
 const recipeState = {
@@ -22,6 +23,7 @@ const recipeState = {
   currentList: [],
   recipes: [],
   currentRecipe: {},
+  user: {}
 }
 
 export const recipesReducer = (state=recipeState, action)=>{
@@ -87,6 +89,11 @@ export const authenticationReducer = (state=authState, action)=>{
         isAuthed: action.isAuthed,
         isFetching: action.isFetching
       };
+    case SET_USER: 
+      return{
+        ...state,
+        user: action.user
+      }
     default:
       return state
   }

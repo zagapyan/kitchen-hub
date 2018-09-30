@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-// import { removeToken, authRejected } from '../../actions'
 import { testIfValidUrl, fetchMetaData } from '../../utils/functions';
-import '../../actions'
+import { requestPostRecipe } from '../../actions'
 import './RecipesPage.css'
 
 class RecipesPage extends Component {
@@ -54,17 +52,11 @@ class RecipesPage extends Component {
     preSendPrompt: { ...this.props.preSendPrompt }
   })
 
-  // handleLogout = () => {
-  //   const { removeToken, authRejected } = this.props;
-  //   removeToken()
-  //   authRejected({ message: 'logged out!' })
-
-  //   return <Redirect to="/login" />
-  // }
-
   handleChange = (url) => this.setState({ url })
 
   render() {
+    const { requestPostRecipe } = this.props;
+    const { preSendPrompt } = this.state;
     return (
       <React.Fragment>
         <div className="RecipesPage">
@@ -92,7 +84,7 @@ class RecipesPage extends Component {
                   ? (
                     <React.Fragment>
                       {this.state.preSendPrompt.imgSrc.length ? <img src={this.state.preSendPrompt.imgSrc} title={this.state.preSendPrompt.title} className="modal-image" /> : false}
-                      {this.state.preSendPrompt.title.length ? <h1>{this.state.preSendPrompt.title}</h1> : false}
+                      {this.state.preSendPrompt.title.length ? <h1 className="title is-4">{this.state.preSendPrompt.title}</h1> : false}
                       {this.state.preSendPrompt.description ? <p>{this.state.preSendPrompt.description}</p> : false}
                     </React.Fragment>
                   )
@@ -100,7 +92,7 @@ class RecipesPage extends Component {
               }
             </section>
             <footer className="modal-card-foot">
-              <button className="button is-success" onClick={() => console.log('send recipe')}>Save changes</button>
+              <button className="button is-success" onClick={() => requestPostRecipe(preSendPrompt)}>Save changes</button>
               <button className="button" onClick={() => this.handleModalClose()}>Cancel</button>
             </footer>
           </div>
@@ -110,10 +102,9 @@ class RecipesPage extends Component {
   }
 }
 
-// const mapStateToProps = state => ({})
-// const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
-
 export default connect(
   () => ({}),
-  dispatch => bindActionCreators({}, dispatch)
+  dispatch => bindActionCreators({
+    requestPostRecipe
+  }, dispatch)
 )(RecipesPage)

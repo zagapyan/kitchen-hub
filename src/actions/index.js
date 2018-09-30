@@ -95,6 +95,39 @@ export const clearCurrentRecipe = (payload) => {
   }
 }
 
+
+export const REQUEST_POST_RECIPE = 'REQUEST_POST_RECIPE';
+export const requestPostRecipe = (payload) => dispatch => {
+  console.log(payload);
+  // dispatch(fetchTransient())
+  // return axios.post()
+  // return axios
+    // .get(endpoint.recipes, config)
+    // .then(response => response.data)
+    // .then(json => dispatch(fetchRecipesSuccess(json)))
+    // .catch(err => dispatch(fetchRecipesRejected({ message: err.toString() })));
+}
+
+export const POST_RECIPE_SUCCESS = 'POST_RECIPE_SUCCESS';
+export const postRecipeSuccess = (payload) => {
+  return {
+    type: POST_RECIPE_SUCCESS,
+    isFetching: false,
+    recipes: payload.recipes,
+    message: 'Post Success!'
+  }
+}
+
+export const POST_RECIPE_REJECTED = 'POST_RECIPE_REJECTED';
+export const postRecipeRejected = ({ message }) => {
+  return {
+    type: POST_RECIPE_REJECTED,
+    isFetching: false,
+    recipes: [],
+    message: message
+  }
+}
+
 /*
 * ====================
 * RECIPE LIST

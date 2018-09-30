@@ -6,7 +6,7 @@ export const endpoint = {
   domain : domain,
   login: domain+'/auth/local',
   user: domain+'/user',
-  recipes: domain+'/recipes'
+  recipe: domain+'/recipe'
 }
 
 export const config = {

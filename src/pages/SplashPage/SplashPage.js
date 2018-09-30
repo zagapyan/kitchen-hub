@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 
 const SplashPage = ({}) => (
@@ -9,8 +9,8 @@ const SplashPage = ({}) => (
   </div>
 );
 
-SplashPage.propTypes = {}
+// SplashPage.propTypes = {}
 
-SplashPage.defaultProps = {}
+// SplashPage.defaultProps = {}
 
 export default SplashPage

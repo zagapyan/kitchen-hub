@@ -20,7 +20,7 @@ export const REQUEST_FETCH_RECIPES = 'REQUEST_FETCH_RECIPES';
 export const requestFetchRecipes = () => dispatch => {
   dispatch(fetchTransient())
   return axios
-    .get(endpoint.recipes, config)
+    .get(endpoint.recipe, config)
     .then(response => response.data)
     .then(json => dispatch(fetchRecipesSuccess(json)))
     .catch(err => dispatch(fetchRecipesRejected({ message: err.toString() })));
@@ -51,7 +51,7 @@ export const requestFetchSingleRecipe = () => dispatch => {
 
   dispatch(fetchTransient())
   return axios
-    .get(endpoint.recipes, config)
+    .get(endpoint.recipe, config)
     .then(response => response.data)
     .then(json => dispatch(fetchSingleRecipeSuccess(json)))
     .catch(err => dispatch(fetchSingleRecipeSuccess({ message: err.toString() })));
@@ -98,22 +98,37 @@ export const clearCurrentRecipe = (payload) => {
 
 export const REQUEST_POST_RECIPE = 'REQUEST_POST_RECIPE';
 export const requestPostRecipe = (payload) => dispatch => {
+  const token = localStorage.getItem('khtoken');
+  console.log(token);
   console.log(payload);
-  // dispatch(fetchTransient())
-  // return axios.post()
-  // return axios
-    // .get(endpoint.recipes, config)
-    // .then(response => response.data)
-    // .then(json => dispatch(fetchRecipesSuccess(json)))
-    // .catch(err => dispatch(fetchRecipesRejected({ message: err.toString() })));
+  dispatch(fetchTransient())
+  const postConfiguration = Object.assign({},
+    Object.assign({},
+      config,
+      { headers: Object.assign({},
+        config.headers,
+        { 'Authorization': 'Bearer ' + token })
+      }
+    )
+  )
+  return axios.post(
+    endpoint.recipe,
+    payload,
+    postConfiguration)
+    .then((response) => response.data)
+    .then(json => dispatch(postRecipeSuccess(json)))
+    .catch((err) => {
+      dispatch(postRecipeRejected({ message: err.toString() }))
+    });
 }
 
 export const POST_RECIPE_SUCCESS = 'POST_RECIPE_SUCCESS';
 export const postRecipeSuccess = (payload) => {
+  console.log(payload);
   return {
     type: POST_RECIPE_SUCCESS,
     isFetching: false,
-    recipes: payload.recipes,
+    // recipes: payload.recipes,
     message: 'Post Success!'
   }
 }
@@ -215,7 +230,6 @@ export const CHECK_AUTH_STATUS = 'CHECK_AUTH_STATUS';
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const authSuccess = (payload) => {
-  console.log('authSuccess');
   return {
     type: AUTH_SUCCESS,
     isAuthed: true,
@@ -228,7 +242,6 @@ export const authSuccess = (payload) => {
 export const SET_TOKEN = 'SET_TOKEN';
 export const setToken = ({ jwt }) => {
   if (!!jwt) {
-    console.log('hasToken')
     localStorage.setItem('khtoken', jwt)
     return {
       type: SET_TOKEN,
@@ -256,7 +269,6 @@ export const removeToken = () => {
 
 export const CHECK_TOKEN = 'CHECK_TOKEN';
 export const checkToken = () => dispatch => {
-  console.log('checking token')
   if (!!localStorage.hasOwnProperty('khtoken')) {
     const token = localStorage.khtoken;
     const options = Object.assign({},

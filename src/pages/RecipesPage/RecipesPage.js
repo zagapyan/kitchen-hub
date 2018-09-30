@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { testIfValidUrl, fetchMetaData } from '../../utils/functions';
-import { requestPostRecipe } from '../../actions'
+import { requestFetchRecipes , requestPostRecipe } from '../../actions'
 import './RecipesPage.css'
 
 class RecipesPage extends Component {
@@ -27,6 +27,8 @@ class RecipesPage extends Component {
 
   handleFetchList = () => {
     console.log('fetchingList')
+    const { requestFetchRecipes } = this.props;
+    requestFetchRecipes();
   }
 
   handleSendUrl = () => {
@@ -37,7 +39,7 @@ class RecipesPage extends Component {
         .then(result =>
           this.setState({
             ...this.state,
-            preSendPrompt: { ...result }
+            preSendPrompt: { ...result, url: currentUrl }
           }, () => this.setState({ modalActive: true })))
         .catch(err => err)
       this.setState({ url: '' });
@@ -105,6 +107,7 @@ class RecipesPage extends Component {
 export default connect(
   () => ({}),
   dispatch => bindActionCreators({
+    requestFetchRecipes,
     requestPostRecipe
   }, dispatch)
 )(RecipesPage)

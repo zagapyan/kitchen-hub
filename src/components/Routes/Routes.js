@@ -12,7 +12,6 @@ import Logo from '../../images/icons8-bento-96.png'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => {
-    console.log('props: ', props, 'rest: ', rest)
     return rest.isAuthed
       ? <Component {...props} />
       : <Redirect to='/login' />
@@ -22,7 +21,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 class Routes extends Component {
   componentDidMount() {
     const { checkToken } = this.props;
-    console.log('component Did Mounte');
     checkToken();
   }
   handleLogout = () => {
@@ -50,7 +48,7 @@ class Routes extends Component {
               <span className="level-left">
                 <span className="level-item">
                   <h1 className="title is-4 level-item">
-                    <img id="logo" src={Logo} title="SAVR" />
+                    <img id="logo" src={Logo} title="SAVR" alt="SAVR" />
                     SAVR
                 </h1>
                 </span>

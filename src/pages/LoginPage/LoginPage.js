@@ -8,20 +8,22 @@ import { Redirect } from 'react-router-dom';
 
 class LoginPage extends Component {
   render() {
-    const {isAuthed, hasToken, requestSendAuth} = this.props;
+    const { isAuthed, hasToken, requestSendAuth } = this.props;
     let identifier = '';
     let password = '';
-    if(isAuthed && hasToken){
-      return(<Redirect to="/recipes" />)
+    if (isAuthed && hasToken) {
+      return (<Redirect to="/recipes" />)
     }
     return (
       <div className="LoginPage">
-        <div className="field">
-          <div className="control">
-            <h1 className="title is-1">Login</h1>
-            <input className="input" type="text" onChange={input => identifier = input.target.value }/><br />
-            <input className="input" type="password" onChange={input => password = input.target.value }/><br />
-            <button className="button is-primary" onClick={() => requestSendAuth({ identifier, password })}>Log In</button>
+        <div className="container">
+          <div className="field">
+            <div className="control">
+              <h1 className="title is-1">Login</h1>
+              <input className="input" type="text" onChange={input => identifier = input.target.value} /><br />
+              <input className="input" type="password" onChange={input => password = input.target.value} /><br />
+              <button className="button is-primary" onClick={() => requestSendAuth({ identifier, password })}>Log In</button>
+            </div>
           </div>
         </div>
       </div>

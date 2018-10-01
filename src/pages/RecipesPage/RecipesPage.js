@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { testIfValidUrl, fetchMetaData } from '../../utils/functions';
-import { requestFetchRecipes , requestPostRecipe } from '../../actions'
+import { requestFetchRecipes, requestPostRecipe } from '../../actions'
 import './RecipesPage.css'
 
 class RecipesPage extends Component {
@@ -57,7 +58,7 @@ class RecipesPage extends Component {
   handleChange = (url) => this.setState({ url })
 
   render() {
-    const { requestPostRecipe } = this.props;
+    const { requestPostRecipe, recipes } = this.props;
     const { preSendPrompt } = this.state;
     return (
       <React.Fragment>
@@ -70,6 +71,16 @@ class RecipesPage extends Component {
               <div className="control">
                 <button className="button is-primary" onClick={() => this.handleSendUrl()}>Send</button>
               </div>
+            </div>
+            <div className="panel">
+              <div className="panel-heading">
+                <h3 className="title is-3">Recipes</h3>
+              </div>
+              {recipes.length > 0 ? recipes.map((recipe, index)=>(
+                <div className="panel-body" key={index}>
+                  <div className="panel-block"><Link to={`/recipe/${recipe.id}`} title={recipe.title}>{recipe.title}</Link></div>
+                </div>
+              )) : false}
             </div>
           </div>
         </div>
@@ -105,7 +116,9 @@ class RecipesPage extends Component {
 }
 
 export default connect(
-  () => ({}),
+  (state) => ({
+    recipes: state.recipesReducer.recipes
+  }),
   dispatch => bindActionCreators({
     requestFetchRecipes,
     requestPostRecipe

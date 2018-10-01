@@ -1,16 +1,13 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const SplashPage = ({}) => (
+const SplashPage = ({ }) => (
   <div className="SplashPage">
-    <h1>Welcome to SAVR!</h1>
-    <Link to="/recipes">Get Started</Link>
+    <div className="container">
+      <h1 className="title is-3">Welcome to savr!</h1>
+      <Link to="/recipes" className="button is-primary">Get Started</Link>
+    </div>
   </div>
 );
-
-// SplashPage.propTypes = {}
-
-// SplashPage.defaultProps = {}
 
 export default SplashPage

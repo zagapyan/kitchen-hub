@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { endpoint, config } from '../utils';
 
+const token = localStorage.getItem('khtoken');
+const postConfiguration = Object.assign({}, Object.assign({}, config, { headers: Object.assign({}, config.headers, { 'Authorization': 'Bearer ' + token }) }))
+
 /*
 * ==========
 * RECIPES
@@ -27,11 +30,11 @@ export const requestFetchRecipes = () => dispatch => {
 }
 
 export const FETCH_RECIPES_SUCCESS = 'FETCH_RECIPES_SUCCESS';
-export const fetchRecipesSuccess = (payload) => {
+export const fetchRecipesSuccess = (recipes) => {
   return {
     type: FETCH_RECIPES_SUCCESS,
     isFetching: false,
-    recipes: payload.recipes,
+    recipes: recipes,
     message: 'Fetch Success!'
   }
 }
@@ -47,11 +50,13 @@ export const fetchRecipesRejected = ({ message }) => {
 }
 
 export const REQUEST_FETCH_SINGLE_RECIPE = 'REQUEST_FETCH_SINGLE_RECIPE';
-export const requestFetchSingleRecipe = () => dispatch => {
-
+export const requestFetchSingleRecipe = (payload) => dispatch => {
+  const { id } = payload;
+  const singleRecipeEndpoint = endpoint.recipe + `/${id}`;
+  console.log(singleRecipeEndpoint);
   dispatch(fetchTransient())
   return axios
-    .get(endpoint.recipe, config)
+    .get(endpoint.recipe + `/${id}`, postConfiguration)
     .then(response => response.data)
     .then(json => dispatch(fetchSingleRecipeSuccess(json)))
     .catch(err => dispatch(fetchSingleRecipeSuccess({ message: err.toString() })));
@@ -59,10 +64,11 @@ export const requestFetchSingleRecipe = () => dispatch => {
 
 export const FETCH_SINGLE_RECIPE_SUCCESS = 'FETCH_SINGLE_RECIPE_SUCCESS';
 export const fetchSingleRecipeSuccess = (payload) => {
+  
   return {
     type: FETCH_SINGLE_RECIPE_SUCCESS,
     isFetching: false,
-    currentRecipe: payload.currentRecipe,
+    currentRecipe: payload,
     message: 'Fetch Success!'
   }
 }
@@ -98,19 +104,9 @@ export const clearCurrentRecipe = (payload) => {
 
 export const REQUEST_POST_RECIPE = 'REQUEST_POST_RECIPE';
 export const requestPostRecipe = (payload) => dispatch => {
-  const token = localStorage.getItem('khtoken');
   console.log(token);
   console.log(payload);
   dispatch(fetchTransient())
-  const postConfiguration = Object.assign({},
-    Object.assign({},
-      config,
-      { headers: Object.assign({},
-        config.headers,
-        { 'Authorization': 'Bearer ' + token })
-      }
-    )
-  )
   return axios.post(
     endpoint.recipe,
     payload,

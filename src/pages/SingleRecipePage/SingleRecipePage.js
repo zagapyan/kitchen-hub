@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { requestFetchSingleRecipe } from '../../actions'
+import { requestFetchSingleRecipe, clearCurrentRecipe } from '../../actions'
 import styles from './SingleRecipePage.scss'
 
 class SingleRecipePage extends Component {
@@ -12,7 +12,9 @@ class SingleRecipePage extends Component {
     const { match: { params: { id } }, requestFetchSingleRecipe } = this.props;
     requestFetchSingleRecipe({ id })
   }
-  componentWillMount() { }
+  componentWillMount() {
+    clearCurrentRecipe();
+  }
   render() {
     const { match: { params: { id } }, currentRecipe: { title, description, imgSrc, url } } = this.props;
     return (
@@ -30,11 +32,13 @@ class SingleRecipePage extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   currentRecipe: state.recipesReducer.currentRecipe,
-  requestFetchSingleRecipe
+  requestFetchSingleRecipe,
+  clearCurrentRecipe
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => bindActionCreators({
-  requestFetchSingleRecipe
+  requestFetchSingleRecipe,
+  clearCurrentRecipe
 }, dispatch)
 
 export default connect(

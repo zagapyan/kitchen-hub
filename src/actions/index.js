@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { endpoint, config } from '../utils';
-
-const token = localStorage.getItem('khtoken');
+const tokenName= 'khtoken';
+const token = localStorage.getItem(tokenName);
 const postConfiguration = Object.assign({}, Object.assign({}, config, { headers: Object.assign({}, config.headers, { 'Authorization': 'Bearer ' + token }) }))
 
 /*
@@ -12,6 +12,7 @@ const postConfiguration = Object.assign({}, Object.assign({}, config, { headers:
 
 export const FETCH_TRANSIENT = 'FETCH_TRANSIENT';
 export const fetchTransient = (payload) => {
+  console.log('fetch transient')
   return {
     type: FETCH_TRANSIENT,
     isFetching: true,
@@ -21,11 +22,19 @@ export const fetchTransient = (payload) => {
 
 export const REQUEST_FETCH_RECIPES = 'REQUEST_FETCH_RECIPES';
 export const requestFetchRecipes = () => dispatch => {
+  console.log('requestFetchRecipes')
   dispatch(fetchTransient())
+  
   return axios
-    .get(endpoint.recipe, config)
-    .then(response => response.data)
-    .then(json => dispatch(fetchRecipesSuccess(json)))
+    .get(endpoint.recipe, postConfiguration)
+    .then(response => {
+      console.log(response)
+      return response.data
+    })
+    .then(json => {
+      console.log(json)
+      return dispatch(fetchRecipesSuccess(json))
+    })
     .catch(err => dispatch(fetchRecipesRejected({ message: err.toString() })));
 }
 
@@ -238,7 +247,7 @@ export const authSuccess = (payload) => {
 export const SET_TOKEN = 'SET_TOKEN';
 export const setToken = ({ jwt }) => {
   if (!!jwt) {
-    localStorage.setItem('khtoken', jwt)
+    localStorage.setItem(tokenName, jwt)
     return {
       type: SET_TOKEN,
       hasToken: true
@@ -256,7 +265,7 @@ export const setToken = ({ jwt }) => {
 export const REMOVE_TOKEN = 'REMOVE_TOKEN';
 export const removeToken = () => {
   console.log('removing token');
-  localStorage.removeItem('khtoken')
+  localStorage.removeItem(tokenName)
   return {
     type: REMOVE_TOKEN,
     hasToken: false
@@ -265,17 +274,10 @@ export const removeToken = () => {
 
 export const CHECK_TOKEN = 'CHECK_TOKEN';
 export const checkToken = () => dispatch => {
-  if (!!localStorage.hasOwnProperty('khtoken')) {
+  if (!!localStorage.hasOwnProperty(tokenName)) {
     const token = localStorage.khtoken;
-    const options = Object.assign({},
-      config,
-      {
-        headers: Object.assign({},
-          config.headers,
-          { Authorization: `Bearer ${token}` })
-      });
 
-    return axios.get('http://localhost:1337/user', options)
+    return axios.get('http://localhost:1337/user', postConfiguration)
       .then(response => response.data)
       .then(json => {
         const user = json[0]

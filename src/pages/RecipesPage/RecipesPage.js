@@ -13,7 +13,7 @@ class RecipesPage extends Component {
   }
 
   componentDidMount() {
-    this.handleFetchList()
+    this.handleFetchList() 
   }
 
   componentWillUnmount() {
@@ -26,10 +26,10 @@ class RecipesPage extends Component {
   static defaultProps = { url: '', preSendPrompt: { title: '', description: '', imgSrc: '' }, modalActive: false }
   state = { ...this.defaultProps }
 
-  handleFetchList = () => {
+  handleFetchList(){
     console.log('fetchingList')
-    const { requestFetchRecipes } = this.props;
-    requestFetchRecipes();
+    console.log(this.props);
+    this.props.requestFetchRecipes();
   }
 
   handleSendUrl = () => {

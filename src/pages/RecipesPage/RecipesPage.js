@@ -13,10 +13,20 @@ class RecipesPage extends Component {
   }
 
   componentDidMount() {
-    this.handleFetchList() 
+    console.log('componentDidMount');
+    this.handleFetchList()
   }
-
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(nextProps.location !== prevState.location ) {
+      console.log('changed');
+      return true;
+    }
+  }
+  componentDidUpdate(){
+    console.log('componetnDidUpdate')
+  }
   componentWillUnmount() {
+    console.log('componentWillUnmount')
     this.setState({
       modalActive: false,
       preSendPrompt: { ...this.props.preSendPrompt }
@@ -28,7 +38,6 @@ class RecipesPage extends Component {
 
   handleFetchList(){
     console.log('fetchingList')
-    console.log(this.props);
     this.props.requestFetchRecipes();
   }
 

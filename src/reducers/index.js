@@ -18,7 +18,7 @@ import {
   SET_USER
 } from '../actions'
 
-const recipeState = {
+const defaultRecipeState = {
   recipeLists: [],
   currentList: [],
   recipes: [],
@@ -26,7 +26,7 @@ const recipeState = {
   user: {}
 }
 
-export const recipesReducer = (state=recipeState, action)=>{
+const recipesReducer = (state=defaultRecipeState, action)=>{
   switch(action.type){
     case FETCH_TRANSIENT:
       return{
@@ -67,13 +67,13 @@ export const recipesReducer = (state=recipeState, action)=>{
   }
 }
 
-const authState = {
+const defaultAuthState = {
   isAuthed: false,
   isFetching: false,
   message: '',
 }
 
-export const authenticationReducer = (state=authState, action)=>{
+export const authenticationReducer = (state=defaultAuthState, action)=>{
   switch(action.type){
     case AUTH_TRANSIENT:
       return{
@@ -107,8 +107,18 @@ export const tokenReducer = (state=tokenState, action)=>{
     case CHECK_TOKEN:
     case SET_TOKEN:
     case REMOVE_TOKEN:
+      console.log('REMOVE_TOKEN_REDUCER')
       return{
         ...state,
+        hasToken: action.hasToken,
+        recipeLists: action.recipeLists,
+        currentList: action.currentList,
+        recipes: action.recipes,
+        currentRecipe: action.currentRecipe,
+        user: action.user,
+        isAuthed: action.isAuthed,
+        isFetching: action.isFetching,
+        message: action.message,
         hasToken: action.hasToken
       }
     default:

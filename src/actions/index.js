@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { endpoint, config } from '../utils';
+import { defaultRecipeState, defaultAuthState} from '../reducers'
 const tokenName= 'khtoken';
 const token = localStorage.getItem(tokenName);
 const postConfiguration = Object.assign({}, Object.assign({}, config, { headers: Object.assign({}, config.headers, { 'Authorization': 'Bearer ' + token }) }))
@@ -11,7 +12,7 @@ const postConfiguration = Object.assign({}, Object.assign({}, config, { headers:
 */
 
 export const FETCH_TRANSIENT = 'FETCH_TRANSIENT';
-export const fetchTransient = (payload) => {
+export const fetchTransient = () => {
   console.log('fetch transient')
   return {
     type: FETCH_TRANSIENT,
@@ -24,7 +25,9 @@ export const REQUEST_FETCH_RECIPES = 'REQUEST_FETCH_RECIPES';
 export const requestFetchRecipes = () => dispatch => {
   console.log('requestFetchRecipes')
   dispatch(fetchTransient())
-  
+  console.log(' catching ')
+  console.log(endpoint.recipe, postConfiguration)
+  // post configuration does not have bearer token when redirecting after user is authed
   return axios
     .get(endpoint.recipe, postConfiguration)
     .then(response => {
@@ -268,6 +271,14 @@ export const removeToken = () => {
   localStorage.removeItem(tokenName)
   return {
     type: REMOVE_TOKEN,
+    recipeLists: [],
+    currentList: [],
+    recipes: [],
+    currentRecipe: {},
+    user: {},
+    isAuthed: false,
+    isFetching: false,
+    message: '',
     hasToken: false
   }
 }
